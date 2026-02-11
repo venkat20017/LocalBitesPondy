@@ -1,22 +1,73 @@
 
 
 
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 export const Footer = () => {
+    const location = useLocation();
+    const navigate = useNavigate();
+
+    const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+        e.preventDefault();
+
+        if (location.pathname !== '/') {
+            navigate('/', { state: { target: href } });
+            return;
+        }
+
+        const targetId = href.replace('#', '');
+        const element = document.getElementById(targetId);
+        if (element) {
+            const headerOffset = 80;
+            const elementPosition = element.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: 'smooth'
+            });
+        }
+    };
+
+    const quickLinks = [
+        { name: 'Famous Food', href: '#famous-food' },
+        { name: 'Biriyani', href: '#biriyani' },
+        { name: 'Hotels', href: '#hotels' },
+        { name: 'Why Guide?', href: '#why-guide' },
+        { name: 'Contact', href: '#contact' },
+    ];
+
     return (
         <footer className="bg-gray-50 pt-16 pb-8 px-4 border-t border-gray-200">
             <div className="mx-auto max-w-7xl">
-                <div className="grid gap-12 md:grid-cols-2 mb-12">
-                    {/* Left Column: About */}
+                <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 mb-12">
+                    {/* Column 1: About */}
                     <div>
                         <h3 className="text-gray-900 font-bold text-lg mb-4">About LocalBitesPondy</h3>
                         <p className="text-gray-600 leading-relaxed max-w-md">
-                            Your insider's guide to famous food in Pondicherry. We skip the tourist traps and show you where locals actually eat—from century-old French boulangeries to family-run Tamil restaurants that serve the authentic flavors of Puducherry.
+                            Your insider's guide to famous food in Pondicherry. We skip the tourist traps and show you where locals actually eat—from century-old French boulangeries to family-run Tamil restaurants.
                         </p>
                     </div>
 
-                    {/* Right Column: Popular Searches */}
+                    {/* Column 2: Quick Links */}
+                    <div>
+                        <h3 className="text-gray-900 font-bold text-lg mb-4">Quick Links</h3>
+                        <ul className="space-y-3">
+                            {quickLinks.map((link) => (
+                                <li key={link.name}>
+                                    <a
+                                        href={link.href}
+                                        onClick={(e) => handleLinkClick(e, link.href)}
+                                        className="text-gray-600 hover:text-orange-600 transition-colors"
+                                    >
+                                        {link.name}
+                                    </a>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+
+                    {/* Column 3: Popular Searches */}
                     <div>
                         <h3 className="text-gray-900 font-bold text-lg mb-4">Popular Searches</h3>
                         <div className="flex flex-wrap gap-2">

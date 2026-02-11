@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from 'react';
-import { ArrowRight, Mail, UtensilsCrossed, User, CheckCircle2 } from 'lucide-react';
+import { ArrowRight, Mail, User, CheckCircle2 } from 'lucide-react';
 import heroCollage from '../assets/hero-collage.webp';
 import { saveLeadToSheets } from '../services/googleSheets';
 import { trackConversion } from '../services/analytics';
@@ -44,19 +44,14 @@ export const Hero = () => {
     };
 
     return (
-        <section id="download" className="relative overflow-hidden bg-white">
+        <section id="home" className="relative overflow-hidden bg-white">
             {/* Logo / Brand - Absolute on Desktop, Relative on Mobile */}
-            <div className="absolute top-0 left-0 p-6 z-20">
-                <div className="flex items-center gap-2 font-bold text-xl text-orange-600">
-                    <UtensilsCrossed className="h-6 w-6" />
-                    <span>LocalBitesPondy</span>
-                </div>
-            </div>
+            {/* Logo removed - now in Navbar */}
 
             <div className="flex flex-col md:flex-row min-h-screen">
                 {/* Left Side: Content & Form */}
                 <div className="w-full md:w-1/2 flex flex-col justify-center px-6 py-24 md:px-12 lg:px-20 z-10 bg-white">
-                    <div className="animate-fade-in-up">
+                    <div id="download" className="animate-fade-in-up">
                         <h1 className="mb-6 text-4xl font-extrabold tracking-tight text-gray-900 md:text-5xl lg:text-6xl leading-tight">
                             Discover the Famous Food in Pondicherry: <span className="text-orange-500">Your Ultimate Local's Guide</span>
                         </h1>
@@ -143,6 +138,10 @@ export const Hero = () => {
                         src={heroCollage}
                         alt="famous-food-in-pondicherry"
                         className="absolute inset-0 w-full h-full object-cover"
+                        width="800"
+                        height="600"
+                        {...({ fetchPriority: "high" } as any)}
+                        loading="eager"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent md:bg-gradient-to-l"></div>
                 </div>

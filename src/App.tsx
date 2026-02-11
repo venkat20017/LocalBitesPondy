@@ -1,24 +1,38 @@
+import { Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Home } from './pages/Home';
-import PrivacyPolicy from './pages/PrivacyPolicy'; // Default import for PrivacyPolicy
-import TermsOfUse from './pages/TermsOfUse'; // Default import for TermsOfUse
-import AboutUs from './pages/AboutUs'; // Default import for AboutUs
 import { Footer } from './components/Footer';
 import { ConsentBanner } from './components/ConsentBanner';
-import ScrollToTop from './components/ScrollToTop'; // We might need this, but for now let's just use standard routing. Actually, standard behavior is ample. I will add a ScrollToTop component later if needed, or just inline a wrapper if I can. For now, I'll stick to basic routing.
+import ScrollToTop from './components/ScrollToTop';
+import { Navbar } from './components/Navbar';
+
+// Lazy load non-critical pages
+const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
+const TermsOfUse = lazy(() => import('./pages/TermsOfUse'));
+const AboutUs = lazy(() => import('./pages/AboutUs'));
+
+// Loading fallback component
+const PageLoader = () => (
+  <div className="flex items-center justify-center min-h-[50vh]">
+    <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-orange-500"></div>
+  </div>
+);
 
 function App() {
   return (
     <Router>
       <ScrollToTop />
+      <Navbar />
       <div className="min-h-screen font-sans bg-white text-gray-900 flex flex-col">
         <div className="flex-grow">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-            <Route path="/terms-of-use" element={<TermsOfUse />} />
-            <Route path="/about-us" element={<AboutUs />} />
-          </Routes>
+          <Suspense fallback={<PageLoader />}>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+              <Route path="/terms-of-use" element={<TermsOfUse />} />
+              <Route path="/about-us" element={<AboutUs />} />
+            </Routes>
+          </Suspense>
         </div>
         <Footer />
         <ConsentBanner />
