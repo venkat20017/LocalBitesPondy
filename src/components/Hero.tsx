@@ -56,7 +56,7 @@ export const Hero = () => {
                             Discover the Famous Food in Pondicherry: <span className="text-orange-500">Your Ultimate Local's Guide</span>
                         </h1>
                         <p className="mb-10 text-lg text-gray-600 md:text-xl leading-relaxed">
-                            Skip the tourist traps and taste authentic Pondicherry cuisine. Download our insider's guide to 15 must-visit spots serving the most famous food in Pondicherry—from French bakeries to Tamil street eats (with exact Google Map links).
+                            You are in the right place if you're looking for a must-visit food spot in Pondicherry. This guide will take you to the best restaurant near me in Pondicherry. You can also find the exact Google Maps link for the best restaurant around you in Pondicherry.
                         </p>
 
                         {isSuccess ? (
