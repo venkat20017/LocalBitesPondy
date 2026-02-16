@@ -1,4 +1,5 @@
-import { Utensils, Coffee, Fish, MapPin, ChefHat, Sun, Star, Info } from 'lucide-react';
+import { Utensils, Coffee, Fish, MapPin, ChefHat, Sun, Star, ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 export const SEOSections = () => {
     return (
@@ -8,10 +9,13 @@ export const SEOSections = () => {
                 <div className="mx-auto max-w-7xl px-6">
                     <div className="flex flex-col md:flex-row gap-12 items-center">
                         <div className="w-full md:w-1/2">
-                            <h2 className="text-3xl font-bold text-gray-900 mb-6 flex items-center gap-3">
-                                <Utensils className="text-orange-600 h-8 w-8" />
-                                Traditional Tamil Dishes
-                            </h2>
+                            <Link to="/traditional-tamil-dishes-pondicherry" className="group">
+                                <h2 className="text-3xl font-bold text-gray-900 mb-6 flex items-center gap-3 group-hover:text-orange-600 transition-colors">
+                                    <Utensils className="text-orange-600 h-8 w-8" />
+                                    Traditional Tamil Dishes
+                                    <ArrowRight className="h-6 w-6 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
+                                </h2>
+                            </Link>
                             <p className="text-lg text-gray-600 mb-6 leading-relaxed">
                                 The foundation of Pondicherry’s cuisine lies in Tamil culinary traditions. These dishes are deeply rooted in local households and traditional Tamil restaurants across the city.
                             </p>
@@ -45,10 +49,13 @@ export const SEOSections = () => {
                 <div className="mx-auto max-w-7xl px-6">
                     <div className="flex flex-col md:flex-row-reverse gap-12 items-center">
                         <div className="w-full md:w-1/2">
-                            <h2 className="text-3xl font-bold text-gray-900 mb-6 flex items-center gap-3">
-                                <Coffee className="text-orange-600 h-8 w-8" />
-                                Popular French Influenced Foods
-                            </h2>
+                            <Link to="/french-cafes-in-pondicherry" className="group">
+                                <h2 className="text-3xl font-bold text-gray-900 mb-6 flex items-center gap-3 group-hover:text-orange-600 transition-colors">
+                                    <Coffee className="text-orange-600 h-8 w-8" />
+                                    Popular French Influenced Foods
+                                    <ArrowRight className="h-6 w-6 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
+                                </h2>
+                            </Link>
                             <p className="text-lg text-gray-600 mb-6 leading-relaxed">
                                 French rule left a strong culinary imprint on Pondicherry. This fusion makes Pondicherry unique compared to other South Indian cities.
                             </p>
@@ -83,10 +90,13 @@ export const SEOSections = () => {
                     <div className="grid md:grid-cols-2 gap-12">
                         {/* Seafood */}
                         <div>
-                            <h2 className="text-3xl font-bold text-gray-900 mb-6 flex items-center gap-3">
-                                <Fish className="text-orange-600 h-8 w-8" />
-                                Seafood Specialties
-                            </h2>
+                            <Link to="/seafood-restaurants-pondicherry" className="group">
+                                <h2 className="text-3xl font-bold text-gray-900 mb-6 flex items-center gap-3 group-hover:text-orange-600 transition-colors">
+                                    <Fish className="text-orange-600 h-8 w-8" />
+                                    Seafood Specialties
+                                    <ArrowRight className="h-6 w-6 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
+                                </h2>
+                            </Link>
                             <p className="text-gray-600 mb-6">Being a coastal town, Pondicherry is known for fresh seafood prepared in both Tamil and continental styles.</p>
                             <ul className="space-y-3">
                                 {["Prawn Masala", "Grilled Lobster with Garlic Butter", "Crab Curry (Nandu Kuzhambu)", "Fish Fry with Spiced Marinade"].map((item, idx) => (
@@ -100,10 +110,13 @@ export const SEOSections = () => {
 
                         {/* Street Food */}
                         <div>
-                            <h2 className="text-3xl font-bold text-gray-900 mb-6 flex items-center gap-3">
-                                <MapPin className="text-orange-600 h-8 w-8" />
-                                Street Food Delights
-                            </h2>
+                            <Link to="/street-food-in-pondicherry" className="group">
+                                <h2 className="text-3xl font-bold text-gray-900 mb-6 flex items-center gap-3 group-hover:text-orange-600 transition-colors">
+                                    <MapPin className="text-orange-600 h-8 w-8" />
+                                    Street Food Delights
+                                    <ArrowRight className="h-6 w-6 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
+                                </h2>
+                            </Link>
                             <p className="text-gray-600 mb-6">Evening street stalls near beaches and busy markets offer affordable and flavorful experiences.</p>
                             <ul className="space-y-3">
                                 {["Sundal (spiced chickpeas)", "Bajji & Bonda", "Egg Kothu Parotta", "Masala Pori"].map((item, idx) => (
@@ -167,10 +180,13 @@ export const SEOSections = () => {
             <section className="py-16 bg-orange-900 text-white rounded-t-3xl mt-12 mx-4 lg:mx-12">
                 <div className="mx-auto max-w-7xl px-6 grid md:grid-cols-2 gap-16">
                     <div>
-                        <h2 className="text-3xl font-bold mb-8 flex items-center gap-3">
-                            <ChefHat className="text-orange-300 h-8 w-8" />
-                            A Foodie's Guide
-                        </h2>
+                        <Link to="/foodie-guide-pondicherry" className="group">
+                            <h2 className="text-3xl font-bold mb-8 flex items-center gap-3 group-hover:text-orange-200 transition-colors">
+                                <ChefHat className="text-orange-300 h-8 w-8" />
+                                A Foodie's Guide
+                                <ArrowRight className="h-6 w-6 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
+                            </h2>
+                        </Link>
                         <div className="space-y-8">
                             <div>
                                 <h3 className="text-xl font-bold text-orange-200 mb-2">Culinary Tours</h3>
