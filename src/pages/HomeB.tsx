@@ -3,6 +3,7 @@ import { HeroB } from '../components/HeroB';
 import { SEOSections } from '../components/SEOSections';
 import { SecondEmailCapture } from '../components/SecondEmailCapture';
 import { ContactUs } from '../components/ContactUs';
+import { FAQSection } from '../components/FAQSection';
 
 export const HomeB = () => {
     useEffect(() => {
@@ -61,15 +62,23 @@ export const HomeB = () => {
                         "name": "What is the famous food in Pondicherry?",
                         "acceptedAnswer": {
                             "@type": "Answer",
-                            "text": "Pondicherry is famous for seafood, French pastries, Tamil meals, prawn masala and fish curry."
+                            "text": "The famous food in Pondicherry includes seafood dishes like prawn masala and fish curry, traditional Tamil meals, French pastries, crepes, and beachside grilled seafood."
                         }
                     },
                     {
                         "@type": "Question",
-                        "name": "Where can I try French food in Pondicherry?",
+                        "name": "Why is Pondicherry food different from other South Indian cities?",
                         "acceptedAnswer": {
                             "@type": "Answer",
-                            "text": "White Town area has popular French cafes serving croissants, crepes and continental dishes."
+                            "text": "Pondicherry food is unique because of its French colonial influence combined with Tamil cuisine. This fusion creates dishes that blend European baking techniques with Indian spices."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "Where can I try the best seafood in Pondicherry?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "You can try fresh seafood at beachside restaurants and places like FinZ - Seafood & Barbeque, which is known for grilled and coastal-style seafood dishes."
                         }
                     },
                     {
@@ -77,7 +86,15 @@ export const HomeB = () => {
                         "name": "Is Pondicherry good for vegetarian food?",
                         "acceptedAnswer": {
                             "@type": "Answer",
-                            "text": "Yes, Pondicherry offers many vegetarian-friendly Tamil restaurants and vegan-friendly cafes."
+                            "text": "Yes. Pondicherry offers many vegetarian Tamil restaurants serving dosa, idli, sambar, and full meals, along with French cafes offering vegetarian and vegan-friendly options."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "Which area in Pondicherry is best for food lovers?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "White Town is the best area for French cafes and heritage dining, while local market areas and beach roads are great for traditional and street food."
                         }
                     }]
                 }
@@ -102,6 +119,7 @@ export const HomeB = () => {
             <HeroB />
             <SEOSections />
             <SecondEmailCapture />
+            <FAQSection />
             <ContactUs />
         </>
     );

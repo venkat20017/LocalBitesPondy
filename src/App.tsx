@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Home } from './pages/Home';
 import { HomeB } from './pages/HomeB';
 import { ClusterPage } from './pages/ClusterPage';
+import { clusterData } from './data/clusterData';
 import { Footer } from './components/Footer';
 import { ConsentBanner } from './components/ConsentBanner';
 import ScrollToTop from './components/ScrollToTop';
@@ -36,12 +37,12 @@ function App() {
               <Route path="/about-us" element={<AboutUs />} />
 
               {/* SEO Cluster Pages */}
-              <Route path="/traditional-tamil-dishes-pondicherry" element={<ClusterPage title="Traditional Tamil Dishes" description="Explore the authentic flavors of Pondicherry with our guide to the best Tamil traditional meals, from banana leaf feasts to spicy curries." />} />
-              <Route path="/french-cafes-in-pondicherry" element={<ClusterPage title="French Cafes and Bistros" description="Discover the charm of White Town with our curated list of the best French cafes serving croissants, crepes, and colonial-era classics." />} />
-              <Route path="/seafood-restaurants-pondicherry" element={<ClusterPage title="Seafood Specialties" description="From fresh catch to spicy prawn masala, find the best seafood restaurants in Pondicherry for a coastal dining experience." />} />
-              <Route path="/street-food-in-pondicherry" element={<ClusterPage title="Street Food Delights" description="A guide to Pondicherry's vibrant street food scene, featuring sundal, bajji, and other local snacks you must try." />} />
-              <Route path="/vegetarian-restaurants-pondicherry" element={<ClusterPage title="Vegetarian Options" description="Find the best vegetarian and vegan-friendly spots in Pondicherry, offering everything from South Indian tiffin to continental salads." />} />
-              <Route path="/foodie-guide-pondicherry" element={<ClusterPage title="A Foodie's Guide" description="Your ultimate companion for culinary tours, cooking classes, and food festivals in Pondicherry." />} />
+              <Route path="/traditional-tamil-dishes-pondicherry" element={<ClusterPage data={clusterData["/traditional-tamil-dishes-pondicherry"]} />} />
+              <Route path="/french-cafes-in-pondicherry" element={<ClusterPage data={clusterData["/french-cafes-in-pondicherry"]} />} />
+              <Route path="/seafood-restaurants-pondicherry" element={<ClusterPage data={clusterData["/seafood-restaurants-pondicherry"]} />} />
+              <Route path="/street-food-in-pondicherry" element={<ClusterPage data={clusterData["/street-food-in-pondicherry"]} />} />
+              <Route path="/vegetarian-restaurants-pondicherry" element={<ClusterPage data={clusterData["/vegetarian-restaurants-pondicherry"]} />} />
+              <Route path="/foodie-guide-pondicherry" element={<ClusterPage data={clusterData["/foodie-guide-pondicherry"]} />} />
             </Routes>
           </Suspense>
         </div>
