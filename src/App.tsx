@@ -1,6 +1,7 @@
 import { Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Home } from './pages/Home';
+import { HomeB } from './pages/HomeB';
 import { Footer } from './components/Footer';
 import { ConsentBanner } from './components/ConsentBanner';
 import ScrollToTop from './components/ScrollToTop';
@@ -28,6 +29,7 @@ function App() {
           <Suspense fallback={<PageLoader />}>
             <Routes>
               <Route path="/" element={<Home />} />
+              <Route path="/home-b" element={<HomeB />} />
               <Route path="/privacy-policy" element={<PrivacyPolicy />} />
               <Route path="/terms-of-use" element={<TermsOfUse />} />
               <Route path="/about-us" element={<AboutUs />} />
