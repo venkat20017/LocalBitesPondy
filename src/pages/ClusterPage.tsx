@@ -1,20 +1,28 @@
 import { useEffect } from 'react';
 import { ArrowLeft, ChefHat } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import type { ClusterData } from '../data/clusterData';
+import { MetaTags } from '../components/MetaTags';
 
 interface ClusterPageProps {
     data: ClusterData;
 }
 
 export const ClusterPage = ({ data }: ClusterPageProps) => {
+    const location = useLocation();
+    const canonicalUrl = `https://localbitespondy.netlify.app${location.pathname}`;
+
     useEffect(() => {
-        document.title = `${data.title} | Famous Food in Pondicherry`;
         window.scrollTo(0, 0);
     }, [data.title]);
 
     return (
         <div className="min-h-screen bg-orange-50 pt-24 pb-12 px-6 font-sans">
+            <MetaTags
+                title={`${data.title} | Famous Food in Pondicherry`}
+                description={data.description}
+                canonical={canonicalUrl}
+            />
             <div className="max-w-4xl mx-auto">
                 <Link to="/home-b" className="inline-flex items-center text-orange-600 font-medium mb-8 hover:underline">
                     <ArrowLeft className="w-4 h-4 mr-2" />
@@ -32,6 +40,7 @@ export const ClusterPage = ({ data }: ClusterPageProps) => {
                             {data.description}
                         </p>
                     </div>
+                    {/* ... rest of the component */}
 
                     {/* Content */}
                     <div className="p-8 md:p-12 space-y-12">

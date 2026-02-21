@@ -21,19 +21,13 @@ export const HeroB = () => {
         setIsSubmitting(true);
 
         try {
-            await saveLeadToSheets({ name, email, source: 'hero_b_signup' }); // Updated source
-
-            // Trigger PDF Download
-            const link = document.createElement('a');
-            link.href = '/famous-food-in-pondicherry.pdf';
-            link.setAttribute('download', 'famous-food-in-pondicherry.pdf');
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            trackConversion('hero_signup'); // Keep same conversion event or make unique if needed
+            await saveLeadToSheets({ name, email, source: 'hero_b_signup' });
+            trackConversion('hero_signup');
             setIsSuccess(true);
             setName('');
             setEmail('');
+            // Automatically open PDF in a new tab
+            window.open('/famous-food-in-pondicherry.pdf', '_blank');
         } catch (error) {
             console.error('Submission failed', error);
             alert('Something went wrong. Please try again.');
@@ -58,8 +52,11 @@ export const HeroB = () => {
                         {isSuccess ? (
                             <div className="bg-green-50 border border-green-200 rounded-xl p-8 text-center animate-fade-in">
                                 <CheckCircle2 className="h-16 w-16 text-green-500 mx-auto mb-4" />
-                                <h3 className="text-2xl font-bold text-gray-900 mb-2">Your download has started! 🚀</h3>
-                                <p className="text-gray-600">Enjoy your free food guide to Pondicherry.</p>
+                                <h3 className="text-2xl font-bold text-gray-900 mb-2">Success! 🚀</h3>
+                                <p className="text-gray-600">Your free food guide has opened in a new tab.</p>
+                                <p className="text-sm text-gray-500 mt-4">
+                                    Didn't open? <a href="/famous-food-in-pondicherry.pdf" target="_blank" rel="noopener noreferrer" className="text-orange-600 font-bold hover:underline">Click here to open it manually.</a>
+                                </p>
                             </div>
                         ) : (
                             <form onSubmit={handleSubmit} className="flex flex-col gap-4 max-w-md">
@@ -113,7 +110,7 @@ export const HeroB = () => {
                                         </span>
                                     ) : (
                                         <>
-                                            Download Free Food Guide (PDF)
+                                            Get Free Food Guide
                                             <ArrowRight className="ml-2 h-5 w-5" />
                                         </>
                                     )}

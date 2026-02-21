@@ -1,3 +1,12 @@
+export const trackPageView = (path: string) => {
+    if (window.gtag) {
+        window.gtag('config', 'G-7K5JPSBRQ2', {
+            page_path: path
+        });
+        console.log(`[Analytics] Page view tracked: ${path}`);
+    }
+};
+
 export const trackConversion = (label: string) => {
     console.log(`[Analytics] Conversion tracked: ${label}`);
 

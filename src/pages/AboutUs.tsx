@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { ArrowLeft, Users, Heart, Shield, MapPin, Instagram, Mail, User, CheckCircle2, ArrowRight } from 'lucide-react';
 import { saveLeadToSheets } from '../services/googleSheets';
 import { trackConversion } from '../services/analytics';
+import { MetaTags } from '../components/MetaTags';
 
 const AboutUs: React.FC = () => {
     const [name, setName] = useState('');
@@ -23,18 +24,12 @@ const AboutUs: React.FC = () => {
 
         try {
             await saveLeadToSheets({ name, email, source: 'about_us' });
-
-            // Trigger PDF Download
-            const link = document.createElement('a');
-            link.href = '/famous-food-in-pondicherry.pdf';
-            link.setAttribute('download', 'famous-food-in-pondicherry.pdf');
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
             trackConversion('about_us_signup');
             setIsSuccess(true);
             setName('');
             setEmail('');
+            // Automatically open PDF in a new tab
+            window.open('/famous-food-in-pondicherry.pdf', '_blank');
         } catch (error) {
             console.error('Submission failed', error);
             alert('Something went wrong. Please try again.');
@@ -43,8 +38,14 @@ const AboutUs: React.FC = () => {
         }
     };
 
+
     return (
         <div className="min-h-screen bg-gray-50 pt-24">
+            <MetaTags
+                title="About Us | LocalBitesPondy - Authentic Pondicherry Food Guide"
+                description="Learn about LocalBitesPondy, our mission to share authentic Pondicherry food experiences, and the team behind your favorite local food guide."
+                canonical="https://localbitespondy.netlify.app/about-us"
+            />
             {/* Header Section */}
             <div className="bg-white shadow-sm border-b border-gray-200">
                 <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
@@ -211,8 +212,11 @@ const AboutUs: React.FC = () => {
                         {isSuccess ? (
                             <div className="bg-white border border-green-200 rounded-xl p-8 text-center animate-fade-in max-w-md mx-auto">
                                 <CheckCircle2 className="h-16 w-16 text-green-500 mx-auto mb-4" />
-                                <h3 className="text-2xl font-bold text-gray-900 mb-2">Your download has started! 🚀</h3>
-                                <p className="text-gray-600">Enjoy your free food guide to Pondicherry.</p>
+                                <h3 className="text-2xl font-bold text-gray-900 mb-2">Success! 🚀</h3>
+                                <p className="text-gray-600">Your free food guide has opened in a new tab.</p>
+                                <p className="text-sm text-gray-500 mt-4">
+                                    Didn't open? <a href="/famous-food-in-pondicherry.pdf" target="_blank" rel="noopener noreferrer" className="text-orange-600 font-bold hover:underline">Click here to open it manually.</a>
+                                </p>
                             </div>
                         ) : (
                             <form onSubmit={handleSubmit} className="flex flex-col gap-4 max-w-md mx-auto">
@@ -254,7 +258,7 @@ const AboutUs: React.FC = () => {
                                 <button
                                     type="submit"
                                     disabled={isSubmitting}
-                                    className="mt-2 flex items-center justify-center rounded-lg bg-gray-900 px-6 py-4 text-center font-bold text-lg text-white hover:bg-gray-800 focus:ring-4 focus:ring-gray-300 transition-all transform hover:scale-[1.02] disabled:opacity-70 disabled:cursor-not-allowed shadow-lg hover:shadow-xl"
+                                    className="mt-2 flex items-center justify-center rounded-lg bg-gray-900 px-6 py-4 text-center font-bold text-lg text-white hover:bg-orange-700 focus:ring-4 focus:ring-gray-300 transition-all transform hover:scale-[1.02] disabled:opacity-70 disabled:cursor-not-allowed shadow-lg hover:shadow-xl"
                                 >
                                     {isSubmitting ? (
                                         <span className="flex items-center">
@@ -266,7 +270,7 @@ const AboutUs: React.FC = () => {
                                         </span>
                                     ) : (
                                         <>
-                                            Download Free Guide
+                                            Get Free Guide
                                             <ArrowRight className="ml-2 h-5 w-5" />
                                         </>
                                     )}

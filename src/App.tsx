@@ -1,4 +1,3 @@
-import { Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Home } from './pages/Home';
 import { HomeB } from './pages/HomeB';
@@ -8,18 +7,11 @@ import { Footer } from './components/Footer';
 import { ConsentBanner } from './components/ConsentBanner';
 import ScrollToTop from './components/ScrollToTop';
 import { Navbar } from './components/Navbar';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import TermsOfUse from './pages/TermsOfUse';
+import AboutUs from './pages/AboutUs';
 
-// Lazy load non-critical pages
-const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
-const TermsOfUse = lazy(() => import('./pages/TermsOfUse'));
-const AboutUs = lazy(() => import('./pages/AboutUs'));
-
-// Loading fallback component
-const PageLoader = () => (
-  <div className="flex items-center justify-center min-h-[50vh]">
-    <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-orange-500"></div>
-  </div>
-);
+// Lazy load non-critical pages (none currently)
 
 function App() {
   return (
@@ -28,23 +20,21 @@ function App() {
       <Navbar />
       <div className="min-h-screen font-sans bg-white text-gray-900 flex flex-col">
         <div className="flex-grow">
-          <Suspense fallback={<PageLoader />}>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/home-b" element={<HomeB />} />
-              <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-              <Route path="/terms-of-use" element={<TermsOfUse />} />
-              <Route path="/about-us" element={<AboutUs />} />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/home-b" element={<HomeB />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/terms-of-use" element={<TermsOfUse />} />
+            <Route path="/about-us" element={<AboutUs />} />
 
-              {/* SEO Cluster Pages */}
-              <Route path="/traditional-tamil-dishes-pondicherry" element={<ClusterPage data={clusterData["/traditional-tamil-dishes-pondicherry"]} />} />
-              <Route path="/french-cafes-in-pondicherry" element={<ClusterPage data={clusterData["/french-cafes-in-pondicherry"]} />} />
-              <Route path="/seafood-restaurants-pondicherry" element={<ClusterPage data={clusterData["/seafood-restaurants-pondicherry"]} />} />
-              <Route path="/street-food-in-pondicherry" element={<ClusterPage data={clusterData["/street-food-in-pondicherry"]} />} />
-              <Route path="/vegetarian-restaurants-pondicherry" element={<ClusterPage data={clusterData["/vegetarian-restaurants-pondicherry"]} />} />
-              <Route path="/foodie-guide-pondicherry" element={<ClusterPage data={clusterData["/foodie-guide-pondicherry"]} />} />
-            </Routes>
-          </Suspense>
+            {/* SEO Cluster Pages */}
+            <Route path="/traditional-tamil-dishes-pondicherry" element={<ClusterPage data={clusterData["/traditional-tamil-dishes-pondicherry"]} />} />
+            <Route path="/french-cafes-in-pondicherry" element={<ClusterPage data={clusterData["/french-cafes-in-pondicherry"]} />} />
+            <Route path="/seafood-restaurants-pondicherry" element={<ClusterPage data={clusterData["/seafood-restaurants-pondicherry"]} />} />
+            <Route path="/street-food-in-pondicherry" element={<ClusterPage data={clusterData["/street-food-in-pondicherry"]} />} />
+            <Route path="/vegetarian-restaurants-pondicherry" element={<ClusterPage data={clusterData["/vegetarian-restaurants-pondicherry"]} />} />
+            <Route path="/foodie-guide-pondicherry" element={<ClusterPage data={clusterData["/foodie-guide-pondicherry"]} />} />
+          </Routes>
         </div>
         <Footer />
         <ConsentBanner />

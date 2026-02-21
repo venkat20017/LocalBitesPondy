@@ -1,10 +1,15 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
+import { MetaTags } from '../components/MetaTags';
 
 const TermsOfUse: React.FC = () => {
     return (
         <div className="min-h-screen bg-gray-50 pt-24">
+            <MetaTags
+                title="Terms of Use | LocalBitesPondy"
+                description="Read the Terms of Use for LocalBitesPondy. Understand the rules and guidelines for using our website and digital food guides."
+                canonical="https://localbitespondy.netlify.app/terms-of-use"
+            />
             {/* Header Section */}
             <div className="bg-white shadow-sm border-b border-gray-200">
                 <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
@@ -20,6 +25,7 @@ const TermsOfUse: React.FC = () => {
             {/* Content Section */}
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
                 <div className="bg-white rounded-2xl shadow-sm p-8 sm:p-12 prose prose-orange prose-lg max-w-none hover:prose-a:text-orange-600">
+                    <h2 className="text-gray-900 border-b pb-2">Introduction</h2>
                     <p className="lead text-gray-600">Please read these terms and conditions carefully before using Our Service.</p>
 
                     <h2 className="text-gray-900 border-b pb-2">Interpretation and Definitions</h2>

@@ -4,31 +4,20 @@ import { SEOSections } from '../components/SEOSections';
 import { SecondEmailCapture } from '../components/SecondEmailCapture';
 import { ContactUs } from '../components/ContactUs';
 import { FAQSection } from '../components/FAQSection';
+import { MetaTags } from '../components/MetaTags';
 
 export const HomeB = () => {
     useEffect(() => {
-        // 1. Manage Meta Tags (Description, Noindex)
-        const metaTags = [
-            { id: 'robots-noindex-home-b', name: 'robots', content: 'noindex' },
-            { id: 'meta-desc-home-b', name: 'description', content: 'Discover famous food in Pondicherry including seafood, French cafes, Tamil dishes, and top restaurants. Complete foodie guide for visitors.' }
-        ];
+        // Manage specific meta tags (robots)
+        let robotsMeta = document.querySelector('meta[name="robots"]');
+        if (!robotsMeta) {
+            robotsMeta = document.createElement('meta');
+            robotsMeta.setAttribute('name', 'robots');
+            document.head.appendChild(robotsMeta);
+        }
+        robotsMeta.setAttribute('content', 'noindex');
 
-        metaTags.forEach(tagData => {
-            let meta = document.getElementById(tagData.id) as HTMLMetaElement;
-            if (!meta) {
-                meta = document.createElement('meta');
-                meta.id = tagData.id;
-                meta.name = tagData.name;
-                meta.content = tagData.content;
-                document.head.appendChild(meta);
-            }
-        });
-
-        // 2. Set Page Title
-        const originalTitle = document.title;
-        document.title = 'Famous Foods of Pondicherry | Best Restaurants & Guide';
-
-        // 3. Inject JSON-LD Schema
+        // Inject JSON-LD Schema
         const schemaId = 'json-ld-home-b';
         let script = document.getElementById(schemaId) as HTMLScriptElement;
         if (!script) {
@@ -104,18 +93,21 @@ export const HomeB = () => {
 
         // Cleanup
         return () => {
-            metaTags.forEach(tagData => {
-                const tag = document.getElementById(tagData.id);
-                if (tag) document.head.removeChild(tag);
-            });
             const schema = document.getElementById(schemaId);
             if (schema) document.head.removeChild(schema);
-            document.title = originalTitle;
+            // Reset robots to index, follow
+            const robots = document.querySelector('meta[name="robots"]');
+            if (robots) robots.setAttribute('content', 'index, follow');
         };
     }, []);
 
     return (
         <>
+            <MetaTags
+                title="Famous Foods of Pondicherry | Best Restaurants & Guide"
+                description="Discover famous food in Pondicherry including seafood, French cafes, Tamil dishes, and top restaurants. Complete foodie guide for visitors."
+                canonical="https://localbitespondy.netlify.app/home-b"
+            />
             <HeroB />
             <SEOSections />
             <SecondEmailCapture />

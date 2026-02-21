@@ -20,17 +20,11 @@ export const SecondEmailCapture = () => {
 
         try {
             await saveLeadToSheets({ email, source: 'footer_signup' });
-
-            // Trigger PDF Download
-            const link = document.createElement('a');
-            link.href = '/famous-food-in-pondicherry.pdf';
-            link.setAttribute('download', 'famous-food-in-pondicherry.pdf');
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
             trackConversion('footer_signup');
             setIsSuccess(true);
             setEmail('');
+            // Automatically open PDF in a new tab
+            window.open('/famous-food-in-pondicherry.pdf', '_blank');
         } catch (error) {
             console.error('Submission failed', error);
             alert('Something went wrong. Please try again.');
@@ -48,11 +42,14 @@ export const SecondEmailCapture = () => {
                 {isSuccess ? (
                     <div className="bg-white/10 rounded-xl p-8 mb-8 backdrop-blur-sm animate-fade-in">
                         <CheckCircle2 className="h-12 w-12 text-white mx-auto mb-3" />
-                        <h3 className="text-2xl font-bold text-white mb-2">Download Started! 🚀</h3>
-                        <p className="text-orange-100">Enjoy your free food guide.</p>
+                        <h3 className="text-2xl font-bold text-white mb-2">Success! 🚀</h3>
+                        <p className="text-orange-100">Your free food guide has opened in a new tab.</p>
+                        <p className="text-xs text-orange-200 mt-4">
+                            Didn't open? <a href="/famous-food-in-pondicherry.pdf" target="_blank" rel="noopener noreferrer" className="text-white font-bold hover:underline">Click here to open it manually.</a>
+                        </p>
                         <button
                             onClick={() => setIsSuccess(false)}
-                            className="mt-4 text-sm text-white font-semibold hover:underline"
+                            className="block mx-auto mt-4 text-sm text-white font-semibold hover:underline"
                         >
                             Reset Form
                         </button>
@@ -73,7 +70,7 @@ export const SecondEmailCapture = () => {
                             disabled={isSubmitting}
                             className="flex w-full items-center justify-center rounded-lg bg-gray-900 px-6 py-3 font-semibold text-white shadow-lg hover:bg-gray-800 transition-all sm:w-auto disabled:opacity-70 disabled:cursor-not-allowed"
                         >
-                            {isSubmitting ? 'Sending...' : 'Send Me the Guide'}
+                            {isSubmitting ? 'Sending...' : 'Get My Free Guide'}
                             {!isSubmitting && <ArrowRight className="ml-2 h-4 w-4" />}
                         </button>
                     </form>

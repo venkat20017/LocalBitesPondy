@@ -1,10 +1,15 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
+import { MetaTags } from '../components/MetaTags';
 
 const PrivacyPolicy: React.FC = () => {
     return (
         <div className="min-h-screen bg-gray-50 pt-24">
+            <MetaTags
+                title="Privacy Policy | LocalBitesPondy"
+                description="View the Privacy Policy of LocalBitesPondy. Learn how we collect, use, and protect your personal information while you explore Pondicherry's food scene."
+                canonical="https://localbitespondy.netlify.app/privacy-policy"
+            />
             {/* Header Section */}
             <div className="bg-white shadow-sm border-b border-gray-200">
                 <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
@@ -20,6 +25,7 @@ const PrivacyPolicy: React.FC = () => {
             {/* Content Section */}
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
                 <div className="bg-white rounded-2xl shadow-sm p-8 sm:p-12 prose prose-orange prose-lg max-w-none hover:prose-a:text-orange-600">
+                    <h2 className="text-gray-900 border-b pb-2">Introduction</h2>
                     <p className="lead text-gray-600">This Privacy Policy describes Our policies and procedures on the collection, use and disclosure of Your information when You use the Service and tells You about Your privacy rights and how the law protects You.</p>
 
                     <p>We use Your Personal Data to provide and improve the Service. By using the Service, You agree to the collection and use of information in accordance with this Privacy Policy. This Privacy Policy has been created with the help of the <a href="https://www.termsfeed.com/privacy-policy-generator/" target="_blank" rel="noreferrer">Privacy Policy Generator</a>.</p>
