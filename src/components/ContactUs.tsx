@@ -1,9 +1,11 @@
 import { Mail, MapPin, Send } from 'lucide-react';
 import { useState, type FormEvent } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { saveLeadToSheets } from '../services/googleSheets';
 
 export const ContactUs = () => {
-    const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+    const [status, setStatus] = useState<'idle' | 'submitting' | 'error'>('idle');
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
@@ -22,9 +24,7 @@ export const ContactUs = () => {
                 message: formData.message,
                 source: 'contact_form'
             });
-            setStatus('success');
-            setFormData({ firstName: '', lastName: '', email: '', message: '' });
-            setTimeout(() => setStatus('idle'), 5000);
+            navigate('/thank-you');
         } catch (error) {
             console.error('Submission error:', error);
             setStatus('error');
@@ -138,16 +138,11 @@ export const ContactUs = () => {
 
                             <button
                                 type="submit"
-                                disabled={status === 'submitting' || status === 'success'}
-                                className={`w-full py-4 rounded-lg font-bold text-lg flex items-center justify-center gap-2 transition-all transform ${status === 'success'
-                                    ? 'bg-green-600 text-white'
-                                    : 'bg-orange-600 text-white hover:bg-orange-700 hover:scale-[1.02]'
-                                    }`}
+                                disabled={status === 'submitting'}
+                                className="w-full py-4 rounded-lg font-bold text-lg flex items-center justify-center gap-2 transition-all transform bg-orange-600 text-white hover:bg-orange-700 hover:scale-[1.02]"
                             >
                                 {status === 'submitting' ? (
                                     'Sending...'
-                                ) : status === 'success' ? (
-                                    'Message Sent!'
                                 ) : (
                                     <>
                                         Send Message <Send className="w-5 h-5" />

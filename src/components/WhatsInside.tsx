@@ -18,7 +18,7 @@ export const WhatsInside = () => {
                     <ul className="space-y-4">
                         {items.map((item, index) => (
                             <li key={index} className="flex items-start">
-                                <CheckCircle2 className="mr-3 h-6 w-6 flex-shrink-0 text-green-500" />
+                                <CheckCircle2 className="mr-3 h-6 w-6 shrink-0 text-green-500" />
                                 <span className="text-lg text-gray-700">{item}</span>
                             </li>
                         ))}

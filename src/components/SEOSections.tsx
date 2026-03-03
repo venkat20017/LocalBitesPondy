@@ -217,7 +217,7 @@ export const SEOSections = () => {
                                 "Ask for the “fresh catch of the day” at seafood spots."
                             ].map((tip, idx) => (
                                 <li key={idx} className="flex items-start gap-3">
-                                    <Star className="w-5 h-5 text-yellow-400 flex-shrink-0 mt-1" />
+                                    <Star className="w-5 h-5 text-yellow-400 shrink-0 mt-1" />
                                     <span>{tip}</span>
                                 </li>
                             ))}

@@ -45,7 +45,7 @@ export const BestBiriyani = () => {
                                     <img
                                         src={spot.image}
                                         alt={spot.name}
-                                        className="w-24 h-24 rounded-lg object-cover flex-shrink-0"
+                                        className="w-24 h-24 rounded-lg object-cover shrink-0"
                                     />
                                     <div>
                                         <h3 className="text-lg font-bold text-gray-900">{spot.name}</h3>
@@ -66,7 +66,7 @@ export const BestBiriyani = () => {
                                 alt="Authentic Pondicherry Biriyani"
                                 className="w-full h-full object-cover"
                             />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-8">
+                            <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent flex items-end p-8">
                                 <div className="text-white">
                                     <p className="font-bold text-2xl">"The best biriyani I've ever had!"</p>
                                     <p className="text-orange-300 mt-2">— Food Critic Review</p>

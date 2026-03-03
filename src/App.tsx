@@ -1,5 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { Home } from './pages/Home';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { HomeB } from './pages/HomeB';
 import { ClusterPage } from './pages/ClusterPage';
 import { clusterData } from './data/clusterData';
@@ -10,6 +9,7 @@ import { Navbar } from './components/Navbar';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import TermsOfUse from './pages/TermsOfUse';
 import AboutUs from './pages/AboutUs';
+import ThankYou from './pages/ThankYou';
 
 // Lazy load non-critical pages (none currently)
 
@@ -19,10 +19,11 @@ function App() {
       <ScrollToTop />
       <Navbar />
       <div className="min-h-screen font-sans bg-white text-gray-900 flex flex-col">
-        <div className="flex-grow">
+        <div className="grow">
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/home-b" element={<HomeB />} />
+            <Route path="/" element={<HomeB />} />
+            <Route path="/home-b" element={<Navigate to="/" replace />} />
+            <Route path="/thank-you" element={<ThankYou />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/terms-of-use" element={<TermsOfUse />} />
             <Route path="/about-us" element={<AboutUs />} />

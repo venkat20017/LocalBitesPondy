@@ -5,20 +5,14 @@ import { SecondEmailCapture } from '../components/SecondEmailCapture';
 import { ContactUs } from '../components/ContactUs';
 import { FAQSection } from '../components/FAQSection';
 import { MetaTags } from '../components/MetaTags';
+import { BestBiriyani } from '../components/BestBiriyani';
+import { BestHotels } from '../components/BestHotels';
+import { WhyGuide } from '../components/WhyGuide';
 
 export const HomeB = () => {
     useEffect(() => {
-        // Manage specific meta tags (robots)
-        let robotsMeta = document.querySelector('meta[name="robots"]');
-        if (!robotsMeta) {
-            robotsMeta = document.createElement('meta');
-            robotsMeta.setAttribute('name', 'robots');
-            document.head.appendChild(robotsMeta);
-        }
-        robotsMeta.setAttribute('content', 'noindex');
-
         // Inject JSON-LD Schema
-        const schemaId = 'json-ld-home-b';
+        const schemaId = 'json-ld-home';
         let script = document.getElementById(schemaId) as HTMLScriptElement;
         if (!script) {
             script = document.createElement('script');
@@ -40,7 +34,7 @@ export const HomeB = () => {
                     },
                     "mainEntityOfPage": {
                         "@type": "WebPage",
-                        "@id": "https://localbitespondy.netlify.app/home-b"
+                        "@id": "https://localbitespondy.netlify.app/"
                     }
                 },
                 {
@@ -95,9 +89,6 @@ export const HomeB = () => {
         return () => {
             const schema = document.getElementById(schemaId);
             if (schema) document.head.removeChild(schema);
-            // Reset robots to index, follow
-            const robots = document.querySelector('meta[name="robots"]');
-            if (robots) robots.setAttribute('content', 'index, follow');
         };
     }, []);
 
@@ -106,10 +97,13 @@ export const HomeB = () => {
             <MetaTags
                 title="Famous Foods of Pondicherry | Best Restaurants & Guide"
                 description="Discover famous food in Pondicherry including seafood, French cafes, Tamil dishes, and top restaurants. Complete foodie guide for visitors."
-                canonical="https://localbitespondy.netlify.app/home-b"
+                canonical="https://localbitespondy.netlify.app/"
             />
             <HeroB />
             <SEOSections />
+            <BestBiriyani />
+            <BestHotels />
+            <WhyGuide />
             <SecondEmailCapture />
             <FAQSection />
             <ContactUs />

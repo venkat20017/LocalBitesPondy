@@ -71,7 +71,7 @@ export const CategoryPreview = () => {
                     {categories.map((cat) => (
                         <div
                             key={cat.id}
-                            className="group relative flex-shrink-0 w-72 snap-center overflow-hidden rounded-2xl shadow-lg transition-all hover:shadow-2xl md:w-auto h-[400px]"
+                            className="group relative shrink-0 w-72 snap-center overflow-hidden rounded-2xl shadow-lg transition-all hover:shadow-2xl md:w-auto h-[400px]"
                         >
                             <div className="absolute inset-0 h-full w-full">
                                 <img
@@ -79,7 +79,7 @@ export const CategoryPreview = () => {
                                     alt={cat.alt}
                                     className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
                                 />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-300" />
+                                <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-300" />
                             </div>
 
                             <div className="absolute inset-0 flex flex-col justify-end p-6 text-white translate-y-4 transition-transform duration-300 group-hover:translate-y-0">

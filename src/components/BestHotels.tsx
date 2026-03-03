@@ -62,7 +62,7 @@ export const BestHotels = () => {
                                     {hotel.rating}
                                 </div>
                             </div>
-                            <div className="p-8 flex flex-col flex-grow">
+                            <div className="p-8 flex flex-col grow">
                                 <div className="flex justify-between items-start mb-4">
                                     <div>
                                         <h3 className="text-xl font-bold text-gray-900 mb-1">{hotel.name}</h3>
@@ -75,7 +75,7 @@ export const BestHotels = () => {
                                         {hotel.price}
                                     </span>
                                 </div>
-                                <p className="text-gray-600 mb-6 flex-grow">
+                                <p className="text-gray-600 mb-6 grow">
                                     {hotel.description}
                                 </p>
                                 <a

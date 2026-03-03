@@ -24,7 +24,7 @@ export const ClusterPage = ({ data }: ClusterPageProps) => {
                 canonical={canonicalUrl}
             />
             <div className="max-w-4xl mx-auto">
-                <Link to="/home-b" className="inline-flex items-center text-orange-600 font-medium mb-8 hover:underline">
+                <Link to="/" className="inline-flex items-center text-orange-600 font-medium mb-8 hover:underline">
                     <ArrowLeft className="w-4 h-4 mr-2" />
                     Back to Famous Food in Pondicherry
                 </Link>
@@ -83,7 +83,7 @@ export const ClusterPage = ({ data }: ClusterPageProps) => {
                             <h3 className="text-xl font-bold text-gray-900 mb-2">Want more recommendations?</h3>
                             <p className="text-gray-600 mb-6">Explore our complete guide covering all the best spots in Pondicherry.</p>
                             <Link
-                                to="/home-b"
+                                to="/"
                                 className="inline-block bg-orange-600 text-white font-bold py-3 px-8 rounded-lg hover:bg-orange-700 transition-colors"
                             >
                                 View Full Guide
