@@ -19,9 +19,11 @@ export const ClusterPage = ({ data }: ClusterPageProps) => {
     return (
         <div className="min-h-screen bg-orange-50 pt-24 pb-12 px-6 font-sans">
             <MetaTags
-                title={`${data.title} | Famous Food in Pondicherry`}
+                title={`${data.title} | Local's Guide 2026`}
                 description={data.description}
+                keywords={`famous food Pondicherry, ${data.title}, local food guide, Pondy eats`}
                 canonical={canonicalUrl}
+                ogImageAlt={data.title}
             />
             <div className="max-w-4xl mx-auto">
                 <Link to="/" className="inline-flex items-center text-orange-600 font-medium mb-8 hover:underline">

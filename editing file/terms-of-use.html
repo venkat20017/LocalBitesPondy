@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Terms of Use – FlowPilot AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --bg: #f8fafc;
+  --white: #ffffff;
+  --blue: #1a56db;
+  --blue-light: #eff4ff;
+  --text: #0f172a;
+  --text2: #334155;
+  --muted: #64748b;
+  --muted2: #94a3b8;
+  --border: #e2e8f0;
+  --border2: #cbd5e1;
+  --amber: #d97706;
+  --amber-bg: #fffbeb;
+  --shadow: 0 4px 16px rgba(0,0,0,0.08);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Instrument Sans', sans-serif;
+  font-size: 16px;
+  line-height: 1.7;
+}
+h1,h2,h3,h4 {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+}
+
+/* NAV */
+nav {
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 6vw; height: 68px;
+  display: flex; align-items: center; justify-content: space-between;
+  position: sticky; top: 0; z-index: 100;
+}
+.logo {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 800; font-size: 1.15rem; color: var(--text);
+  display: flex; align-items: center; gap: 8px;
+  text-decoration: none;
+}
+.logo-mark {
+  width: 30px; height: 30px; border-radius: 7px;
+  background: var(--blue);
+  display: flex; align-items: center; justify-content: center;
+}
+.logo-mark svg { width: 16px; height: 16px; }
+.nav-back {
+  font-size: 0.85rem; color: var(--muted);
+  text-decoration: none; font-weight: 500;
+  display: flex; align-items: center; gap: 5px;
+  transition: color 0.2s;
+}
+.nav-back:hover { color: var(--blue); }
+
+/* PAGE HERO */
+.page-hero {
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  padding: 60px 6vw 48px;
+}
+.page-hero-inner { max-width: 760px; margin: 0 auto; }
+.page-tag {
+  display: inline-block;
+  background: var(--amber-bg); color: var(--amber);
+  border: 1px solid rgba(217,119,6,0.2);
+  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; padding: 4px 12px; border-radius: 100px;
+  margin-bottom: 16px;
+}
+.page-hero h1 { font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 800; margin-bottom: 12px; }
+.page-hero .meta {
+  font-size: 0.85rem; color: var(--muted);
+  display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+}
+
+/* LAYOUT */
+.page-layout {
+  max-width: 1060px; margin: 0 auto;
+  display: grid; grid-template-columns: 220px 1fr;
+  gap: 48px; padding: 48px 6vw 80px;
+}
+
+/* SIDEBAR */
+.sidebar {
+  position: sticky; top: 90px; height: fit-content;
+}
+.sidebar-title {
+  font-size: 0.72rem; font-weight: 700; color: var(--muted2);
+  text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 14px;
+}
+.sidebar-nav { display: flex; flex-direction: column; gap: 2px; }
+.sidebar-nav a {
+  font-size: 0.83rem; color: var(--muted);
+  text-decoration: none; padding: 6px 10px; border-radius: 6px;
+  transition: all 0.2s; border-left: 2px solid transparent;
+}
+.sidebar-nav a:hover { color: var(--blue); background: var(--blue-light); border-left-color: var(--blue); }
+
+/* CONTENT */
+.doc-content { min-width: 0; }
+.doc-section {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 12px; padding: 32px 36px;
+  margin-bottom: 16px;
+}
+.doc-section h2 {
+  font-size: 1.15rem; font-weight: 700;
+  margin-bottom: 14px; padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; gap: 10px;
+}
+.section-icon {
+  width: 28px; height: 28px; border-radius: 6px;
+  background: var(--blue-light);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.85rem; flex-shrink: 0;
+}
+.doc-section p {
+  font-size: 0.9rem; color: var(--text2); line-height: 1.75; margin-bottom: 12px;
+}
+.doc-section p:last-child { margin-bottom: 0; }
+.doc-section ul {
+  margin: 10px 0 12px 0; padding-left: 0;
+  list-style: none; display: flex; flex-direction: column; gap: 6px;
+}
+.doc-section ul li {
+  font-size: 0.9rem; color: var(--text2); line-height: 1.6;
+  display: flex; align-items: flex-start; gap: 8px;
+  padding: 8px 12px; background: var(--bg);
+  border-radius: 6px; border: 1px solid var(--border);
+}
+.doc-section ul li::before {
+  content: '→'; color: var(--blue); font-weight: 700;
+  flex-shrink: 0; margin-top: 1px;
+}
+.doc-section h3 {
+  font-size: 0.95rem; font-weight: 700;
+  margin: 18px 0 8px; color: var(--text);
+}
+.warning-box {
+  background: var(--amber-bg); border: 1px solid rgba(217,119,6,0.2);
+  border-radius: 8px; padding: 14px 16px;
+  font-size: 0.875rem; color: var(--text2); line-height: 1.6;
+  margin: 12px 0; display: flex; gap: 10px; align-items: flex-start;
+}
+.warning-box .wi { flex-shrink: 0; font-size: 1rem; }
+.highlight-box {
+  background: var(--blue-light); border: 1px solid rgba(26,86,219,0.15);
+  border-radius: 8px; padding: 14px 16px;
+  font-size: 0.875rem; color: var(--text2); line-height: 1.6;
+  margin: 12px 0;
+}
+.highlight-box strong { color: var(--blue); }
+
+/* CONTACT CARD */
+.contact-card {
+  background: var(--blue); border-radius: 12px;
+  padding: 28px 32px; margin-top: 8px;
+}
+.contact-card h3 {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 1.05rem; font-weight: 700; color: #fff; margin-bottom: 8px;
+}
+.contact-card p { font-size: 0.875rem; color: rgba(255,255,255,0.75); margin-bottom: 14px; }
+.contact-card a {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: rgba(255,255,255,0.15); color: #fff;
+  border: 1px solid rgba(255,255,255,0.25);
+  padding: 8px 18px; border-radius: 7px;
+  font-size: 0.85rem; font-weight: 600; text-decoration: none;
+  transition: all 0.2s;
+}
+.contact-card a:hover { background: rgba(255,255,255,0.25); }
+
+/* FOOTER */
+footer {
+  background: var(--text); padding: 28px 6vw;
+  display: flex; align-items: center; justify-content: space-between;
+  font-size: 0.8rem; color: #475569; flex-wrap: wrap; gap: 12px;
+}
+.footer-logo {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 800; font-size: 0.95rem; color: #e2e8f0;
+  display: flex; align-items: center; gap: 7px;
+}
+footer a { color: #64748b; text-decoration: none; transition: color 0.2s; }
+footer a:hover { color: #e2e8f0; }
+footer .footer-links { display: flex; gap: 20px; }
+
+@media(max-width: 768px) {
+  .page-layout { grid-template-columns: 1fr; }
+  .sidebar { display: none; }
+  .doc-section { padding: 22px 20px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="flowpilot-v2.html" class="logo">
+    <div class="logo-mark">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+    </div>
+    FlowPilot AI
+  </a>
+  <a href="flowpilot-v2.html" class="nav-back">← Back to Home</a>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="page-tag">Legal</div>
+    <h1>Terms of Use</h1>
+    <div class="meta">
+      <span>📅 Effective Date: January 1, 2025</span>
+      <span>🔄 Last Updated: January 1, 2025</span>
+      <span>📍 FlowPilot AI</span>
+    </div>
+  </div>
+</div>
+
+<!-- LAYOUT -->
+<div class="page-layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-title">On This Page</div>
+    <nav class="sidebar-nav">
+      <a href="#acceptance">Acceptance</a>
+      <a href="#use">Permitted Use</a>
+      <a href="#prohibited">Prohibited Use</a>
+      <a href="#content">Our Content</a>
+      <a href="#downloads">Downloads</a>
+      <a href="#email">Email Communications</a>
+      <a href="#disclaimer">Disclaimer</a>
+      <a href="#liability">Liability</a>
+      <a href="#links">Third-Party Links</a>
+      <a href="#governing">Governing Law</a>
+      <a href="#changes">Changes</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </aside>
+
+  <!-- CONTENT -->
+  <div class="doc-content">
+
+    <div class="doc-section" id="acceptance">
+      <h2><div class="section-icon">📝</div>Acceptance of Terms</h2>
+      <p>By accessing or using the FlowPilot AI website (the "Site"), downloading any resources, or submitting your information through any form on this Site, you agree to be bound by these Terms of Use.</p>
+      <p>If you do not agree to these terms, please do not use this Site or submit any personal information through it.</p>
+      <div class="highlight-box">
+        <strong>Plain language summary:</strong> Using our website means you agree to these terms. They're straightforward and designed to protect both you and us.
+      </div>
+    </div>
+
+    <div class="doc-section" id="use">
+      <h2><div class="section-icon">✅</div>Permitted Use</h2>
+      <p>You may use this Site for lawful purposes only. Permitted uses include:</p>
+      <ul>
+        <li>Browsing and reading content published on the Site</li>
+        <li>Downloading resources (such as the IT Triage Automation Checklist) for your own professional use</li>
+        <li>Sharing links to our content for non-commercial, educational purposes</li>
+        <li>Contacting us with questions or feedback</li>
+      </ul>
+      <p>This Site and its resources are intended for IT operations professionals, IT managers, and business decision-makers evaluating IT workflow automation solutions.</p>
+    </div>
+
+    <div class="doc-section" id="prohibited">
+      <h2><div class="section-icon">🚫</div>Prohibited Use</h2>
+      <p>You may not use this Site to:</p>
+      <ul>
+        <li>Reproduce, distribute, or resell our content or downloadable resources for commercial purposes without written permission</li>
+        <li>Submit false, misleading, or fraudulent information through any form</li>
+        <li>Attempt to gain unauthorized access to any part of the Site or its backend systems</li>
+        <li>Use automated bots, scrapers, or crawlers to extract content from the Site</li>
+        <li>Transmit spam, malware, or any harmful code through contact or submission forms</li>
+        <li>Impersonate any person or entity, or misrepresent your affiliation with any organization</li>
+        <li>Use the Site in any way that violates applicable local, national, or international law</li>
+      </ul>
+      <div class="warning-box">
+        <span class="wi">⚠️</span>
+        <span>Violation of these terms may result in immediate suspension of your access and, where applicable, legal action.</span>
+      </div>
+    </div>
+
+    <div class="doc-section" id="content">
+      <h2><div class="section-icon">©️</div>Our Content & Intellectual Property</h2>
+      <p>All content on this Site — including but not limited to text, graphics, logos, blog posts, checklists, frameworks, and page designs — is the property of FlowPilot AI and is protected by applicable intellectual property laws.</p>
+      <p>You may not copy, reproduce, republish, or distribute our content without prior written permission, except for:</p>
+      <ul>
+        <li>Brief quotations with clear attribution and a link back to the original page</li>
+        <li>Personal, non-commercial use of downloaded resources</li>
+        <li>Sharing with colleagues internally within your own organization</li>
+      </ul>
+      <p>The FlowPilot AI name, logo, and brand elements are trademarks of FlowPilot AI and may not be used without express written consent.</p>
+    </div>
+
+    <div class="doc-section" id="downloads">
+      <h2><div class="section-icon">📥</div>Downloadable Resources</h2>
+      <p>Resources available for download on this Site (such as the IT Triage Automation Checklist) are provided for informational and professional use only.</p>
+      <p>By downloading a resource, you agree that:</p>
+      <ul>
+        <li>The resource is provided for your personal or internal business use only</li>
+        <li>You will not resell, republish, or distribute the resource commercially without permission</li>
+        <li>The metrics, benchmarks, and projections in any resource are based on industry estimates and your actual results may vary</li>
+        <li>FlowPilot AI makes no guarantee of specific outcomes from using any downloadable resource</li>
+      </ul>
+    </div>
+
+    <div class="doc-section" id="email">
+      <h2><div class="section-icon">📧</div>Email Communications</h2>
+      <p>By submitting your email address through any form on this Site, you agree to receive emails from FlowPilot AI. These may include:</p>
+      <ul>
+        <li>Delivery of the resource you requested</li>
+        <li>Follow-up content related to IT operations and workflow automation</li>
+        <li>Occasional updates about FlowPilot AI resources and future product announcements</li>
+      </ul>
+      <p>You may unsubscribe from our emails at any time by clicking the unsubscribe link at the bottom of any email. We will process your unsubscribe request within 10 business days. Transactional emails (such as resource delivery) may still be sent after unsubscribing.</p>
+    </div>
+
+    <div class="doc-section" id="disclaimer">
+      <h2><div class="section-icon">⚖️</div>Disclaimer of Warranties</h2>
+      <p>This Site and all content, resources, and information provided are offered on an "as is" and "as available" basis without warranties of any kind, either express or implied.</p>
+      <p>FlowPilot AI does not warrant that:</p>
+      <ul>
+        <li>The Site will be uninterrupted, error-free, or free from viruses or harmful components</li>
+        <li>The information on the Site is complete, accurate, or up to date at all times</li>
+        <li>The results, benchmarks, or outcomes described in any resource will be achieved by any specific user</li>
+      </ul>
+      <div class="warning-box">
+        <span class="wi">⚠️</span>
+        <span>All metrics and projected outcomes referenced on this Site are based on industry benchmarks and are for illustrative purposes only. Your actual results will depend on your specific environment, tools, team, and implementation.</span>
+      </div>
+    </div>
+
+    <div class="doc-section" id="liability">
+      <h2><div class="section-icon">🛡️</div>Limitation of Liability</h2>
+      <p>To the fullest extent permitted by applicable law, FlowPilot AI shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising from:</p>
+      <ul>
+        <li>Your use of or inability to use the Site</li>
+        <li>Any decisions made based on information or resources obtained from the Site</li>
+        <li>Unauthorized access to or alteration of your data</li>
+        <li>Any errors or omissions in the Site's content</li>
+      </ul>
+      <p>In no event shall FlowPilot AI's total liability to you exceed the amount you paid to access this Site (which, for free resources, is zero).</p>
+    </div>
+
+    <div class="doc-section" id="links">
+      <h2><div class="section-icon">🔗</div>Third-Party Links</h2>
+      <p>This Site may contain links to third-party websites, tools, or resources (such as Freshservice, Jira, ServiceNow, or other ITSM platforms mentioned in our content).</p>
+      <p>These links are provided for informational convenience only. FlowPilot AI:</p>
+      <ul>
+        <li>Does not endorse or guarantee any third-party website or product</li>
+        <li>Has no control over the content, privacy practices, or availability of third-party sites</li>
+        <li>Is not responsible for any loss or damage arising from your use of any linked third-party site</li>
+      </ul>
+      <p>We encourage you to review the terms and privacy policies of any third-party site you visit.</p>
+    </div>
+
+    <div class="doc-section" id="governing">
+      <h2><div class="section-icon">🏛️</div>Governing Law</h2>
+      <p>These Terms of Use shall be governed by and construed in accordance with applicable laws. Any disputes arising from these terms or your use of the Site shall be resolved through good-faith negotiation first. If negotiation fails, disputes shall be resolved through binding arbitration or in a court of competent jurisdiction.</p>
+      <p>If any provision of these Terms is found to be unenforceable, the remaining provisions shall continue in full force and effect.</p>
+    </div>
+
+    <div class="doc-section" id="changes">
+      <h2><div class="section-icon">🔄</div>Changes to These Terms</h2>
+      <p>We reserve the right to update these Terms of Use at any time. When we do, we will update the "Last Updated" date at the top of this page. Material changes will be communicated to active email subscribers before they take effect.</p>
+      <p>Your continued use of the Site after any changes are posted constitutes your acceptance of the revised terms. We encourage you to review this page periodically.</p>
+    </div>
+
+    <div class="doc-section" id="contact">
+      <h2><div class="section-icon">📬</div>Contact Us</h2>
+      <p>If you have questions about these Terms of Use or need to report a violation, please contact us:</p>
+      <div class="contact-card">
+        <h3>Legal Inquiries</h3>
+        <p>We take all legal inquiries seriously and aim to respond within 5 business days.</p>
+        <a href="mailto:legal@flowpilotai.com">📧 legal@flowpilotai.com</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">
+    <div class="logo-mark" style="width:24px;height:24px;border-radius:6px;">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" style="width:13px;height:13px;"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+    </div>
+    FlowPilot AI
+  </div>
+  <span>© 2025 FlowPilot AI. All rights reserved.</span>
+  <div class="footer-links">
+    <a href="privacy-policy.html">Privacy Policy</a>
+    <a href="terms-of-use.html">Terms of Use</a>
+    <a href="flowpilot-v2.html">Home</a>
+  </div>
+</footer>
+
+</body>
+</html>

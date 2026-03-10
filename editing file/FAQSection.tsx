@@ -80,8 +80,9 @@ export const FAQSection = () => {
                             </button>
 
                             <div
-                                className={`transition-all duration-300 ease-in-out ${openIndex === index ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0 overflow-hidden'
-                                    }`}
+                                className={`transition-all duration-300 ease-in-out ${
+                                    openIndex === index ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0 overflow-hidden'
+                                }`}
                             >
                                 {/* ✅ AEO: Rich paragraph answers — ideal for AI snippet extraction */}
                                 <div className="p-5 bg-white text-gray-700 leading-relaxed border-t border-gray-100 text-base">

@@ -1,69 +1,85 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <!-- Main Pages -->
   <url>
     <loc>https://localbitespondy.netlify.app/</loc>
-    <lastmod>2026-03-03</lastmod>
+    <lastmod>2026-03-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
+
   <url>
     <loc>https://localbitespondy.netlify.app/about-us</loc>
-    <lastmod>2026-03-03</lastmod>
+    <lastmod>2026-03-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+
   <url>
     <loc>https://localbitespondy.netlify.app/thank-you</loc>
-    <lastmod>2026-03-03</lastmod>
+    <lastmod>2026-03-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
+
+  <!-- SEO Cluster Pages -->
   <url>
-    <loc>https://localbitespondy.netlify.app/traditional-tamil-dishes-pondicherry</loc>
-    <lastmod>2026-03-03</lastmod>
-    <changefreq>weekly</changefreq>
+    <loc>https://localbitespondy.netlify.app/tamil-dishes</loc>
+    <lastmod>2026-03-10</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
+
   <url>
-    <loc>https://localbitespondy.netlify.app/french-cafes-in-pondicherry</loc>
-    <lastmod>2026-03-03</lastmod>
-    <changefreq>weekly</changefreq>
+    <loc>https://localbitespondy.netlify.app/street-food</loc>
+    <lastmod>2026-03-10</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
+
   <url>
-    <loc>https://localbitespondy.netlify.app/seafood-restaurants-pondicherry</loc>
-    <lastmod>2026-03-03</lastmod>
-    <changefreq>weekly</changefreq>
+    <loc>https://localbitespondy.netlify.app/restaurants</loc>
+    <lastmod>2026-03-10</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
+
   <url>
-    <loc>https://localbitespondy.netlify.app/street-food-in-pondicherry</loc>
-    <lastmod>2026-03-03</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://localbitespondy.netlify.app/french-quarter</loc>
+    <lastmod>2026-03-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
+
   <url>
-    <loc>https://localbitespondy.netlify.app/vegetarian-restaurants-pondicherry</loc>
-    <lastmod>2026-03-03</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://localbitespondy.netlify.app/seafood</loc>
+    <lastmod>2026-03-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
+
   <url>
-    <loc>https://localbitespondy.netlify.app/foodie-guide-pondicherry</loc>
-    <lastmod>2026-03-03</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://localbitespondy.netlify.app/foodie-guide</loc>
+    <lastmod>2026-03-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
+
+  <!-- Legal Pages -->
   <url>
     <loc>https://localbitespondy.netlify.app/privacy-policy</loc>
-    <lastmod>2026-03-03</lastmod>
+    <lastmod>2026-03-10</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
+
   <url>
     <loc>https://localbitespondy.netlify.app/terms-of-use</loc>
-    <lastmod>2026-03-03</lastmod>
+    <lastmod>2026-03-10</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
+
 </urlset>

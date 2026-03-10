@@ -1,0 +1,1334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>FlowPilot AI – Stop Triaging. Start Resolving.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --bg: #f8fafc;
+  --white: #ffffff;
+  --blue: #1a56db;
+  --blue-dark: #1345b7;
+  --blue-light: #eff4ff;
+  --blue-mid: #3b6ef0;
+  --text: #0f172a;
+  --text2: #334155;
+  --muted: #64748b;
+  --muted2: #94a3b8;
+  --border: #e2e8f0;
+  --border2: #cbd5e1;
+  --green: #059669;
+  --green-bg: #ecfdf5;
+  --amber: #d97706;
+  --amber-bg: #fffbeb;
+  --red: #dc2626;
+  --red-bg: #fef2f2;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.04);
+  --shadow: 0 4px 16px rgba(0,0,0,0.08), 0 2px 6px rgba(0,0,0,0.04);
+  --shadow-lg: 0 20px 60px rgba(0,0,0,0.1), 0 8px 24px rgba(0,0,0,0.06);
+  --radius: 12px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Instrument Sans', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+h1,h2,h3,h4,h5 {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  letter-spacing: -0.025em;
+  line-height: 1.18;
+  color: var(--text);
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 6vw;
+  height: 68px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.nav-left { display: flex; align-items: center; gap: 40px; }
+.logo {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 800; font-size: 1.2rem; color: var(--text);
+  display: flex; align-items: center; gap: 8px;
+  text-decoration: none;
+}
+.logo-mark {
+  width: 32px; height: 32px; border-radius: 8px;
+  background: var(--blue);
+  display: flex; align-items: center; justify-content: center;
+}
+.logo-mark svg { width: 18px; height: 18px; }
+.nav-links { display: flex; gap: 28px; }
+.nav-links a {
+  font-size: 0.88rem; font-weight: 500; color: var(--muted);
+  text-decoration: none; transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--text); }
+.nav-right { display: flex; align-items: center; gap: 12px; }
+.btn-outline {
+  padding: 8px 18px; border: 1.5px solid var(--border2);
+  border-radius: 8px; font-size: 0.875rem; font-weight: 500;
+  color: var(--text2); background: none; cursor: pointer;
+  text-decoration: none; transition: all 0.2s;
+  font-family: 'Instrument Sans', sans-serif;
+}
+.btn-outline:hover { border-color: var(--blue); color: var(--blue); }
+.btn-primary {
+  padding: 9px 20px;
+  background: var(--blue); color: #fff;
+  border-radius: 8px; font-size: 0.875rem; font-weight: 600;
+  border: none; cursor: pointer; text-decoration: none;
+  font-family: 'Instrument Sans', sans-serif;
+  transition: all 0.2s;
+  display: inline-flex; align-items: center; gap: 6px;
+}
+.btn-primary:hover { background: var(--blue-dark); transform: translateY(-1px); box-shadow: 0 4px 16px rgba(26,86,219,0.35); }
+
+/* ── HERO ── */
+#hero {
+  padding: 130px 6vw 80px;
+  background: var(--white);
+  position: relative; overflow: hidden;
+}
+.hero-pattern {
+  position: absolute; inset: 0; z-index: 0;
+  background-image:
+    radial-gradient(circle at 80% 20%, rgba(26,86,219,0.05) 0%, transparent 50%),
+    radial-gradient(circle at 20% 80%, rgba(26,86,219,0.03) 0%, transparent 40%);
+}
+.hero-grid-bg {
+  position: absolute; inset: 0; z-index: 0;
+  background-image: linear-gradient(rgba(226,232,240,0.4) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(226,232,240,0.4) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 0%, transparent 100%);
+}
+.hero-inner {
+  max-width: 1100px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 480px;
+  gap: 60px; align-items: center;
+  position: relative; z-index: 1;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--blue-light); color: var(--blue);
+  border: 1px solid rgba(26,86,219,0.15);
+  padding: 5px 14px 5px 8px; border-radius: 100px;
+  font-size: 0.78rem; font-weight: 600; letter-spacing: 0.04em;
+  margin-bottom: 24px; text-transform: uppercase;
+}
+.badge-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--blue);
+  animation: blink 2s ease-in-out infinite;
+}
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+h1 { font-size: clamp(2.2rem, 4vw, 3.4rem); font-weight: 800; margin-bottom: 20px; }
+h1 span { color: var(--blue); }
+.hero-desc {
+  font-size: 1.05rem; color: var(--muted); line-height: 1.7;
+  max-width: 480px; margin-bottom: 36px;
+}
+.hero-actions { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin-bottom: 40px; }
+.btn-lg {
+  padding: 13px 26px; font-size: 0.95rem; font-weight: 600;
+  border-radius: 9px; border: none; cursor: pointer;
+  font-family: 'Instrument Sans', sans-serif;
+  display: inline-flex; align-items: center; gap: 8px;
+  text-decoration: none; transition: all 0.2s;
+}
+.btn-lg.blue {
+  background: var(--blue); color: #fff;
+  box-shadow: 0 4px 20px rgba(26,86,219,0.3);
+}
+.btn-lg.blue:hover { background: var(--blue-dark); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(26,86,219,0.4); }
+.btn-lg.ghost {
+  background: var(--white); color: var(--text2);
+  border: 1.5px solid var(--border2);
+}
+.btn-lg.ghost:hover { border-color: var(--blue); color: var(--blue); }
+.hero-trust {
+  display: flex; align-items: center; gap: 16px;
+  padding-top: 28px; border-top: 1px solid var(--border);
+}
+.trust-avatars { display: flex; }
+.trust-avatars span {
+  width: 34px; height: 34px; border-radius: 50%;
+  border: 2px solid var(--white);
+  font-size: 0.72rem; font-weight: 700; color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  margin-left: -10px; box-shadow: var(--shadow-sm);
+}
+.trust-avatars span:first-child { margin-left: 0; }
+.av1{background:#1a56db;} .av2{background:#059669;} .av3{background:#d97706;} .av4{background:#7c3aed;}
+.trust-text { font-size: 0.83rem; color: var(--muted); }
+.trust-text strong { color: var(--text); font-weight: 600; }
+
+/* Hero Visual */
+.hero-visual {
+  position: relative;
+}
+.dashboard-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+}
+.dash-topbar {
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  background: var(--bg);
+}
+.dash-dots { display: flex; gap: 6px; }
+.dash-dots span {
+  width: 10px; height: 10px; border-radius: 50%;
+}
+.d1{background:#ff5f57;} .d2{background:#febc2e;} .d3{background:#28c840;}
+.dash-title { font-size: 0.78rem; font-weight: 600; color: var(--muted); }
+.status-live {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 0.72rem; font-weight: 600; color: var(--green);
+}
+.live-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); animation: blink 2s infinite; }
+.dash-stats {
+  display: grid; grid-template-columns: repeat(3,1fr);
+  gap: 1px; background: var(--border);
+}
+.dash-stat {
+  background: var(--white);
+  padding: 14px 16px;
+}
+.stat-val {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 1.5rem; font-weight: 800;
+  line-height: 1; margin-bottom: 3px;
+}
+.sv-blue{color:var(--blue);} .sv-green{color:var(--green);} .sv-amber{color:var(--amber);}
+.stat-lbl { font-size: 0.7rem; color: var(--muted); }
+.ticket-feed { padding: 12px; display: flex; flex-direction: column; gap: 8px; }
+.t-row {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 12px;
+  background: var(--bg); border: 1px solid var(--border);
+  border-radius: 8px; transition: all 0.3s;
+}
+.t-pill {
+  font-size: 0.65rem; font-weight: 700; padding: 2px 7px; border-radius: 4px; white-space: nowrap;
+}
+.tp-p1{background:#fef2f2;color:#dc2626;border:1px solid #fecaca;}
+.tp-auto{background:var(--blue-light);color:var(--blue);border:1px solid rgba(26,86,219,0.2);}
+.tp-done{background:var(--green-bg);color:var(--green);border:1px solid #a7f3d0;}
+.tp-dup{background:#f5f3ff;color:#7c3aed;border:1px solid #ddd6fe;}
+.t-name { font-size: 0.8rem; font-weight: 600; color: var(--text); flex:1; }
+.t-sub { font-size: 0.7rem; color: var(--muted); margin-top: 1px; }
+.t-action {
+  font-size: 0.68rem; font-weight: 600; padding: 3px 8px; border-radius: 4px; white-space: nowrap;
+}
+.ta-auto{background:var(--blue-light);color:var(--blue);}
+.ta-done{background:var(--green-bg);color:var(--green);}
+.dash-footer {
+  padding: 12px 18px;
+  border-top: 1px solid var(--border);
+  background: var(--bg);
+  display: flex; align-items: center; justify-content: space-between;
+  font-size: 0.75rem; color: var(--muted);
+}
+.dash-footer strong { color: var(--green); }
+
+/* Floating badges */
+.float-badge {
+  position: absolute;
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 10px; padding: 10px 14px;
+  box-shadow: var(--shadow);
+  font-size: 0.78rem; font-weight: 600;
+  display: flex; align-items: center; gap: 8px;
+  animation: float 3s ease-in-out infinite;
+}
+@keyframes float {
+  0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)}
+}
+.fb-left { left: -30px; top: 30%; animation-delay: 0.5s; }
+.fb-right { right: -20px; bottom: 20%; animation-delay: 1s; }
+.fb-icon { font-size: 1rem; }
+.fb-text span { display: block; font-size: 0.65rem; font-weight: 400; color: var(--muted); }
+
+/* ── PROOF BAR ── */
+#proof-bar {
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 20px 6vw;
+}
+.proof-inner {
+  max-width: 1100px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: center; gap: 0;
+}
+.proof-label {
+  font-size: 0.78rem; font-weight: 600; color: var(--muted2);
+  text-transform: uppercase; letter-spacing: 0.08em;
+  white-space: nowrap; padding-right: 32px;
+  border-right: 1px solid var(--border2);
+  margin-right: 32px;
+}
+.proof-logos { display: flex; align-items: center; gap: 36px; flex-wrap: wrap; justify-content: center; }
+.proof-logo {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 700; font-size: 1rem; color: var(--muted2);
+  letter-spacing: -0.02em; opacity: 0.6;
+  transition: opacity 0.2s;
+}
+.proof-logo:hover { opacity: 1; }
+
+/* ── SECTION BASE ── */
+.section { padding: 90px 6vw; }
+.section-inner { max-width: 1100px; margin: 0 auto; }
+.section-header { text-align: center; margin-bottom: 56px; }
+.section-tag {
+  display: inline-block;
+  background: var(--blue-light); color: var(--blue);
+  border: 1px solid rgba(26,86,219,0.15);
+  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; padding: 4px 12px; border-radius: 100px;
+  margin-bottom: 14px;
+}
+.section-title { font-size: clamp(1.7rem, 3vw, 2.5rem); font-weight: 800; margin-bottom: 14px; }
+.section-sub { font-size: 1rem; color: var(--muted); max-width: 520px; margin: 0 auto; line-height: 1.65; }
+
+/* ── PAIN SECTION ── */
+#pain { background: var(--white); }
+.pain-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+.pain-card {
+  background: var(--bg); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 28px;
+  position: relative; transition: all 0.25s;
+}
+.pain-card:hover { box-shadow: var(--shadow); transform: translateY(-3px); border-color: var(--border2); }
+.pain-icon-wrap {
+  width: 44px; height: 44px; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.2rem; margin-bottom: 16px;
+}
+.pi-red{background:var(--red-bg);}
+.pi-amber{background:var(--amber-bg);}
+.pi-blue{background:var(--blue-light);}
+.pain-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 10px; }
+.pain-card p { font-size: 0.875rem; color: var(--muted); line-height: 1.65; margin-bottom: 16px; }
+.pain-quote-box {
+  background: var(--white); border-left: 3px solid var(--blue);
+  border-radius: 0 6px 6px 0; padding: 10px 14px;
+  font-size: 0.78rem; color: var(--text2); font-style: italic; line-height: 1.5;
+}
+.quote-source { font-size: 0.68rem; color: var(--muted2); font-style: normal; margin-top: 4px; font-weight: 600; }
+
+/* ── INSIGHT SECTION ── */
+#insight { background: var(--blue); position: relative; overflow: hidden; }
+.insight-pattern {
+  position: absolute; inset: 0;
+  background-image: radial-gradient(circle at 0% 50%, rgba(255,255,255,0.06) 0%, transparent 50%),
+    radial-gradient(circle at 100% 50%, rgba(255,255,255,0.04) 0%, transparent 40%);
+}
+#insight .section-inner { position: relative; z-index: 1; }
+.insight-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+.insight-left .section-tag { background: rgba(255,255,255,0.15); color: rgba(255,255,255,0.9); border-color: rgba(255,255,255,0.2); }
+.insight-left h2 { color: #fff; font-size: clamp(1.7rem, 3vw, 2.4rem); font-weight: 800; margin-bottom: 20px; }
+.insight-key {
+  font-size: 1.1rem; color: rgba(255,255,255,0.9); line-height: 1.65;
+  margin-bottom: 16px; font-weight: 500;
+}
+.insight-key strong { color: #fff; }
+.insight-follow { font-size: 0.95rem; color: rgba(255,255,255,0.7); line-height: 1.65; }
+.insight-follow strong { color: rgba(255,255,255,0.95); font-weight: 600; }
+.insight-cards { display: flex; flex-direction: column; gap: 16px; }
+.insight-card {
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: var(--radius); padding: 20px 22px;
+  display: flex; gap: 16px; align-items: flex-start;
+}
+.ic-icon {
+  width: 38px; height: 38px; border-radius: 8px;
+  background: rgba(255,255,255,0.15);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem; flex-shrink: 0;
+}
+.ic-title { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; color: #fff; font-size: 0.95rem; margin-bottom: 4px; }
+.ic-desc { font-size: 0.82rem; color: rgba(255,255,255,0.65); line-height: 1.5; }
+
+/* ── HOW IT WORKS ── */
+#how { background: var(--bg); }
+.how-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 32px; position: relative; }
+.how-connector {
+  position: absolute; top: 44px;
+  left: calc(33.33% - 10px); right: calc(33.33% - 10px);
+  height: 2px;
+  background: linear-gradient(90deg, var(--blue) 0%, rgba(26,86,219,0.2) 50%, var(--blue) 100%);
+  z-index: 0;
+}
+.how-connector::before, .how-connector::after {
+  content: '→';
+  position: absolute; top: -11px;
+  color: var(--blue); font-size: 0.8rem;
+}
+.how-connector::before { left: calc(25% - 8px); }
+.how-connector::after { right: calc(25% - 8px); }
+.how-step { position: relative; z-index: 1; }
+.step-circle {
+  width: 88px; height: 88px; border-radius: 20px;
+  background: var(--white); border: 2px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 20px; position: relative;
+  box-shadow: var(--shadow-sm); transition: all 0.25s;
+}
+.how-step:hover .step-circle { border-color: var(--blue); box-shadow: 0 0 0 6px rgba(26,86,219,0.08); }
+.step-circle svg { width: 32px; height: 32px; }
+.step-num-badge {
+  position: absolute; top: -8px; right: -8px;
+  width: 24px; height: 24px; border-radius: 50%;
+  background: var(--blue); color: #fff;
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 0.72rem; font-weight: 800;
+  display: flex; align-items: center; justify-content: center;
+}
+.how-step h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 8px; }
+.how-step p { font-size: 0.875rem; color: var(--muted); line-height: 1.65; margin-bottom: 12px; }
+.step-time-tag {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 0.75rem; font-weight: 600; color: var(--green);
+  background: var(--green-bg); border: 1px solid #a7f3d0;
+  padding: 3px 10px; border-radius: 100px;
+}
+
+/* ── METRICS ── */
+#metrics { background: var(--white); }
+.metrics-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; margin-bottom: 24px; }
+.metric-card {
+  background: var(--bg); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 28px 24px;
+  text-align: center; transition: all 0.25s;
+  position: relative; overflow: hidden;
+}
+.metric-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: var(--blue); transform: scaleX(0); transform-origin: left;
+  transition: transform 0.3s;
+}
+.metric-card:hover { box-shadow: var(--shadow); transform: translateY(-2px); }
+.metric-card:hover::before { transform: scaleX(1); }
+.metric-val {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: clamp(2rem,3.5vw,2.8rem); font-weight: 800;
+  color: var(--blue); line-height: 1; margin-bottom: 8px;
+}
+.metric-lbl { font-size: 0.85rem; color: var(--muted); line-height: 1.45; }
+.metrics-row2 { display: grid; grid-template-columns: repeat(2,1fr); gap: 24px; margin-bottom: 20px; }
+.metrics-note {
+  text-align: center; font-size: 0.78rem; color: var(--muted2);
+  padding: 0 40px; line-height: 1.5;
+}
+
+/* ── WHO WE HELP ── */
+#who { background: var(--bg); }
+.who-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+.who-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 24px;
+  transition: all 0.25s;
+}
+.who-card:hover { box-shadow: var(--shadow); border-color: var(--border2); }
+.who-icon {
+  font-size: 1.6rem; margin-bottom: 12px; display: block;
+}
+.who-card h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 6px; }
+.who-card p { font-size: 0.82rem; color: var(--muted); line-height: 1.55; }
+.who-tag {
+  display: inline-block; margin-top: 12px;
+  background: var(--blue-light); color: var(--blue);
+  font-size: 0.7rem; font-weight: 600; padding: 3px 10px; border-radius: 100px;
+}
+
+/* ── FORM SECTION ── */
+#form-section { background: var(--white); }
+.form-outer {
+  display: grid; grid-template-columns: 1fr 460px;
+  gap: 80px; align-items: start;
+}
+.form-lhs h2 { font-size: clamp(1.7rem, 2.8vw, 2.3rem); font-weight: 800; margin-bottom: 16px; }
+.form-lhs > p { font-size: 0.95rem; color: var(--muted); line-height: 1.7; margin-bottom: 28px; }
+.checklist-box {
+  background: var(--bg); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 22px 24px; margin-bottom: 28px;
+}
+.checklist-box h5 {
+  font-size: 0.75rem; font-weight: 700; color: var(--muted);
+  text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 14px;
+}
+.cl-item {
+  display: flex; align-items: flex-start; gap: 10px;
+  padding: 9px 0; border-bottom: 1px solid var(--border);
+  font-size: 0.87rem; color: var(--text2);
+}
+.cl-item:last-child { border: none; padding-bottom: 0; }
+.cl-check {
+  width: 20px; height: 20px; border-radius: 5px;
+  background: var(--blue-light); border: 1px solid rgba(26,86,219,0.25);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; color: var(--blue); font-size: 0.65rem; font-weight: 700;
+  margin-top: 1px;
+}
+.trust-strip { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+.trust-item {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 0.8rem; color: var(--muted); font-weight: 500;
+}
+.trust-item span { font-size: 0.85rem; }
+
+/* Form card */
+.form-rhs {
+  background: var(--bg); border: 1px solid var(--border);
+  border-radius: 16px; padding: 32px;
+  box-shadow: var(--shadow-lg);
+  position: sticky; top: 90px;
+}
+.form-rhs-head { margin-bottom: 24px; }
+.form-rhs-head h3 { font-size: 1.2rem; font-weight: 800; margin-bottom: 5px; }
+.form-rhs-head p { font-size: 0.83rem; color: var(--muted); }
+.form-group { margin-bottom: 14px; }
+label {
+  display: block; font-size: 0.8rem; font-weight: 600;
+  color: var(--text2); margin-bottom: 5px;
+}
+input, select {
+  width: 100%; background: var(--white);
+  border: 1.5px solid var(--border2);
+  color: var(--text); font-family: 'Instrument Sans', sans-serif;
+  font-size: 0.88rem; padding: 10px 13px; border-radius: 8px;
+  outline: none; transition: all 0.2s;
+  -webkit-appearance: none; appearance: none;
+}
+input::placeholder { color: var(--muted2); }
+input:focus, select:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(26,86,219,0.12); }
+select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath stroke='%2394a3b8' stroke-width='1.5' fill='none' stroke-linecap='round' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 13px center;
+  padding-right: 38px; cursor: pointer;
+}
+select option { background: #fff; }
+.form-error { font-size: 0.75rem; color: var(--red); margin-top: 4px; display: none; }
+.submit-btn {
+  width: 100%; padding: 13px;
+  background: var(--blue); color: #fff;
+  font-family: 'Instrument Sans', sans-serif;
+  font-weight: 700; font-size: 0.95rem;
+  border: none; border-radius: 9px; cursor: pointer;
+  transition: all 0.25s; margin-top: 6px;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  box-shadow: 0 4px 16px rgba(26,86,219,0.3);
+}
+.submit-btn:hover { background: var(--blue-dark); transform: translateY(-1px); box-shadow: 0 6px 24px rgba(26,86,219,0.4); }
+.form-micro { text-align: center; font-size: 0.75rem; color: var(--muted2); margin-top: 10px; }
+
+/* ── FAQ ── */
+#faq { background: var(--bg); }
+.faq-grid { max-width: 760px; margin: 0 auto; }
+.faq-item {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius); margin-bottom: 10px;
+  overflow: hidden;
+}
+.faq-q {
+  padding: 18px 22px; cursor: pointer;
+  display: flex; align-items: center; justify-content: space-between;
+  font-weight: 600; font-size: 0.95rem; color: var(--text);
+  transition: background 0.2s;
+  font-family: 'Bricolage Grotesque', sans-serif;
+}
+.faq-q:hover { background: var(--bg); }
+.faq-chevron {
+  width: 20px; height: 20px; border-radius: 50%;
+  background: var(--bg); display: flex; align-items: center;
+  justify-content: center; flex-shrink: 0; transition: all 0.2s;
+  font-size: 0.7rem; color: var(--muted);
+}
+.faq-item.open .faq-chevron { background: var(--blue-light); color: var(--blue); transform: rotate(180deg); }
+.faq-a {
+  max-height: 0; overflow: hidden;
+  transition: max-height 0.3s ease, padding 0.3s ease;
+  padding: 0 22px; font-size: 0.875rem; color: var(--muted); line-height: 1.7;
+}
+.faq-item.open .faq-a { max-height: 200px; padding: 0 22px 18px; }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--text); padding: 60px 6vw 36px;
+}
+.footer-top {
+  max-width: 1100px; margin: 0 auto;
+  display: grid; grid-template-columns: 260px 1fr 1fr 1fr;
+  gap: 40px; margin-bottom: 48px;
+}
+.footer-brand .logo { color: #fff; margin-bottom: 12px; display: flex; }
+.footer-brand p { font-size: 0.83rem; color: #94a3b8; line-height: 1.6; }
+.footer-col h5 {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 0.82rem; font-weight: 700; color: #e2e8f0;
+  text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 14px;
+}
+.footer-col a {
+  display: block; font-size: 0.83rem; color: #64748b;
+  text-decoration: none; margin-bottom: 8px; transition: color 0.2s;
+}
+.footer-col a:hover { color: #e2e8f0; }
+.footer-bottom {
+  max-width: 1100px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+  padding-top: 24px; border-top: 1px solid #1e293b;
+  font-size: 0.8rem; color: #475569;
+}
+.footer-logo-sm {
+  display: flex; align-items: center; gap: 7px;
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 800; font-size: 1rem; color: #e2e8f0;
+}
+
+/* ── THANK YOU ── */
+#thankyou {
+  display: none; min-height: 100vh;
+  align-items: center; justify-content: center;
+  flex-direction: column; text-align: center;
+  padding: 60px 6vw; background: var(--white);
+}
+.ty-circle {
+  width: 80px; height: 80px; border-radius: 50%;
+  background: var(--green-bg); border: 2px solid #a7f3d0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 2rem; margin: 0 auto 28px;
+  animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+@keyframes popIn {
+  from{transform:scale(0.3);opacity:0}
+  to{transform:scale(1);opacity:1}
+}
+#thankyou h2 { font-size: 2.2rem; font-weight: 800; margin-bottom: 14px; }
+#thankyou > p { color: var(--muted); font-size: 1rem; max-width: 480px; margin: 0 auto 36px; }
+.ty-cards { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+.ty-card {
+  background: var(--bg); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 18px 22px;
+  text-align: left; max-width: 200px;
+}
+.ty-card-num {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 1.4rem; font-weight: 800; color: var(--blue); margin-bottom: 6px;
+}
+.ty-card p { font-size: 0.82rem; color: var(--muted); line-height: 1.5; }
+.back-btn {
+  margin-top: 36px; padding: 10px 24px;
+  background: none; border: 1.5px solid var(--border2);
+  border-radius: 8px; color: var(--muted); cursor: pointer;
+  font-family: 'Instrument Sans', sans-serif; font-size: 0.875rem;
+  transition: all 0.2s;
+}
+.back-btn:hover { border-color: var(--blue); color: var(--blue); }
+
+/* ── RESPONSIVE ── */
+@media(max-width:960px){
+  .hero-inner { grid-template-columns:1fr; }
+  .hero-visual { display:none; }
+  .insight-grid,.form-outer { grid-template-columns:1fr; }
+  .pain-grid,.how-grid,.metrics-grid,.who-grid { grid-template-columns:1fr; }
+  .metrics-row2 { grid-template-columns:1fr 1fr; }
+  .how-connector { display:none; }
+  .footer-top { grid-template-columns:1fr 1fr; }
+  nav { padding:0 5vw; }
+  .nav-links { display:none; }
+}
+
+/* ── ANIMATIONS ── */
+@keyframes slideUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+.hero-badge{animation:slideUp 0.5s ease both;}
+.hero-inner h1{animation:slideUp 0.5s 0.1s ease both;}
+.hero-desc{animation:slideUp 0.5s 0.2s ease both;}
+.hero-actions{animation:slideUp 0.5s 0.3s ease both;}
+.hero-trust{animation:slideUp 0.5s 0.4s ease both;}
+.hero-visual{animation:slideUp 0.6s 0.2s ease both;}
+</style>
+</head>
+<body>
+
+<div id="main-site">
+
+<!-- NAV -->
+<nav>
+  <div class="nav-left">
+    <a href="#" class="logo">
+      <div class="logo-mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5">
+          <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+        </svg>
+      </div>
+      FlowPilot AI
+    </a>
+    <div class="nav-links">
+      <a href="#how">How It Works</a>
+      <a href="#metrics">Results</a>
+      <a href="#who">Who It's For</a>
+      <a href="#faq">FAQ</a>
+    </div>
+  </div>
+  <div class="nav-right">
+    <a href="#form-section" class="btn-outline">Get Free Checklist</a>
+    <a href="#form-section" class="btn-primary">Download Now →</a>
+  </div>
+</nav>
+
+<!-- ─── HERO ─── -->
+<section id="hero">
+  <div class="hero-pattern"></div>
+  <div class="hero-grid-bg"></div>
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <div class="badge-dot"></div>
+        IT Workflow Automation Platform
+      </div>
+      <h1>Your team isn't slow.<br/><span>Your tools were never built to think.</span></h1>
+      <p class="hero-desc">FlowPilot AI plugs into your existing Freshservice, Jira, or ServiceNow and automatically classifies, assigns, deduplicates, and prioritizes tickets — before any human touches them.</p>
+      <div class="hero-actions">
+        <a href="#form-section" class="btn-lg blue">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+          Download Free Checklist
+        </a>
+        <a href="#how" class="btn-lg ghost">See How It Works</a>
+      </div>
+      <div class="hero-trust">
+        <div class="trust-avatars">
+          <span class="av1">JM</span>
+          <span class="av2">RS</span>
+          <span class="av3">AK</span>
+          <span class="av4">PL</span>
+        </div>
+        <div class="trust-text">Built for <strong>IT Ops Managers</strong> at 200–800 person companies still doing manual triage</div>
+      </div>
+    </div>
+
+    <!-- Dashboard Visual -->
+    <div class="hero-visual">
+      <div class="float-badge fb-left">
+        <div class="fb-icon">⚡</div>
+        <div class="fb-text"><strong>Auto-classified</strong><span>In 0.8 seconds</span></div>
+      </div>
+      <div class="dashboard-card">
+        <div class="dash-topbar">
+          <div class="dash-dots"><span class="d1"></span><span class="d2"></span><span class="d3"></span></div>
+          <div class="dash-title">FlowPilot AI — Live Queue</div>
+          <div class="status-live"><div class="live-dot"></div>Active</div>
+        </div>
+        <div class="dash-stats">
+          <div class="dash-stat">
+            <div class="stat-val sv-blue">84%</div>
+            <div class="stat-lbl">Auto-handled</div>
+          </div>
+          <div class="dash-stat">
+            <div class="stat-val sv-green">18min</div>
+            <div class="stat-lbl">Avg MTTR</div>
+          </div>
+          <div class="dash-stat">
+            <div class="stat-val sv-amber">0</div>
+            <div class="stat-lbl">SLA Breaches</div>
+          </div>
+        </div>
+        <div class="ticket-feed">
+          <div class="t-row">
+            <span class="t-pill tp-p1">P1</span>
+            <div>
+              <div class="t-name">VPN timeout — 14 users affected</div>
+              <div class="t-sub">Routed → Network team · @chen</div>
+            </div>
+            <span class="t-action ta-auto">Auto-assigned</span>
+          </div>
+          <div class="t-row">
+            <span class="t-pill tp-dup">DUP</span>
+            <div>
+              <div class="t-name">Outlook login failure</div>
+              <div class="t-sub">Merged with #4821 automatically</div>
+            </div>
+            <span class="t-action ta-auto">Deduplicated</span>
+          </div>
+          <div class="t-row">
+            <span class="t-pill tp-auto">L1</span>
+            <div>
+              <div class="t-name">Password reset — Priya S.</div>
+              <div class="t-sub">Auto-response sent · No human needed</div>
+            </div>
+            <span class="t-action ta-done">Resolved</span>
+          </div>
+          <div class="t-row">
+            <span class="t-pill tp-p1">P2</span>
+            <div>
+              <div class="t-name">Printer offline — Floor 3</div>
+              <div class="t-sub">Classified · Assigned → @desktop-support</div>
+            </div>
+            <span class="t-action ta-auto">Auto-routed</span>
+          </div>
+        </div>
+        <div class="dash-footer">
+          <span>Last action: <strong>2 sec ago</strong></span>
+          <span>12 tickets processed this hour · <strong>0 manual touches</strong></span>
+        </div>
+      </div>
+      <div class="float-badge fb-right">
+        <div class="fb-icon">✅</div>
+        <div class="fb-text"><strong>SLA: 100%</strong><span>This week</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── PROOF BAR ─── -->
+<div id="proof-bar">
+  <div class="proof-inner">
+    <span class="proof-label">Works alongside</span>
+    <div class="proof-logos">
+      <span class="proof-logo">ServiceNow</span>
+      <span class="proof-logo">Freshservice</span>
+      <span class="proof-logo">Jira ITSM</span>
+      <span class="proof-logo">Zendesk</span>
+      <span class="proof-logo">HelpDesk</span>
+    </div>
+  </div>
+</div>
+
+<!-- ─── PAIN SECTION ─── -->
+<section id="pain" class="section">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-tag">The Daily Reality</div>
+      <h2 class="section-title">Recognize your Monday morning?</h2>
+      <p class="section-sub">This isn't a strategy problem. It's 50 repetitive decisions your team makes before 10am — every single day.</p>
+    </div>
+    <div class="pain-grid">
+      <div class="pain-card">
+        <div class="pain-icon-wrap pi-red">🔁</div>
+        <h3>3–4 duplicate tickets. Every. Single. Morning.</h3>
+        <p>The same network outage gets reported by every affected team. Your engineer reads all four, confirms duplicates, merges context, and closes three — 25 minutes before any real work starts.</p>
+        <div class="pain-quote-box">
+          "We are able to close the second one and mark as a duplicate, but this is a bit of a manual thing..."
+          <div class="quote-source">— r/sysadmin</div>
+        </div>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon-wrap pi-amber">📝</div>
+        <h3>Writing 2-paragraph updates on tickets that haven't moved.</h3>
+        <p>Leadership wants 3–4 updates per high-priority ticket daily. Your engineer copy-pastes the same context, rewrites the same progress notes — while the actual problem waits.</p>
+        <div class="pain-quote-box">
+          "They want 3–4 updates... minimum required amount for a comment is 2 paragraphs."
+          <div class="quote-source">— r/sysadmin</div>
+        </div>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon-wrap pi-blue">📊</div>
+        <h3>SLA breach reports your CTO sees before you do.</h3>
+        <p>Pulling SLA data from Jira or Freshservice requires filters, exports, and manual cross-referencing. By the time you have the number, you're already explaining — not reporting.</p>
+        <div class="pain-quote-box">
+          "Pulling SLA breach data requires extra filters and exports."
+          <div class="quote-source">— G2 Review, Jira Service Management</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── INSIGHT SECTION ─── -->
+<section id="insight" class="section">
+  <div class="insight-pattern"></div>
+  <div class="section-inner">
+    <div class="insight-grid">
+      <div class="insight-left">
+        <div class="section-tag">The Root Cause</div>
+        <h2>It's not your team. It's not your tool.<br/>It's the missing decision layer.</h2>
+        <p class="insight-key">
+          <strong>Your team isn't slow — your tools were designed to receive tickets, not think about them.</strong>
+        </p>
+        <p class="insight-follow">
+          That thinking — classifying, assigning, deduplicating, prioritizing — is exactly the gap <strong>FlowPilot AI</strong> was built to close. You already invested in Freshservice or Jira. FlowPilot AI doesn't replace them. It makes them intelligent.
+        </p>
+      </div>
+      <div class="insight-cards">
+        <div class="insight-card">
+          <div class="ic-icon">🎯</div>
+          <div>
+            <div class="ic-title">Auto-Classification</div>
+            <div class="ic-desc">Every incoming ticket is read, categorized, and labeled before it touches your queue. No human decision required.</div>
+          </div>
+        </div>
+        <div class="insight-card">
+          <div class="ic-icon">🔀</div>
+          <div>
+            <div class="ic-title">Smart Assignment</div>
+            <div class="ic-desc">Tickets route to the correct engineer or team automatically, based on type, priority, and historical patterns.</div>
+          </div>
+        </div>
+        <div class="insight-card">
+          <div class="ic-icon">🔍</div>
+          <div>
+            <div class="ic-title">Duplicate Detection</div>
+            <div class="ic-desc">Related reports are merged automatically. One ticket, one thread, zero context loss.</div>
+          </div>
+        </div>
+        <div class="insight-card">
+          <div class="ic-icon">⚡</div>
+          <div>
+            <div class="ic-title">Priority Scoring</div>
+            <div class="ic-desc">High-impact incidents are surfaced immediately. L1 tickets are auto-resolved. Your team sees what matters first.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── HOW IT WORKS ─── -->
+<section id="how" class="section">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-tag">Simple by Design</div>
+      <h2 class="section-title">From inbox chaos to organized queue in 48 hours.</h2>
+      <p class="section-sub">No implementation consultants. No MID servers. No 6-month onboarding project.</p>
+    </div>
+    <div class="how-grid">
+      <div class="how-connector"></div>
+      <div class="how-step">
+        <div class="step-circle">
+          <span class="step-num-badge">1</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="#1a56db" stroke-width="1.8">
+            <rect x="2" y="3" width="20" height="14" rx="2.5"/>
+            <path d="M8 21h8M12 17v4"/>
+          </svg>
+        </div>
+        <h3>Connect</h3>
+        <p>FlowPilot AI connects to your existing Freshservice, Jira, or ServiceNow via API. No new infrastructure. No server configuration. Your current tool stays exactly in place.</p>
+        <span class="step-time-tag">⏱ 30 minutes to connect</span>
+      </div>
+      <div class="how-step">
+        <div class="step-circle">
+          <span class="step-num-badge">2</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="#1a56db" stroke-width="1.8">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+          </svg>
+        </div>
+        <h3>Learn</h3>
+        <p>It reads your historical ticket patterns and builds classification logic specific to your environment — your teams, your categories, your priority rules. Not a generic template.</p>
+        <span class="step-time-tag">⏱ 48 hours to model your data</span>
+      </div>
+      <div class="how-step">
+        <div class="step-circle">
+          <span class="step-num-badge">3</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="#1a56db" stroke-width="1.8">
+            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+          </svg>
+        </div>
+        <h3>Automate</h3>
+        <p>Incoming tickets are classified, assigned, deduplicated, and prioritized before any human touches them. Your team opens their queue to find organized, actionable work — every morning.</p>
+        <span class="step-time-tag">⚡ Full automation from Day 3</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── METRICS ─── -->
+<section id="metrics" class="section">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-tag">Measurable Outcomes</div>
+      <h2 class="section-title">The numbers your CTO wants to see.</h2>
+      <p class="section-sub">Project these in your next internal review. Show live data after 30 days.</p>
+    </div>
+    <div class="metrics-grid">
+      <div class="metric-card">
+        <div class="metric-val">25–50%</div>
+        <div class="metric-lbl">Reduction in Mean Time to Resolution (MTTR)</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-val">15–30%</div>
+        <div class="metric-lbl">Improvement in SLA Compliance Rate</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-val">20–40%</div>
+        <div class="metric-lbl">L1 Tickets Auto-Resolved Without Human Touch</div>
+      </div>
+    </div>
+    <div class="metrics-row2">
+      <div class="metric-card">
+        <div class="metric-val">8–15 hrs</div>
+        <div class="metric-lbl">Per engineer per week returned to high-value technical work</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-val">30%+</div>
+        <div class="metric-lbl">Reduction in duplicate ticket volume</div>
+      </div>
+    </div>
+    <p class="metrics-note">* Projected outcomes based on ITSM industry benchmarks (HDI Research, Freshservice case studies, Jira documentation). Individual results depend on ticket volume, team size, and environment configuration.</p>
+  </div>
+</section>
+
+<!-- ─── WHO WE HELP ─── -->
+<section id="who" class="section">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-tag">Who It's Built For</div>
+      <h2 class="section-title">If your team is 3–8 people managing 200+ employees, this is for you.</h2>
+      <p class="section-sub">FlowPilot AI is purpose-built for the mid-market IT Operations Manager who has outgrown a shared mailbox but can't justify a ServiceNow implementation.</p>
+    </div>
+    <div class="who-grid">
+      <div class="who-card">
+        <span class="who-icon">💻</span>
+        <h4>SaaS & Tech Companies</h4>
+        <p>Fast-growing product teams where ticket volume doubles every 6 months but headcount doesn't.</p>
+        <span class="who-tag">200–600 employees</span>
+      </div>
+      <div class="who-card">
+        <span class="who-icon">💳</span>
+        <h4>Fintech & Financial Services</h4>
+        <p>Strict SLA commitments and compliance needs where manual triage creates audit trail gaps.</p>
+        <span class="who-tag">SOC 2 environments</span>
+      </div>
+      <div class="who-card">
+        <span class="who-icon">🔧</span>
+        <h4>IT Managed Service Providers</h4>
+        <p>Multi-client environments where ticket routing complexity multiplies with every new account.</p>
+        <span class="who-tag">Multi-client queues</span>
+      </div>
+      <div class="who-card">
+        <span class="who-icon">🚚</span>
+        <h4>Logistics & Operations</h4>
+        <p>Warehouse and field operations generating high L1 ticket volume that shouldn't require senior engineer time.</p>
+        <span class="who-tag">High L1 volume</span>
+      </div>
+      <div class="who-card">
+        <span class="who-icon">🏥</span>
+        <h4>Healthcare IT</h4>
+        <p>Critical incident response where a missed P1 has compliance and patient safety implications beyond SLAs.</p>
+        <span class="who-tag">HIPAA-aware</span>
+      </div>
+      <div class="who-card">
+        <span class="who-icon">📈</span>
+        <h4>Post-Acquisition Teams</h4>
+        <p>IT teams absorbing two or three entity's ticket queues overnight with no additional headcount.</p>
+        <span class="who-tag">Merger environments</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── LEAD FORM ─── -->
+<section id="form-section" class="section">
+  <div class="section-inner">
+    <div class="form-outer">
+      <div class="form-lhs">
+        <div class="section-tag" style="margin-bottom:16px;">Free Download</div>
+        <h2>The IT Triage Automation Checklist</h2>
+        <p>A 12-point checklist that helps IT Operations Managers calculate exactly how many hours their team loses to manual triage — and build the internal business case to fix it. Take it into your next CTO meeting.</p>
+        <div class="checklist-box">
+          <h5>What's inside</h5>
+          <div class="cl-item"><div class="cl-check">✓</div>Calculate your team's daily triage cost in hours and dollars</div>
+          <div class="cl-item"><div class="cl-check">✓</div>Identify which ticket types are automatable today</div>
+          <div class="cl-item"><div class="cl-check">✓</div>Score your current tool's automation coverage</div>
+          <div class="cl-item"><div class="cl-check">✓</div>Build an ROI case your CTO can approve in one meeting</div>
+          <div class="cl-item"><div class="cl-check">✓</div>30-day automation rollout timeline template</div>
+        </div>
+        <div class="trust-strip">
+          <div class="trust-item"><span>🔒</span> No sales call required</div>
+          <div class="trust-item"><span>📧</span> Instant delivery</div>
+          <div class="trust-item"><span>🛠️</span> Built by an ITSM practitioner</div>
+        </div>
+      </div>
+
+      <div class="form-rhs">
+        <div class="form-rhs-head">
+          <h3>Get the Free Checklist</h3>
+          <p>Delivered instantly to your work email. No spam, ever.</p>
+        </div>
+        <form id="lead-form" onsubmit="handleSubmit(event)" novalidate>
+          <div class="form-group">
+            <label for="fname">First Name *</label>
+            <input type="text" id="fname" placeholder="Alex" required/>
+            <div class="form-error" id="err-fname">Please enter your first name.</div>
+          </div>
+          <div class="form-group">
+            <label for="wemail">Work Email *</label>
+            <input type="email" id="wemail" placeholder="alex@yourcompany.com" required/>
+            <div class="form-error" id="err-wemail">Please enter a valid work email.</div>
+          </div>
+          <div class="form-group">
+            <label for="company">Company Name *</label>
+            <input type="text" id="company" placeholder="Acme Corp" required/>
+            <div class="form-error" id="err-company">Please enter your company name.</div>
+          </div>
+          <div class="form-group">
+            <label for="tool">Current ITSM Tool *</label>
+            <select id="tool" required>
+              <option value="" disabled selected>Select your tool</option>
+              <option value="ServiceNow">ServiceNow</option>
+              <option value="Freshservice">Freshservice</option>
+              <option value="Jira Service Management">Jira Service Management</option>
+              <option value="Shared Mailbox / Email">Shared Mailbox / Email</option>
+              <option value="Other">Other</option>
+            </select>
+            <div class="form-error" id="err-tool">Please select your ITSM tool.</div>
+          </div>
+          <div class="form-group">
+            <label for="teamsize">IT Team Size *</label>
+            <select id="teamsize" required>
+              <option value="" disabled selected>Select your team size</option>
+              <option value="2-5">2–5 people</option>
+              <option value="6-10">6–10 people</option>
+              <option value="10+">10+ people</option>
+            </select>
+            <div class="form-error" id="err-teamsize">Please select your team size.</div>
+          </div>
+          <button type="submit" class="submit-btn" id="submit-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+            Download the Checklist →
+          </button>
+          <p class="form-micro">No sales call. No spam. Unsubscribe anytime. Used by IT Ops Managers at 200–800 person companies.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FAQ ─── -->
+<section id="faq" class="section">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-tag">FAQ</div>
+      <h2 class="section-title">Questions IT Ops Managers always ask.</h2>
+    </div>
+    <div class="faq-grid">
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          Does FlowPilot AI replace my existing ITSM tool?
+          <div class="faq-chevron">▾</div>
+        </div>
+        <div class="faq-a">No. FlowPilot AI is an augmentation layer, not a replacement. It sits between your email/inbox and your existing Freshservice, Jira, or ServiceNow instance — making the triage decisions those tools expect humans to make. Your current tool, your current data, your current workflows stay intact.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          How long does it take to set up?
+          <div class="faq-chevron">▾</div>
+        </div>
+        <div class="faq-a">Connection takes approximately 30 minutes via API. FlowPilot AI then reads your historical ticket data and builds your environment's classification model over 48 hours. By Day 3, automation is running. No consultants. No infrastructure changes. No implementation project plan.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          What if our ticket patterns are unique to our industry?
+          <div class="faq-chevron">▾</div>
+        </div>
+        <div class="faq-a">FlowPilot AI doesn't use generic templates. It learns from your historical tickets specifically — your team names, your category structures, your priority conventions. The model is built for your environment, not a hypothetical average IT team.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          How do I justify this to my CTO?
+          <div class="faq-chevron">▾</div>
+        </div>
+        <div class="faq-a">That's exactly what the free checklist helps you do. It walks you through calculating your team's current triage cost in hours and dollars, then maps those savings against the investment. Most IT Ops Managers find their team loses 8–15 hours per engineer per week to manual admin — that number, translated to salary cost, is usually the business case.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          We're a small team. Is FlowPilot AI overkill for us?
+          <div class="faq-chevron">▾</div>
+        </div>
+        <div class="faq-a">Actually, small teams benefit the most. A 4-person IT team losing 2 hours per person per day to manual triage is losing 40% of their total capacity to admin work. Automation doesn't just help at scale — it's most impactful when there's no slack capacity to absorb the manual work.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="logo" style="color:#fff;margin-bottom:12px;">
+        <div class="logo-mark">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        </div>
+        FlowPilot AI
+      </div>
+      <p>The AI automation layer that makes your ITSM tool intelligent. Built for IT Ops Managers who are done with manual triage.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Product</h5>
+      <a href="#how">How It Works</a>
+      <a href="#metrics">Results & Metrics</a>
+      <a href="#who">Who It's For</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <div class="footer-col">
+      <h5>Integrations</h5>
+      <a href="#">Freshservice</a>
+      <a href="#">Jira Service Management</a>
+      <a href="#">ServiceNow</a>
+      <a href="#">Zendesk</a>
+    </div>
+    <div class="footer-col">
+      <h5>Resources</h5>
+      <a href="#form-section">Free Checklist</a>
+      <a href="#">IT Automation Blog</a>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Use</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-logo-sm">
+      <div class="logo-mark" style="width:24px;height:24px;border-radius:6px;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" style="width:13px;height:13px;"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+      </div>
+      FlowPilot AI
+    </div>
+    <span>© 2025 FlowPilot AI. Built for IT Ops Managers who are done with manual triage.</span>
+    <span>Portfolio project by <strong style="color:#94a3b8;">Venkat · growthwithvenkat.com</strong></span>
+  </div>
+</footer>
+
+</div><!-- end #main-site -->
+
+<!-- ─── THANK YOU ─── -->
+<div id="thankyou">
+  <div class="ty-circle">✅</div>
+  <h2>You're all set, <span id="ty-name">there</span>!</h2>
+  <p>The IT Triage Automation Checklist is on its way to <strong id="ty-email"></strong>. Check your inbox in the next 2 minutes.</p>
+  <div class="ty-cards">
+    <div class="ty-card">
+      <div class="ty-card-num">01</div>
+      <p>Score your team's current triage process using the checklist</p>
+    </div>
+    <div class="ty-card">
+      <div class="ty-card-num">02</div>
+      <p>Calculate weekly hours lost to manual triage work</p>
+    </div>
+    <div class="ty-card">
+      <div class="ty-card-num">03</div>
+      <p>Bring the ROI number into your next CTO conversation</p>
+    </div>
+  </div>
+  <button class="back-btn" onclick="goBack()">← Back to FlowPilot AI</button>
+</div>
+
+<script>
+  const leads = [];
+
+  function validate() {
+    let valid = true;
+    const fields = [
+      { id: 'fname', errId: 'err-fname', check: v => v.trim().length > 0 },
+      { id: 'wemail', errId: 'err-wemail', check: v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) },
+      { id: 'company', errId: 'err-company', check: v => v.trim().length > 0 },
+      { id: 'tool', errId: 'err-tool', check: v => v !== '' },
+      { id: 'teamsize', errId: 'err-teamsize', check: v => v !== '' }
+    ];
+    fields.forEach(f => {
+      const el = document.getElementById(f.id);
+      const err = document.getElementById(f.errId);
+      if (!f.check(el.value)) {
+        err.style.display = 'block';
+        el.style.borderColor = 'var(--red)';
+        valid = false;
+      } else {
+        err.style.display = 'none';
+        el.style.borderColor = '';
+      }
+    });
+    return valid;
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    if (!validate()) return;
+
+    const name = document.getElementById('fname').value.trim();
+    const email = document.getElementById('wemail').value.trim();
+    const company = document.getElementById('company').value.trim();
+    const tool = document.getElementById('tool').value;
+    const teamSize = document.getElementById('teamsize').value;
+
+    const lead = { id: Date.now(), name, email, company, tool, teamSize, timestamp: new Date().toISOString() };
+    leads.push(lead);
+
+    console.log('📋 New Lead Captured:', JSON.stringify(lead, null, 2));
+    console.log('📧 [Simulated] Admin notification → admin@flowpilotai.com');
+    console.log('📧 [Simulated] Auto-response sent → ' + email);
+    console.log('📊 Lead Summary:');
+    console.table(leads);
+
+    const btn = document.getElementById('submit-btn');
+    btn.textContent = '✓ Sending...';
+    btn.style.background = 'var(--green)';
+
+    setTimeout(() => {
+      document.getElementById('ty-name').textContent = name;
+      document.getElementById('ty-email').textContent = email;
+      document.getElementById('main-site').style.display = 'none';
+      const ty = document.getElementById('thankyou');
+      ty.style.display = 'flex';
+      window.scrollTo(0, 0);
+    }, 600);
+  }
+
+  function goBack() {
+    document.getElementById('thankyou').style.display = 'none';
+    document.getElementById('main-site').style.display = 'block';
+    document.getElementById('lead-form').reset();
+    const btn = document.getElementById('submit-btn');
+    btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>Download the Checklist →';
+    btn.style.background = '';
+    window.scrollTo(0, 0);
+  }
+
+  function toggleFaq(el) {
+    const item = el.parentElement;
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+
+  // Smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const t = document.querySelector(a.getAttribute('href'));
+      if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+    });
+  });
+
+  // Staggered ticket animation
+  window.addEventListener('load', () => {
+    document.querySelectorAll('.t-row').forEach((r, i) => {
+      r.style.opacity = '0';
+      r.style.transform = 'translateX(12px)';
+      setTimeout(() => {
+        r.style.transition = 'all 0.35s ease';
+        r.style.opacity = '1';
+        r.style.transform = 'translateX(0)';
+      }, 900 + i * 180);
+    });
+  });
+</script>
+</body>
+</html>

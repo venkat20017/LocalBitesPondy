@@ -6,9 +6,10 @@ const PrivacyPolicy: React.FC = () => {
     return (
         <div className="min-h-screen bg-gray-50 pt-24">
             <MetaTags
-                title="Privacy Policy | LocalBitesPondy"
-                description="View the Privacy Policy of LocalBitesPondy. Learn how we collect, use, and protect your personal information while you explore Pondicherry's food scene."
+                title="Privacy Policy | LocalBitesPondy - Food Guide 2026"
+                description="Our privacy commitment. Learn how LocalBitesPondy protects your data while you discover the best local food in Pondicherry."
                 canonical="https://localbitespondy.netlify.app/privacy-policy"
+                robots="noindex, follow"
             />
             {/* Header Section */}
             <div className="bg-white shadow-sm border-b border-gray-200">

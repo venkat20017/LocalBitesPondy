@@ -29,12 +29,12 @@ function App() {
             <Route path="/about-us" element={<AboutUs />} />
 
             {/* SEO Cluster Pages */}
-            <Route path="/traditional-tamil-dishes-pondicherry" element={<ClusterPage data={clusterData["/traditional-tamil-dishes-pondicherry"]} />} />
-            <Route path="/french-cafes-in-pondicherry" element={<ClusterPage data={clusterData["/french-cafes-in-pondicherry"]} />} />
-            <Route path="/seafood-restaurants-pondicherry" element={<ClusterPage data={clusterData["/seafood-restaurants-pondicherry"]} />} />
-            <Route path="/street-food-in-pondicherry" element={<ClusterPage data={clusterData["/street-food-in-pondicherry"]} />} />
-            <Route path="/vegetarian-restaurants-pondicherry" element={<ClusterPage data={clusterData["/vegetarian-restaurants-pondicherry"]} />} />
-            <Route path="/foodie-guide-pondicherry" element={<ClusterPage data={clusterData["/foodie-guide-pondicherry"]} />} />
+            <Route path="/tamil-dishes" element={<ClusterPage data={clusterData["/tamil-dishes"]} />} />
+            <Route path="/french-quarter" element={<ClusterPage data={clusterData["/french-quarter"]} />} />
+            <Route path="/seafood" element={<ClusterPage data={clusterData["/seafood"]} />} />
+            <Route path="/street-food" element={<ClusterPage data={clusterData["/street-food"]} />} />
+            <Route path="/restaurants" element={<ClusterPage data={clusterData["/restaurants"]} />} />
+            <Route path="/foodie-guide" element={<ClusterPage data={clusterData["/foodie-guide"]} />} />
           </Routes>
         </div>
         <Footer />

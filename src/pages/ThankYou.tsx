@@ -11,9 +11,10 @@ const ThankYou: React.FC = () => {
     return (
         <div className="min-h-screen bg-orange-50 pt-32 pb-20 px-4 font-sans">
             <MetaTags
-                title="Thank You | LocalBitesPondy"
-                description="Thank you for downloading our famous food in Pondicherry guide! Your PDF should have opened in a new tab."
+                title="Thank You! | Download Your Pondicherry Food Guide"
+                description="Success! Your guide to the most famous food in Pondicherry is ready. Thank you for joining our community of food lovers."
                 canonical="https://localbitespondy.netlify.app/thank-you"
+                robots="noindex, follow"
             />
 
             <div className="max-w-3xl mx-auto">

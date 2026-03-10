@@ -14,7 +14,7 @@ export interface ClusterData {
 }
 
 export const clusterData: Record<string, ClusterData> = {
-    "/traditional-tamil-dishes-pondicherry": {
+    "/tamil-dishes": {
         id: "tamil-dishes",
         title: "Traditional Tamil Dishes in Pondicherry",
         description: "Explore the authentic flavors of Pondicherry with our guide to the best Tamil traditional meals.",
@@ -42,7 +42,7 @@ export const clusterData: Record<string, ClusterData> = {
             ]
         }
     },
-    "/french-cafes-in-pondicherry": {
+    "/french-quarter": {
         id: "french-cafes",
         title: "French Cafes in Pondicherry",
         description: "Discover the charm of White Town with our curated list of the best French cafes.",
@@ -73,7 +73,7 @@ export const clusterData: Record<string, ClusterData> = {
             ]
         }
     },
-    "/seafood-restaurants-pondicherry": {
+    "/seafood": {
         id: "seafood",
         title: "Best Seafood in Pondicherry",
         description: "Find the best seafood restaurants in Pondicherry for a coastal dining experience.",
@@ -103,7 +103,7 @@ export const clusterData: Record<string, ClusterData> = {
             ]
         }
     },
-    "/street-food-in-pondicherry": {
+    "/street-food": {
         id: "street-food",
         title: "Street Food in Pondicherry",
         description: "A guide to Pondicherry's vibrant street food scene.",
@@ -127,7 +127,7 @@ export const clusterData: Record<string, ClusterData> = {
             ]
         }
     },
-    "/vegetarian-restaurants-pondicherry": {
+    "/restaurants": {
         id: "vegetarian",
         title: "Vegetarian Restaurants in Pondicherry",
         description: "Find the best vegetarian and vegan-friendly spots in Pondicherry.",
@@ -150,7 +150,7 @@ export const clusterData: Record<string, ClusterData> = {
             ]
         }
     },
-    "/foodie-guide-pondicherry": {
+    "/foodie-guide": {
         id: "foodie-guide",
         title: "A Foodie’s Guide to Exploring Pondicherry",
         description: "Your ultimate companion for culinary tours and food festivals.",

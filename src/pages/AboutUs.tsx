@@ -40,8 +40,9 @@ const AboutUs: React.FC = () => {
     return (
         <div className="min-h-screen bg-gray-50 pt-24">
             <MetaTags
-                title="About Us | LocalBitesPondy - Authentic Pondicherry Food Guide"
-                description="Learn about LocalBitesPondy, our mission to share authentic Pondicherry food experiences, and the team behind your favorite local food guide."
+                title="About Us | LocalBitesPondy - Local's Guide 2026"
+                description="Discover the story behind LocalBitesPondy. Born and raised in Pondicherry, our mission is to connect food-loving travelers with authentic local eats and hidden gems."
+                keywords="about localbitespondy, pondicherry food guide team, authentic pondy eats, local food mission"
                 canonical="https://localbitespondy.netlify.app/about-us"
             />
             {/* Header Section */}

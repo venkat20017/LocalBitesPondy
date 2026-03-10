@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Privacy Policy – FlowPilot AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --bg: #f8fafc;
+  --white: #ffffff;
+  --blue: #1a56db;
+  --blue-light: #eff4ff;
+  --text: #0f172a;
+  --text2: #334155;
+  --muted: #64748b;
+  --muted2: #94a3b8;
+  --border: #e2e8f0;
+  --border2: #cbd5e1;
+  --green: #059669;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+  --shadow: 0 4px 16px rgba(0,0,0,0.08);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Instrument Sans', sans-serif;
+  font-size: 16px;
+  line-height: 1.7;
+}
+h1,h2,h3,h4 {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+}
+
+/* NAV */
+nav {
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 6vw; height: 68px;
+  display: flex; align-items: center; justify-content: space-between;
+  position: sticky; top: 0; z-index: 100;
+}
+.logo {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 800; font-size: 1.15rem; color: var(--text);
+  display: flex; align-items: center; gap: 8px;
+  text-decoration: none;
+}
+.logo-mark {
+  width: 30px; height: 30px; border-radius: 7px;
+  background: var(--blue);
+  display: flex; align-items: center; justify-content: center;
+}
+.logo-mark svg { width: 16px; height: 16px; }
+.nav-back {
+  font-size: 0.85rem; color: var(--muted);
+  text-decoration: none; font-weight: 500;
+  display: flex; align-items: center; gap: 5px;
+  transition: color 0.2s;
+}
+.nav-back:hover { color: var(--blue); }
+
+/* HERO */
+.page-hero {
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  padding: 60px 6vw 48px;
+}
+.page-hero-inner { max-width: 760px; margin: 0 auto; }
+.page-tag {
+  display: inline-block;
+  background: var(--blue-light); color: var(--blue);
+  border: 1px solid rgba(26,86,219,0.15);
+  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; padding: 4px 12px; border-radius: 100px;
+  margin-bottom: 16px;
+}
+.page-hero h1 { font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 800; margin-bottom: 12px; }
+.page-hero .meta {
+  font-size: 0.85rem; color: var(--muted);
+  display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+}
+.meta-item { display: flex; align-items: center; gap: 5px; }
+
+/* LAYOUT */
+.page-layout {
+  max-width: 1060px; margin: 0 auto;
+  display: grid; grid-template-columns: 220px 1fr;
+  gap: 48px; padding: 48px 6vw 80px;
+}
+
+/* SIDEBAR */
+.sidebar {
+  position: sticky; top: 90px; height: fit-content;
+}
+.sidebar-title {
+  font-size: 0.72rem; font-weight: 700; color: var(--muted2);
+  text-transform: uppercase; letter-spacing: 0.1em;
+  margin-bottom: 14px;
+}
+.sidebar-nav { display: flex; flex-direction: column; gap: 2px; }
+.sidebar-nav a {
+  font-size: 0.83rem; color: var(--muted);
+  text-decoration: none; padding: 6px 10px; border-radius: 6px;
+  transition: all 0.2s; border-left: 2px solid transparent;
+}
+.sidebar-nav a:hover { color: var(--blue); background: var(--blue-light); border-left-color: var(--blue); }
+
+/* CONTENT */
+.doc-content { min-width: 0; }
+.doc-section {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 12px; padding: 32px 36px;
+  margin-bottom: 16px;
+}
+.doc-section h2 {
+  font-size: 1.15rem; font-weight: 700;
+  margin-bottom: 14px; padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; gap: 10px;
+}
+.section-icon {
+  width: 28px; height: 28px; border-radius: 6px;
+  background: var(--blue-light);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.85rem; flex-shrink: 0;
+}
+.doc-section p {
+  font-size: 0.9rem; color: var(--text2); line-height: 1.75;
+  margin-bottom: 12px;
+}
+.doc-section p:last-child { margin-bottom: 0; }
+.doc-section ul {
+  margin: 10px 0 12px 0; padding-left: 0;
+  list-style: none; display: flex; flex-direction: column; gap: 6px;
+}
+.doc-section ul li {
+  font-size: 0.9rem; color: var(--text2); line-height: 1.6;
+  display: flex; align-items: flex-start; gap: 8px;
+  padding: 8px 12px; background: var(--bg);
+  border-radius: 6px; border: 1px solid var(--border);
+}
+.doc-section ul li::before {
+  content: '→'; color: var(--blue); font-weight: 700;
+  flex-shrink: 0; margin-top: 1px;
+}
+.doc-section h3 {
+  font-size: 0.95rem; font-weight: 700;
+  margin: 18px 0 8px; color: var(--text);
+}
+.highlight-box {
+  background: var(--blue-light); border: 1px solid rgba(26,86,219,0.15);
+  border-radius: 8px; padding: 14px 16px;
+  font-size: 0.875rem; color: var(--text2); line-height: 1.6;
+  margin: 12px 0;
+}
+.highlight-box strong { color: var(--blue); }
+
+/* CONTACT CARD */
+.contact-card {
+  background: var(--blue); border-radius: 12px;
+  padding: 28px 32px; margin-top: 8px;
+}
+.contact-card h3 {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 1.05rem; font-weight: 700; color: #fff; margin-bottom: 8px;
+}
+.contact-card p { font-size: 0.875rem; color: rgba(255,255,255,0.75); margin-bottom: 14px; }
+.contact-card a {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: rgba(255,255,255,0.15); color: #fff;
+  border: 1px solid rgba(255,255,255,0.25);
+  padding: 8px 18px; border-radius: 7px;
+  font-size: 0.85rem; font-weight: 600; text-decoration: none;
+  transition: all 0.2s;
+}
+.contact-card a:hover { background: rgba(255,255,255,0.25); }
+
+/* FOOTER */
+footer {
+  background: var(--text); padding: 28px 6vw;
+  display: flex; align-items: center; justify-content: space-between;
+  font-size: 0.8rem; color: #475569; flex-wrap: wrap; gap: 12px;
+}
+.footer-logo {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 800; font-size: 0.95rem; color: #e2e8f0;
+  display: flex; align-items: center; gap: 7px;
+}
+footer a { color: #64748b; text-decoration: none; transition: color 0.2s; }
+footer a:hover { color: #e2e8f0; }
+footer .footer-links { display: flex; gap: 20px; }
+
+@media(max-width: 768px) {
+  .page-layout { grid-template-columns: 1fr; }
+  .sidebar { display: none; }
+  .doc-section { padding: 22px 20px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="flowpilot-v2.html" class="logo">
+    <div class="logo-mark">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+    </div>
+    FlowPilot AI
+  </a>
+  <a href="flowpilot-v2.html" class="nav-back">← Back to Home</a>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="page-tag">Legal</div>
+    <h1>Privacy Policy</h1>
+    <div class="meta">
+      <span class="meta-item">📅 Effective Date: January 1, 2025</span>
+      <span class="meta-item">🔄 Last Updated: January 1, 2025</span>
+      <span class="meta-item">📍 FlowPilot AI</span>
+    </div>
+  </div>
+</div>
+
+<!-- LAYOUT -->
+<div class="page-layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-title">On This Page</div>
+    <nav class="sidebar-nav">
+      <a href="#overview">Overview</a>
+      <a href="#collection">What We Collect</a>
+      <a href="#use">How We Use It</a>
+      <a href="#storage">Data Storage</a>
+      <a href="#sharing">Data Sharing</a>
+      <a href="#cookies">Cookies</a>
+      <a href="#rights">Your Rights</a>
+      <a href="#retention">Data Retention</a>
+      <a href="#children">Children's Privacy</a>
+      <a href="#changes">Policy Changes</a>
+      <a href="#contact">Contact Us</a>
+    </nav>
+  </aside>
+
+  <!-- CONTENT -->
+  <div class="doc-content">
+
+    <div class="doc-section" id="overview">
+      <h2><div class="section-icon">📋</div>Overview</h2>
+      <p>FlowPilot AI ("we," "our," or "us") is committed to protecting your personal information. This Privacy Policy explains how we collect, use, store, and protect information you provide when you visit our website or download our resources.</p>
+      <p>This policy applies to information collected through our website, including our lead magnet download forms, blog content, and any future product features.</p>
+      <div class="highlight-box">
+        <strong>The short version:</strong> We collect only what we need to deliver the resource you requested. We do not sell your data. We do not share it with advertisers. You can ask us to delete it at any time.
+      </div>
+    </div>
+
+    <div class="doc-section" id="collection">
+      <h2><div class="section-icon">📥</div>What We Collect</h2>
+      <h3>Information You Provide Directly</h3>
+      <p>When you submit a form on our website to download the IT Triage Automation Checklist, we collect:</p>
+      <ul>
+        <li>First name</li>
+        <li>Work email address</li>
+        <li>Company name</li>
+        <li>Current ITSM tool (e.g. Freshservice, Jira, ServiceNow)</li>
+        <li>IT team size</li>
+      </ul>
+      <h3>Information Collected Automatically</h3>
+      <p>When you visit our website, we may automatically collect certain technical information, including:</p>
+      <ul>
+        <li>Browser type and version</li>
+        <li>Pages visited and time spent on each page</li>
+        <li>Referring URL (how you found us)</li>
+        <li>General geographic location (country/city level only)</li>
+        <li>Device type (desktop, mobile, tablet)</li>
+      </ul>
+      <p>This information is collected through Google Analytics 4 and is used only to understand how visitors interact with our website so we can improve it.</p>
+    </div>
+
+    <div class="doc-section" id="use">
+      <h2><div class="section-icon">⚙️</div>How We Use Your Information</h2>
+      <p>We use the information you provide for the following purposes:</p>
+      <ul>
+        <li>To deliver the resource you requested (the IT Triage Automation Checklist)</li>
+        <li>To send follow-up emails related to IT operations and automation — you can unsubscribe at any time</li>
+        <li>To understand which ITSM tools and team sizes are most represented in our audience</li>
+        <li>To improve our content, resources, and future product offerings</li>
+        <li>To respond to any questions or feedback you send us directly</li>
+      </ul>
+      <div class="highlight-box">
+        <strong>We will never:</strong> sell your information to third parties, use your email for unrelated commercial advertising, or share your company details with competitors or data brokers.
+      </div>
+    </div>
+
+    <div class="doc-section" id="storage">
+      <h2><div class="section-icon">🗄️</div>Data Storage & Security</h2>
+      <p>Your information is stored securely using industry-standard tools. Form submissions are processed through Formspree and stored in our email management platform (HubSpot). Both platforms use encryption in transit (HTTPS/TLS) and at rest.</p>
+      <p>We take reasonable precautions to protect your data from unauthorized access, loss, or misuse. However, no internet transmission is 100% secure, and we cannot guarantee absolute security.</p>
+      <p>We do not store payment information as we do not currently charge for any resources on this website.</p>
+    </div>
+
+    <div class="doc-section" id="sharing">
+      <h2><div class="section-icon">🤝</div>Data Sharing</h2>
+      <p>We do not sell, rent, or trade your personal information. We may share data only in the following limited circumstances:</p>
+      <ul>
+        <li><strong>Service providers:</strong> Tools like Formspree (form processing), HubSpot (email delivery), and Google Analytics (website analytics) that process data on our behalf under their own privacy policies</li>
+        <li><strong>Legal requirements:</strong> If required by law, court order, or governmental authority</li>
+        <li><strong>Business transfer:</strong> In the unlikely event of a merger or acquisition, your data may transfer to the new entity under the same privacy commitments</li>
+      </ul>
+      <p>Each third-party service provider we use is bound by their own privacy policy. We encourage you to review them: <a href="https://formspree.io/legal/privacy-policy" target="_blank" style="color:var(--blue);">Formspree</a>, <a href="https://legal.hubspot.com/privacy-policy" target="_blank" style="color:var(--blue);">HubSpot</a>, <a href="https://policies.google.com/privacy" target="_blank" style="color:var(--blue);">Google</a>.</p>
+    </div>
+
+    <div class="doc-section" id="cookies">
+      <h2><div class="section-icon">🍪</div>Cookies & Tracking</h2>
+      <p>Our website uses cookies and similar tracking technologies for the following purposes:</p>
+      <ul>
+        <li><strong>Analytics cookies (Google Analytics 4):</strong> To understand how visitors use our site. Data is anonymized and aggregated.</li>
+        <li><strong>Functional cookies:</strong> To remember your preferences and improve your experience on return visits.</li>
+      </ul>
+      <p>You can control cookies through your browser settings. Disabling cookies may limit some functionality of the website. We do not use advertising or retargeting cookies at this time.</p>
+    </div>
+
+    <div class="doc-section" id="rights">
+      <h2><div class="section-icon">✅</div>Your Rights</h2>
+      <p>Depending on your location, you may have the following rights regarding your personal data:</p>
+      <ul>
+        <li><strong>Access:</strong> Request a copy of the personal data we hold about you</li>
+        <li><strong>Correction:</strong> Ask us to correct inaccurate or incomplete information</li>
+        <li><strong>Deletion:</strong> Request that we delete your personal data from our systems</li>
+        <li><strong>Unsubscribe:</strong> Opt out of marketing emails at any time using the unsubscribe link in any email we send</li>
+        <li><strong>Portability:</strong> Request your data in a machine-readable format</li>
+        <li><strong>Objection:</strong> Object to certain types of processing, including direct marketing</li>
+      </ul>
+      <p>To exercise any of these rights, contact us at the email address listed in the Contact section below. We will respond within 30 days.</p>
+    </div>
+
+    <div class="doc-section" id="retention">
+      <h2><div class="section-icon">⏱️</div>Data Retention</h2>
+      <p>We retain your personal information for as long as necessary to fulfill the purposes described in this policy:</p>
+      <ul>
+        <li>Email subscribers: Retained until you unsubscribe or request deletion</li>
+        <li>Analytics data: Retained for 14 months per Google Analytics default settings</li>
+        <li>Form submissions: Retained for up to 2 years unless deletion is requested earlier</li>
+      </ul>
+      <p>After the retention period, data is securely deleted or anonymized.</p>
+    </div>
+
+    <div class="doc-section" id="children">
+      <h2><div class="section-icon">👦</div>Children's Privacy</h2>
+      <p>FlowPilot AI is a B2B platform designed for IT operations professionals. Our website and resources are not directed at children under the age of 16. We do not knowingly collect personal information from anyone under 16. If you believe a minor has submitted information to us, please contact us immediately and we will delete it.</p>
+    </div>
+
+    <div class="doc-section" id="changes">
+      <h2><div class="section-icon">🔄</div>Changes to This Policy</h2>
+      <p>We may update this Privacy Policy from time to time to reflect changes in our practices or legal requirements. When we do, we will update the "Last Updated" date at the top of this page.</p>
+      <p>If we make material changes that affect how we use your personal information, we will notify active email subscribers before the changes take effect. Continued use of our website after changes are posted constitutes your acceptance of the updated policy.</p>
+    </div>
+
+    <div class="doc-section" id="contact">
+      <h2><div class="section-icon">📬</div>Contact Us</h2>
+      <p>If you have any questions about this Privacy Policy or how we handle your personal information, please reach out:</p>
+      <div class="contact-card">
+        <h3>Get in Touch</h3>
+        <p>We respond to all privacy-related inquiries within 30 days. For deletion requests, we aim to respond within 72 hours.</p>
+        <a href="mailto:privacy@flowpilotai.com">📧 privacy@flowpilotai.com</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">
+    <div class="logo-mark" style="width:24px;height:24px;border-radius:6px;">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" style="width:13px;height:13px;"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+    </div>
+    FlowPilot AI
+  </div>
+  <span>© 2025 FlowPilot AI. All rights reserved.</span>
+  <div class="footer-links">
+    <a href="privacy-policy.html">Privacy Policy</a>
+    <a href="terms-of-use.html">Terms of Use</a>
+    <a href="flowpilot-v2.html">Home</a>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -6,9 +6,10 @@ const TermsOfUse: React.FC = () => {
     return (
         <div className="min-h-screen bg-gray-50 pt-24">
             <MetaTags
-                title="Terms of Use | LocalBitesPondy"
-                description="Read the Terms of Use for LocalBitesPondy. Understand the rules and guidelines for using our website and digital food guides."
+                title="Terms of Use | LocalBitesPondy - Food Guide 2026"
+                description="The rules of the road for using LocalBitesPondy. Read our terms and conditions for accessing our Pondicherry food guides."
                 canonical="https://localbitespondy.netlify.app/terms-of-use"
+                robots="noindex, follow"
             />
             {/* Header Section */}
             <div className="bg-white shadow-sm border-b border-gray-200">
