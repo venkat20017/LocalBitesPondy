@@ -3,7 +3,7 @@
 // ✅ Richer restaurant descriptions, keyword-rich H2, AEO intro paragraph
 // ══════════════════════════════════════════════
 
-import { Flame } from 'lucide-react';
+import { Flame, Star } from 'lucide-react';
 
 export const BestBiriyani = () => {
     const spots = [
@@ -47,6 +47,14 @@ export const BestBiriyani = () => {
                         </p>
 
                         <div className="space-y-6">
+                            <div className="bg-orange-100 border-l-4 border-orange-500 p-4 mb-8 rounded-r-xl">
+                                <p className="text-orange-900 font-bold mb-1 flex items-center gap-2">
+                                    <Star className="w-4 h-4" /> Local Insider Tip:
+                                </p>
+                                <p className="text-orange-800 text-sm leading-relaxed">
+                                    "The secret to Pondy biryani is the <strong>Seeraga Samba rice</strong>. It's much smaller than Basmati and absorbs the masala much better. If you see a place serving long-grain biryani, it's likely a generic chain — the real local gems always use Samba rice."
+                                </p>
+                            </div>
                             {spots.map((spot) => (
                                 <div key={spot.id} className="flex gap-4 items-start p-4 rounded-xl hover:bg-orange-50 transition-colors">
                                     <img

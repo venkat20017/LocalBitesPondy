@@ -40,17 +40,17 @@ export const HeroB = () => {
 
                         {/* ✅ SEO: H1 targets primary keyword + location + year */}
                         <h1 className="mb-6 text-4xl font-extrabold tracking-tight text-gray-900 md:text-5xl lg:text-6xl leading-tight">
-                            Famous Foods of{' '}
-                            <span className="text-orange-500">Pondicherry</span>
-                            {' '}— A Complete Local Guide 2026
+                            The "Not-So-Secret" Guide to{' '}
+                            <span className="text-orange-500">Famous Food</span>
+                            {' '}in Pondicherry
                         </h1>
 
                         {/* ✅ AEO: Answers "What makes Pondicherry food unique?" directly — citable by AI */}
                         <p className="mb-4 text-lg text-gray-600 md:text-xl leading-relaxed">
-                            Pondicherry (also called Puducherry) is one of India's most distinctive culinary destinations. Unlike any other South Indian city, its food culture is shaped by a rare blend of <strong>Tamil heritage and French colonial influence</strong> — giving you butter croissants from century-old boulangeries sitting next to crispy dosas at traditional Tamil breakfast stalls, all on the same street.
+                            Stop following the TripAdvisor crowds. Pondicherry (Puducherry) isn't just about 'French vibes' — it's where 200-year-old <strong>Tamil traditions and French Creole secrets</strong> meet on the same street. From the buttery croissants of White Town to the legendary messes of the Tamil Quarter, we show you exactly where the locals actually eat.
                         </p>
                         <p className="mb-10 text-lg text-gray-600 md:text-xl leading-relaxed">
-                            Whether you're craving fresh beachside seafood, spicy Chettinad biryani, South Indian thali, or authentic French pastries — this free guide reveals <strong>exactly where locals eat</strong> in Pondicherry, with Google Maps links included.
+                            Our free, locally-verified guide reveals <strong>15 handpicked spots</strong> tourists usually miss — including Google Maps links, must-order dishes (like the real Ghee Roast), and tourist traps to avoid.
                         </p>
 
                         <form onSubmit={handleSubmit} className="flex flex-col gap-4 max-w-md">

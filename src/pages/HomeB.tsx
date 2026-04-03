@@ -40,8 +40,8 @@ export const HomeB = () => {
                     {
                         "@type": "Article",
                         "@id": "https://localbitespondy.netlify.app/#article",
-                        "headline": "Famous Food in Pondicherry: Local's Guide 2026",
-                        "description": "A comprehensive guide to the most famous and best local food in Pondicherry, covering street food, restaurants, French Quarter cuisine, and hidden gems.",
+                        "headline": "The 'Not-So-Secret' Guide to Famous Food in Pondicherry 2026",
+                        "description": "A deep dive into Pondicherry's real food scene. Skip the tourist traps and discover authentic Tamil messes, heritage Creole fusion, and the best French boulangeries (beyond the hype).",
                         "url": "https://localbitespondy.netlify.app/",
                         "datePublished": "2026-01-01",
                         "dateModified": "2026-03-01",
@@ -59,22 +59,21 @@ export const HomeB = () => {
                                 "url": "https://localbitespondy.netlify.app/logo.png"
                             }
                         },
-                        "about": {
-                            "@type": "Place",
-                            "name": "Pondicherry",
-                            "address": {
-                                "@type": "PostalAddress",
-                                "addressLocality": "Pondicherry",
-                                "addressRegion": "Puducherry",
-                                "addressCountry": "IN"
+                        "about": [
+                            {
+                                "@type": "Place",
+                                "name": "Surguru Pondicherry"
                             },
-                            "geo": {
-                                "@type": "GeoCoordinates",
-                                "latitude": 11.9416,
-                                "longitude": 79.8083
+                            {
+                                "@type": "Place",
+                                "name": "Zuka Pondicherry"
+                            },
+                            {
+                                "@type": "Place",
+                                "name": "Coromandel Cafe"
                             }
-                        },
-                        "keywords": "famous food Pondicherry, best restaurants Pondicherry, street food Pondy, local food guide"
+                        ],
+                        "keywords": "famous food Pondicherry, best restaurants Pondicherry, street food Pondy, local food guide, Surguru, Zuka, Creole food"
                     },
                     {
                         "@type": "FAQPage",
@@ -140,12 +139,12 @@ export const HomeB = () => {
     return (
         <>
             <MetaTags
-                title="Famous Food in Pondicherry: Local's Guide 2026 | LocalBitesPondy"
-                description="Discover the most famous food in Pondicherry — from crispy dosas and fresh seafood to French-inspired crepes. Your local guide to the best eats in Pondy 2026."
-                keywords="famous food in Pondicherry, best restaurants Pondicherry, Pondicherry street food, local food guide Pondy, what to eat in Pondicherry, Pondicherry cuisine 2026"
+                title="Famous Food in Pondicherry: The 'Not-So-Secret' Local's Guide 2026"
+                description="Discover the real famous food in Pondicherry. From Surguru's Ghee Roast and Zuka's Hot Chocolate to hidden Creole gems. Skip the tourist traps with our local guide."
+                keywords="famous food in Pondicherry, best restaurants Pondicherry, Pondicherry street food, local food guide Pondy, what to eat in Pondicherry, Surguru Pondicherry, Zuka Pondicherry, Creole food Pondicherry"
                 canonical="https://localbitespondy.netlify.app/"
                 ogImage="https://localbitespondy.netlify.app/og-image.jpg"
-                ogImageAlt="Famous food in Pondicherry - Local's Guide 2026"
+                ogImageAlt="Famous food in Pondicherry - The Not-So-Secret Local's Guide"
             />
             <HeroB />
             <SEOSections />

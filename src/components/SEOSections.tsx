@@ -14,31 +14,31 @@ export const SEOSections = () => {
                                 {/* ✅ SEO: H2 with location keyword */}
                                 <h2 className="text-3xl font-bold text-gray-900 mb-4 flex items-center gap-3 group-hover:text-orange-600 transition-colors">
                                     <Utensils className="text-orange-600 h-8 w-8 shrink-0" />
-                                    Traditional Tamil Dishes in Pondicherry
+                                    Authentic Tamil & Creole Flavours
                                     <ArrowRight className="h-6 w-6 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
                                 </h2>
                             </Link>
                             {/* ✅ AEO: Paragraph answers "What are traditional Tamil dishes in Pondicherry?" */}
                             <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                                The foundation of Pondicherry's cuisine is deeply Tamil. Traditional mess-style restaurants across the city serve rice-based meals on banana leaves, aromatic gravies, and fermented breakfast staples that locals have eaten for centuries. Unlike tourist-oriented restaurants, these spots rarely appear on travel apps — but they represent the true, authentic food culture of Pondicherry.
+                                The heart of Pondicherry's food scene isn't in the fancy cafes, but in the crowded Tamil messes and heritage Creole kitchens. While tourists flock to White Town, locals head to places like <strong>Surguru</strong> for a Ghee Roast that actually tastes like home, or hunt down the rare <strong>Creole cuisine</strong> — a unique 200-year-old fusion of French techniques and Tamil spices that you won't find anywhere else in India.
                             </p>
                             <ul className="space-y-4">
                                 {[
                                     {
-                                        name: "Meen Kuzhambu (Fish Curry)",
-                                        desc: "A tangy tamarind-based fish curry tempered with curry leaves, mustard seeds, and red chillies. Served over steamed rice, this is arguably the most iconic dish in Pondicherry's Tamil food culture."
+                                        name: "Surguru's Ghee Roast & Filter Coffee",
+                                        desc: "Ask any local where to start your day, and they'll point you to Surguru. Their paper-thin, buttery Ghee Roast paired with strong, frothy filter coffee is the gold standard of Pondy breakfasts."
                                     },
                                     {
-                                        name: "Karaikudi-style Chicken Curry",
-                                        desc: "Chettinad-influenced chicken curry rich in black pepper, kalpasi (stone flower), and slow-roasted spices. Bold, fragrant, and unlike any curry you'll find elsewhere."
+                                        name: "Creole Meen Curry (French-Tamil Fusion)",
+                                        desc: "Unlike the spicy Tamil Meen Kuzhambu, Creole fish curry uses coconut milk and mild spices, reflecting the French influence. Look for this at heritage spots like Chez Pushpa for a truly local experience."
                                     },
                                     {
-                                        name: "Sambar & Rasam",
-                                        desc: "Lentil-based gravies that anchor every Tamil meal. Pondicherry's sambar uses freshly ground spices rather than pre-made powder, giving it a depth of flavour that's markedly different."
+                                        name: "Seeraga Samba Biryani",
+                                        desc: "Pondy's secret is the small-grain Samba rice. It’s more fragrant and lighter than Basmati. Skip the big chains and look for the wood-fired 'Biryani Mess' spots in the Tamil Quarter."
                                     },
                                     {
-                                        name: "Idli & Dosa",
-                                        desc: "Fermented rice-lentil dishes served with coconut chutney and sambar. Pondicherry's dosas are known for their crispy texture and the quality of the accompaniments — particularly the freshly ground chutney."
+                                        name: "Kothu Parotta (Street Icon)",
+                                        desc: "The ultimate evening comfort food. Shredded parotta stir-fried with eggs and spices on a massive iron griddle. It's the sound of Pondy's streets at night."
                                     }
                                 ].map((item, idx) => (
                                     <li key={idx} className="bg-white p-4 rounded-xl shadow-sm border border-orange-100">
@@ -68,31 +68,31 @@ export const SEOSections = () => {
                                 {/* ✅ SEO: H2 targets "French food Pondicherry" query */}
                                 <h2 className="text-3xl font-bold text-gray-900 mb-4 flex items-center gap-3 group-hover:text-orange-600 transition-colors">
                                     <Coffee className="text-orange-600 h-8 w-8 shrink-0" />
-                                    French Influenced Food in Pondicherry's White Town
+                                    French Boulangeries & Heritage Cafés
                                     <ArrowRight className="h-6 w-6 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
                                 </h2>
                             </Link>
                             {/* ✅ AEO: Directly answers "What French food can I find in Pondicherry?" */}
                             <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                                Pondicherry's French Quarter (White Town) is the only place in India where you can eat authentic French pastries from heritage bakeries that have been operating for over 100 years. The French colonial period ended in 1954, but its food culture endures — and makes Pondicherry completely unique among Indian cities. These aren't tourist-facing imitations; they're real boulangeries with generations of craft behind every batch.
+                                White Town's yellow walls hide some of India's best European-style dining. While every tourist guide mentions <strong>Baker Street</strong>, locals know that for the truly buttery, flaky croissants, you should head to <strong>Le Petit Four</strong> or <strong>Bouche Sucrée</strong>. For an afternoon vibe, the award-winning <strong>Coromandel Cafe</strong> offers a fusion of Indo-French flavours in a stunningly restored mansion.
                             </p>
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 {[
                                     {
-                                        name: "Croissants & Baguettes",
-                                        desc: "Freshly baked every morning in French-style bakeries. The best ones are buttery, flaky, and sold out by 9 AM — arrive early."
+                                        name: "The 'Hot Chocolate' Ritual",
+                                        desc: "At Zuka, the hot chocolate comes with a signature chocolate spoon. It's a local rite of passage for anyone with a sweet tooth visiting Pondicherry."
                                     },
                                     {
-                                        name: "Crepes",
-                                        desc: "Both sweet and savoury versions. Sweet crepes filled with Nutella, banana, or fresh fruit; savoury ones with cheese and vegetables."
+                                        name: "Artisanal Gelato on the Promenade",
+                                        desc: "Skip the industrial ice creams. GMT Gelato's Himalayan Salt-Caramel is widely considered the best gelato in the city, perfect for a sunset stroll."
                                     },
                                     {
-                                        name: "Ratatouille",
-                                        desc: "The classic Provençal vegetable stew, often subtly adapted with local Indian spices at Pondicherry heritage restaurants."
+                                        name: "Baguettes & Quiches",
+                                        desc: "Freshly baked every morning. The key is to arrive before 9 AM; the best boulangeries sell out their morning batches faster than you can say 'Bonjour'."
                                     },
                                     {
-                                        name: "Quiches",
-                                        desc: "Egg-and-cheese tarts popular in White Town's heritage cafés — a breakfast staple that tourists and long-time residents alike swear by."
+                                        name: "Indo-French Fusion",
+                                        desc: "Dishes like Rasam aux Crevettes (shrimp soup) at heritage spots blend French plating with the tangy depth of Tamil rasam."
                                     }
                                 ].map((item, idx) => (
                                     <div key={idx} className="bg-orange-50 p-5 rounded-xl border border-orange-100 hover:shadow-md transition-shadow">
@@ -124,20 +124,20 @@ export const SEOSections = () => {
                                 {/* ✅ SEO: H2 targets "seafood Pondicherry" */}
                                 <h2 className="text-3xl font-bold text-gray-900 mb-4 flex items-center gap-3 group-hover:text-orange-600 transition-colors">
                                     <Fish className="text-orange-600 h-8 w-8 shrink-0" />
-                                    Seafood in Pondicherry
+                                    The Fresh Catch: Seafood Rules
                                     <ArrowRight className="h-6 w-6 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
                                 </h2>
                             </Link>
                             {/* ✅ AEO: Answers "What seafood is Pondicherry famous for?" */}
                             <p className="text-gray-600 mb-6 leading-relaxed">
-                                As a coastal city on the Bay of Bengal, Pondicherry has access to some of the freshest seafood in South India. Local fishing boats return to the harbour daily, and the best restaurants source directly from fishermen — meaning the fish and prawns on your plate were caught the same morning. Seafood is prepared in both Tamil coastal styles and French continental methods, giving you an unusually wide choice.
+                                Pondicherry's coastal location means seafood isn't just a menu item; it's a way of life. The rule is simple: if it wasn't caught this morning, don't order it. While beachside grills are popular, locals head to <strong>Mass Seafood</strong> for a no-frills, authentic prawn masala that packs a punch.
                             </p>
                             <ul className="space-y-3">
                                 {[
-                                    { name: "Prawn Masala", desc: "Juicy prawns cooked in a spiced onion-tomato gravy with coastal spices." },
-                                    { name: "Grilled Lobster with Garlic Butter", desc: "A French-influenced preparation found at upscale beachside restaurants." },
-                                    { name: "Crab Curry (Nandu Kuzhambu)", desc: "Blue swimmer crabs in a tangy, coconut-based Tamil gravy — a local favourite." },
-                                    { name: "Fish Fry with Spiced Marinade", desc: "Whole fish marinated in chilli, turmeric, and fennel seeds, then pan-fried crispy." }
+                                    { name: "Prawn Masala (Mass Style)", desc: "Juicy, spice-coated prawns that are a local favorite. It's the dish that defines Pondy's coastal Tamil cooking." },
+                                    { name: "Grilled Lobster with Garlic Butter", desc: "A French-influenced preparation. Best enjoyed at a White Town bistro with a glass of chilled wine." },
+                                    { name: "Nandu Kuzhambu (Crab Curry)", desc: "A spicy, peppery crab curry that is a staple in Tamil fishing communities. Messy but absolutely worth it." },
+                                    { name: "Fish Fry (Daily Catch)", desc: "Whole fish marinated in local spices and pan-fried. Always ask for the 'catch of the day' rather than choosing from the menu." }
                                 ].map((item, idx) => (
                                     <li key={idx} className="bg-white p-3 rounded-lg shadow-sm">
                                         <strong className="text-orange-700 block">{item.name}</strong>
@@ -153,20 +153,20 @@ export const SEOSections = () => {
                                 {/* ✅ SEO: H2 targets "street food Pondicherry" */}
                                 <h2 className="text-3xl font-bold text-gray-900 mb-4 flex items-center gap-3 group-hover:text-orange-600 transition-colors">
                                     <MapPin className="text-orange-600 h-8 w-8 shrink-0" />
-                                    Street Food in Pondicherry
+                                    Street Food: The Evening Buzz
                                     <ArrowRight className="h-6 w-6 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
                                 </h2>
                             </Link>
                             {/* ✅ AEO: Answers "What street food should I try in Pondicherry?" */}
                             <p className="text-gray-600 mb-6 leading-relaxed">
-                                Pondicherry's best street food comes alive in the evenings along the beach promenade and near local markets. Most stalls appear from 5 PM onwards, selling snacks that locals have enjoyed for decades. Prices typically range from ₹20–60 per serving — making it one of the most affordable street food experiences in South India.
+                                As the sun sets, the Promenade Beach comes alive with the smell of roasted chickpeas and spiced puffed rice. But for the real 'Pondy' street experience, head to the local markets on MG Road for piping hot <strong>Bajji</strong> or the legendary <strong>Egg Kothu Parotta</strong>.
                             </p>
                             <ul className="space-y-3">
                                 {[
-                                    { name: "Sundal (Spiced Chickpeas)", desc: "Boiled chickpeas tossed with grated coconut, mustard seeds, and curry leaves — a Pondicherry beach staple." },
-                                    { name: "Bajji & Bonda", desc: "Deep-fried fritters made from vegetables or lentils, served with chutney. Crispy, hot, and perfect with evening tea." },
-                                    { name: "Egg Kothu Parotta", desc: "Shredded parotta stir-fried on a flat griddle with eggs, onions, and spices — a local street food icon." },
-                                    { name: "Masala Pori", desc: "Puffed rice tossed with red onion, tomato, green chilli, and spices. Light, crunchy, and intensely flavourful." }
+                                    { name: "Sundal (Beach Staple)", desc: "Spiced chickpeas tossed with coconut. It's the ultimate 'walking snack' for a sunset stroll on Rock Beach." },
+                                    { name: "Xtasi Wood-Fired Pizza", desc: "Technically a restaurant, but its 18-inch pizzas are a local legend. Many locals consider it the 'best street-style pizza' in South India." },
+                                    { name: "Masala Pori (Puffed Rice)", desc: "A crunchy, tangy mix of puffed rice, onions, and spices. Simple, affordable, and incredibly addictive." },
+                                    { name: "Spiced Pineapple & Mango", desc: "Look for vendors on the beach selling sliced fruits dusted with salt and red chilli powder — the perfect coastal palate cleanser." }
                                 ].map((item, idx) => (
                                     <li key={idx} className="bg-white p-3 rounded-lg shadow-sm">
                                         <strong className="text-orange-700 block">{item.name}</strong>
@@ -179,55 +179,50 @@ export const SEOSections = () => {
                 </div>
             </section>
 
-            {/* ── Section 4: Best Restaurants ── */}
+            {/* ── Section 4: Best Restaurants & Where NOT to Eat ── */}
             <section className="py-16 bg-white">
                 <div className="mx-auto max-w-4xl px-6">
                     {/* ✅ SEO: H2 targets "best restaurants Pondicherry" */}
                     <h2 className="text-3xl md:text-4xl font-bold text-gray-900 text-center mb-4">
-                        Best Restaurants in Pondicherry for Authentic Local Food
+                        Where to Eat (and Where NOT to) in Pondicherry
                     </h2>
                     {/* ✅ AEO: Introductory answer for "where to eat in Pondicherry" */}
                     <p className="text-center text-gray-600 text-lg mb-12 max-w-2xl mx-auto">
-                        Pondicherry's best dining is split across three distinct culinary traditions. Here's where locals actually go — not what TripAdvisor's top 10 list tells tourists to visit.
+                        Don't fall for the Instagram traps. Here's our brutally honest take on where you'll get the best value and flavour.
                     </p>
 
                     <div className="space-y-10">
-                        {/* Tamil */}
-                        <div className="border-l-4 border-orange-500 pl-6 py-2">
-                            <h3 className="text-2xl font-bold text-gray-900 mb-3">Traditional Tamil Mess Restaurants</h3>
-                            <p className="text-gray-600 mb-4 leading-relaxed">
-                                The most authentic Tamil food in Pondicherry is found at local mess-style eateries — small, family-run restaurants that serve multi-course rice meals on banana leaves. These spots rarely advertise, charge under ₹120 for a full meal, and are packed with locals for good reason. Look for hand-written menus in Tamil, which is usually a sign of genuine home-style cooking. The meal typically includes steamed rice, sambar, rasam, two vegetable kootu dishes, a papad, and pickle — all unlimited refills.
-                            </p>
-                        </div>
-
-                        {/* French */}
-                        <div className="border-l-4 border-blue-400 pl-6 py-2">
-                            <h3 className="text-2xl font-bold text-gray-900 mb-3">French Cafés and Heritage Bistros in White Town</h3>
-                            <p className="text-gray-600 mb-4 leading-relaxed">
-                                White Town is home to Pondicherry's most distinctive dining experiences — elegant cafés set in restored colonial buildings with bougainvillea-draped courtyards. These are ideal for leisurely French breakfasts, afternoon coffee and pastries, or evening wine and continental food.
-                            </p>
-                            <ul className="grid sm:grid-cols-2 gap-4">
-                                <li className="bg-gray-50 p-4 rounded-lg">
-                                    <strong className="block text-gray-900 mb-1">The Pavilion</strong>
-                                    <span className="text-sm text-gray-600">Multi-cuisine fine dining in a heritage setting. Known for its French-Tamil fusion menu and courtyard ambience.</span>
+                        {/* The Good */}
+                        <div className="border-l-4 border-green-500 pl-6 py-2 bg-green-50 rounded-r-xl">
+                            <h3 className="text-2xl font-bold text-gray-900 mb-3">The Local Favorites (Go Here!)</h3>
+                            <ul className="space-y-4">
+                                <li>
+                                    <strong className="text-gray-900">Surguru (Vegetarian):</strong> The undisputed king of South Indian breakfast. Their Ghee Roast is legendary.
                                 </li>
-                                <li className="bg-gray-50 p-4 rounded-lg">
-                                    <strong className="block text-gray-900 mb-1">Café des Arts</strong>
-                                    <span className="text-sm text-gray-600">Famous for French-style breakfasts — fresh croissants, filter coffee, and omelettes in a gallery-like setting.</span>
+                                <li>
+                                    <strong className="text-gray-900">Coromandel Cafe:</strong> Perfect for a 'fancy' dinner that actually delivers on taste and atmosphere.
+                                </li>
+                                <li>
+                                    <strong className="text-gray-900">Zuka:</strong> Not just a chocolate shop, but a destination. The hot chocolate is a must.
                                 </li>
                             </ul>
                         </div>
 
-                        {/* Seafood */}
-                        <div className="border-l-4 border-teal-500 pl-6 py-2">
-                            <h3 className="text-2xl font-bold text-gray-900 mb-3">Seafood Restaurants in Pondicherry</h3>
-                            <p className="text-gray-600 mb-4 leading-relaxed">
-                                Seafood restaurants in Pondicherry range from beachside barbecue shacks to formal dining rooms — with prices to match every budget. The key to a great seafood meal here is to order whatever was caught that morning and avoid pre-frozen options. Beachfront restaurants along the Promenade are generally the safest bet for freshness.
+                        {/* The Trap */}
+                        <div className="border-l-4 border-red-500 pl-6 py-2 bg-red-50 rounded-r-xl">
+                            <h3 className="text-2xl font-bold text-gray-900 mb-3">Tourist Traps to Avoid</h3>
+                            <p className="text-gray-600 mb-4 leading-relaxed italic">
+                                "We've made the mistakes so you don't have to."
                             </p>
-                            <ul className="grid sm:grid-cols-1 gap-4">
-                                <li className="bg-gray-50 p-4 rounded-lg">
-                                    <strong className="block text-gray-900 mb-1">FinZ — Seafood & Barbeque</strong>
-                                    <span className="text-sm text-gray-600">One of Pondicherry's most popular seafood spots, known for beachside dining, live grills, and a wide selection of fresh coastal-style dishes. Best for dinner with a group.</span>
+                            <ul className="space-y-4 text-gray-700">
+                                <li>
+                                    <strong>The 'Baker Street' Hype:</strong> It's iconic, but often overpriced and crowded. For better pastries, try <strong>Le Petit Four</strong> or <strong>Bouche Sucrée</strong>.
+                                </li>
+                                <li>
+                                    <strong>Beachside 'No-Name' Seafood:</strong> Be wary of restaurants on the main Promenade with huge menus but no visible fresh catch. Freshness is key!
+                                </li>
+                                <li>
+                                    <strong>Fixed-Rate Auto Rickshaws:</strong> Never agree to a fixed price without checking an app like Ola or Rapido first. They often overcharge tourists by 3x.
                                 </li>
                             </ul>
                         </div>
