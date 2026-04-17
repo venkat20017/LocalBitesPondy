@@ -1,12 +1,19 @@
 import { useState, useEffect } from 'react';
 import { Menu, X, UtensilsCrossed } from 'lucide-react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useLeadModal } from '../hooks/useLeadModal';
 
 export const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
     const location = useLocation();
     const navigate = useNavigate();
+    const { openLeadModal } = useLeadModal();
+
+    const handleGetGuideClick = () => {
+        setIsOpen(false);
+        openLeadModal('navbar_cta');
+    };
 
     // Handle scroll effect for sticky navbar
     useEffect(() => {
@@ -106,13 +113,13 @@ export const Navbar = () => {
                                 {link.name}
                             </a>
                         ))}
-                        <a
-                            href="#download"
-                            onClick={(e) => handleLinkClick(e, '#download')}
+                        <button
+                            type="button"
+                            onClick={handleGetGuideClick}
                             className="bg-orange-600 text-white px-5 py-2.5 rounded-full font-bold hover:bg-orange-700 transition-colors shadow-lg hover:shadow-xl transform hover:scale-105"
                         >
                             Get Guide
-                        </a>
+                        </button>
                     </div>
 
                     {/* Mobile Menu Button */}
@@ -140,13 +147,13 @@ export const Navbar = () => {
                             {link.name}
                         </a>
                     ))}
-                    <a
-                        href="#download"
-                        onClick={(e) => handleLinkClick(e, '#download')}
+                    <button
+                        type="button"
+                        onClick={handleGetGuideClick}
                         className="bg-orange-600 text-white px-8 py-4 rounded-full font-bold text-xl hover:bg-orange-700 transition-colors shadow-lg"
                     >
                         Get Guide
-                    </a>
+                    </button>
                 </div>
             </div>
         </nav>

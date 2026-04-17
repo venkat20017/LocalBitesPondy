@@ -1,8 +1,9 @@
 import { useEffect } from 'react';
-import { ArrowLeft, ChefHat } from 'lucide-react';
+import { ArrowLeft, ArrowRight, ChefHat, Download } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import type { ClusterData } from '../data/clusterData';
 import { MetaTags } from '../components/MetaTags';
+import { useLeadModal } from '../hooks/useLeadModal';
 
 interface ClusterPageProps {
     data: ClusterData;
@@ -11,6 +12,8 @@ interface ClusterPageProps {
 export const ClusterPage = ({ data }: ClusterPageProps) => {
     const location = useLocation();
     const canonicalUrl = `https://localbitespondy.netlify.app${location.pathname}`;
+    const { openLeadModal } = useLeadModal();
+    const clusterSource = `cluster_${location.pathname.replace(/^\//, '') || 'page'}_cta`;
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -82,14 +85,25 @@ export const ClusterPage = ({ data }: ClusterPageProps) => {
 
                         {/* CTA / Conclusion */}
                         <div className="bg-orange-50 rounded-xl p-8 border border-orange-100 text-center">
-                            <h3 className="text-xl font-bold text-gray-900 mb-2">Want more recommendations?</h3>
-                            <p className="text-gray-600 mb-6">Explore our complete guide covering all the best spots in Pondicherry.</p>
-                            <Link
-                                to="/"
-                                className="inline-block bg-orange-600 text-white font-bold py-3 px-8 rounded-lg hover:bg-orange-700 transition-colors"
-                            >
-                                View Full Guide
-                            </Link>
+                            <h3 className="text-xl font-bold text-gray-900 mb-2">Want the Full Pondicherry Food Guide?</h3>
+                            <p className="text-gray-600 mb-6">Download our free PDF with 15 handpicked local spots, Google Maps links, and must-order dishes.</p>
+                            <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+                                <button
+                                    type="button"
+                                    onClick={() => openLeadModal(clusterSource)}
+                                    className="inline-flex items-center bg-orange-600 text-white font-bold py-3 px-8 rounded-lg hover:bg-orange-700 transition-colors shadow-md"
+                                >
+                                    <Download className="mr-2 h-5 w-5" />
+                                    Get Free Guide
+                                    <ArrowRight className="ml-2 h-5 w-5" />
+                                </button>
+                                <Link
+                                    to="/"
+                                    className="text-orange-600 font-semibold hover:underline"
+                                >
+                                    View Full Guide →
+                                </Link>
+                            </div>
                         </div>
                     </div>
                 </article>
