@@ -13,4 +13,15 @@
       transform: translateY(0);
     }
   }
+
+  .animate-fade-in {
+    animation: fadeIn 0.25s ease-out forwards;
+    opacity: 0;
+  }
+
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
+    }
+  }
 }
