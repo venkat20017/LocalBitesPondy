@@ -5,9 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "prebuild": "node scripts/update-sitemap.mjs",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "update-sitemap": "node scripts/update-sitemap.mjs"
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4.1.18",
