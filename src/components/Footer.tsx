@@ -1,6 +1,3 @@
-
-
-
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 export const Footer = () => {
@@ -50,7 +47,7 @@ export const Footer = () => {
                         </p>
                     </div>
 
-                    {/* Column 2: Quick Links */}
+                    {/* Column 2: Quick Links (in-page anchors) */}
                     <div>
                         <h3 className="text-gray-900 font-bold text-xl mb-6">Explore the Guide</h3>
                         <ul className="grid grid-cols-1 gap-4">
@@ -96,5 +93,3 @@ export const Footer = () => {
         </footer>
     );
 };
-
-

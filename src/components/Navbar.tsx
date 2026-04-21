@@ -90,7 +90,7 @@ export const Navbar = () => {
                         <span>LocalBitesPondy</span>
                     </a>
 
-                        <div className="hidden md:flex items-center gap-8">
+                    <div className="hidden md:flex items-center gap-8">
                         {navLinks.map((link) => (
                             <a
                                 key={link.name}
@@ -133,7 +133,10 @@ export const Navbar = () => {
                         </a>
                     ))}
                     <button
-                        onClick={() => openPopup('navbar_mobile')}
+                        onClick={() => {
+                            setIsOpen(false);
+                            openPopup('navbar_mobile');
+                        }}
                         className="bg-orange-600 text-white px-8 py-4 rounded-full font-bold text-xl hover:bg-orange-700 transition-colors shadow-lg"
                     >
                         Get Guide
@@ -143,4 +146,3 @@ export const Navbar = () => {
         </nav>
     );
 };
-

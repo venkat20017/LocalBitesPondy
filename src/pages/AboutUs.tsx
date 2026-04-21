@@ -1,3 +1,4 @@
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, Users, Heart, Shield, MapPin, Instagram, Mail, ArrowRight } from 'lucide-react';
 import { MetaTags } from '../components/MetaTags';
@@ -9,7 +10,6 @@ const AboutUs: React.FC = () => {
     const handleDownloadClick = () => {
         openPopup('about_us');
     };
-
 
     return (
         <div className="min-h-screen bg-gray-50 pt-24">
@@ -92,7 +92,6 @@ const AboutUs: React.FC = () => {
                     <div className="grid md:grid-cols-3 gap-8 not-prose my-8">
                         <div className="text-center">
                             <div className="w-24 h-24 bg-gray-200 rounded-full mx-auto mb-4 overflow-hidden">
-                                {/* Placeholder for Arun's image */}
                                 <div className="w-full h-full flex items-center justify-center bg-orange-100 text-orange-600 font-bold text-2xl">A</div>
                             </div>
                             <h4 className="font-bold text-gray-900">Arun Kumar</h4>
@@ -101,7 +100,6 @@ const AboutUs: React.FC = () => {
                         </div>
                         <div className="text-center">
                             <div className="w-24 h-24 bg-gray-200 rounded-full mx-auto mb-4 overflow-hidden">
-                                {/* Placeholder for Priya's image */}
                                 <div className="w-full h-full flex items-center justify-center bg-orange-100 text-orange-600 font-bold text-2xl">P</div>
                             </div>
                             <h4 className="font-bold text-gray-900">Priya Shankar</h4>
@@ -110,7 +108,6 @@ const AboutUs: React.FC = () => {
                         </div>
                         <div className="text-center">
                             <div className="w-24 h-24 bg-gray-200 rounded-full mx-auto mb-4 overflow-hidden">
-                                {/* Placeholder for Karthik's image */}
                                 <div className="w-full h-full flex items-center justify-center bg-orange-100 text-orange-600 font-bold text-2xl">K</div>
                             </div>
                             <h4 className="font-bold text-gray-900">Karthik Menon</h4>

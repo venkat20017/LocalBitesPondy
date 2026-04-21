@@ -27,7 +27,14 @@ export const HeroB = () => {
             if (ctaLink.startsWith('http')) {
                 window.open(ctaLink, '_blank');
             } else {
-                window.location.hash = ctaLink;
+                const targetId = ctaLink.replace('#', '');
+                const element = document.getElementById(targetId);
+                if (element) {
+                    const headerOffset = 80;
+                    const elementPosition = element.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                    window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+                }
             }
         } else {
             openPopup('hero_b');
@@ -37,7 +44,7 @@ export const HeroB = () => {
     return (
         <section id="home" className="relative overflow-hidden bg-white">
             <div className="flex flex-col md:flex-row min-h-screen">
-                {/* Left Side: Content & Form */}
+                {/* Left Side: Content & CTA */}
                 <div className="w-full md:w-1/2 flex flex-col justify-center px-6 py-24 md:px-12 lg:px-20 z-10 bg-white">
                     <div id="download" className="animate-fade-in-up">
  
@@ -84,4 +91,3 @@ export const HeroB = () => {
         </section>
     );
 };
-

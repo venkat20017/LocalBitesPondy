@@ -1,6 +1,6 @@
 import { Utensils, Coffee, Fish, MapPin, ChefHat, Sun, Star, ArrowRight } from 'lucide-react';
 import tamilCreoleImg from '../assets/Authentic-Tamil-and-Creole-Flavours.png';
-import frenchBoulangerieImg from '../assets/French-Boulangeries-and-Heritage-Cafes.png';
+import frenchBoulangerieImg from '../assets/French-Boulangeries-and-Heritage-Cafés.png';
 import { useLeadPopup } from '../context/LeadPopupContext';
 import { useContent } from '../context/ContentContext';
 
@@ -227,10 +227,10 @@ export const SEOSections = () => {
             <section id="restaurants" className="py-20 bg-white border-b border-gray-100">
                 <div className="mx-auto max-w-4xl px-6">
                     <h2 className="text-4xl font-bold text-gray-900 text-center mb-6">
-                        Where to Eat (and Where NOT to)
+                        Where to Eat (and Where NOT to) in Pondicherry
                     </h2>
                     <p className="text-center text-gray-600 text-lg mb-12 max-w-2xl mx-auto leading-relaxed">
-                        Don't fall for the Instagram traps. Here's our brutally honest take on where you'll get the best value and flavour in Pondicherry.
+                        Don't fall for the Instagram traps. Here's our brutally honest take on where you'll get the best value and flavour.
                     </p>
 
                     <div className="grid gap-8">
@@ -346,4 +346,3 @@ export const SEOSections = () => {
         </div>
     );
 };
-

@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { HomeB } from './pages/HomeB';
 import { Footer } from './components/Footer';
 import { ConsentBanner } from './components/ConsentBanner';
@@ -23,6 +23,7 @@ function App() {
             <div className="grow">
               <Routes>
                 <Route path="/" element={<HomeB />} />
+                <Route path="/home-b" element={<Navigate to="/" replace />} />
                 <Route path="/thank-you" element={<ThankYou />} />
                 <Route path="/privacy-policy" element={<PrivacyPolicy />} />
                 <Route path="/terms-of-use" element={<TermsOfUse />} />
@@ -40,5 +41,3 @@ function App() {
 }
 
 export default App;
-
-
