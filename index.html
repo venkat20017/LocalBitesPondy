@@ -67,7 +67,11 @@
   <script>
     // dataLayer + gtag already initialized above for Consent Mode
     gtag('js', new Date());
-    gtag('config', 'G-7K5JPSBRQ2');
+
+    // send_page_view:false — this is a SPA; React fires page_view on every
+    // route change via usePageTracking. Disabling auto-fire prevents the
+    // initial HTML load from double-counting the first pageview.
+    gtag('config', 'G-7K5JPSBRQ2', { send_page_view: false });
     gtag('config', 'AW-17775750153');
   </script>
 
