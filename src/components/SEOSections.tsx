@@ -1,6 +1,6 @@
 import { Utensils, Coffee, Fish, MapPin, ChefHat, Sun, Star, ArrowRight } from 'lucide-react';
 import tamilCreoleImg from '../assets/Authentic-Tamil-and-Creole-Flavours.png';
-import frenchBoulangerieImg from '../assets/French-Boulangeries-and-Heritage-Cafés.png';
+import frenchBoulangerieImg from '../assets/French-Boulangeries-and-Heritage-Cafes.png';
 import { useLeadPopup } from '../context/LeadPopupContext';
 import { useContent } from '../context/ContentContext';
 
