@@ -182,10 +182,13 @@ export const SEOSections = () => {
             {/* ── Section 4: Best Restaurants & Where NOT to Eat ── */}
             <section className="py-16 bg-white">
                 <div className="mx-auto max-w-4xl px-6">
-                    {/* ✅ SEO: H2 targets "best restaurants Pondicherry" */}
-                    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 text-center mb-4">
-                        Where to Eat (and Where NOT to) in Pondicherry
-                    </h2>
+                    <Link to="/restaurants" className="group inline-block w-full">
+                        {/* ✅ SEO: H2 targets "best restaurants Pondicherry" */}
+                        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 text-center mb-4 group-hover:text-orange-600 transition-colors inline-flex items-center gap-3">
+                            Where to Eat (and Where NOT to) in Pondicherry
+                            <ArrowRight className="h-6 w-6 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
+                        </h2>
+                    </Link>
                     {/* ✅ AEO: Introductory answer for "where to eat in Pondicherry" */}
                     <p className="text-center text-gray-600 text-lg mb-12 max-w-2xl mx-auto">
                         Don't fall for the Instagram traps. Here's our brutally honest take on where you'll get the best value and flavour.
