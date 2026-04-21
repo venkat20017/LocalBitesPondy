@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Menu, X, UtensilsCrossed } from 'lucide-react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useLeadModal } from '../hooks/useLeadModal';
 
 export const Navbar = () => {
@@ -30,6 +30,19 @@ export const Navbar = () => {
         { name: 'Hotels', href: '#hotels' },
         { name: 'Why Guide?', href: '#why-guide' },
         { name: 'Contact', href: '#contact' },
+    ];
+
+    // Cluster pages — exposed in the mobile overlay so crawlers (which read
+    // the full DOM regardless of viewport) see crawlable <Link>s to every
+    // cluster page from the site-wide navbar. Desktop relies on footer +
+    // homepage SEOSections for cluster links to avoid nav clutter.
+    const categoryLinks = [
+        { name: 'Tamil & Creole Dishes', to: '/tamil-dishes' },
+        { name: 'French Quarter Cafés', to: '/french-quarter' },
+        { name: 'Pondicherry Seafood', to: '/seafood' },
+        { name: 'Street Food', to: '/street-food' },
+        { name: 'Best Restaurants', to: '/restaurants' },
+        { name: 'Foodie Survival Guide', to: '/foodie-guide' },
     ];
 
     const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
@@ -135,8 +148,8 @@ export const Navbar = () => {
             </div>
 
             {/* Mobile Menu Overlay */}
-            <div className={`fixed inset-0 bg-white z-40 transform transition-transform duration-300 ease-in-out md:hidden ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}>
-                <div className="flex flex-col items-center justify-center h-full space-y-8">
+            <div className={`fixed inset-0 bg-white z-40 transform transition-transform duration-300 ease-in-out md:hidden overflow-y-auto ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+                <div className="flex flex-col items-center justify-start min-h-full pt-24 pb-12 px-6 space-y-6">
                     {navLinks.map((link) => (
                         <a
                             key={link.name}
@@ -147,6 +160,24 @@ export const Navbar = () => {
                             {link.name}
                         </a>
                     ))}
+
+                    <div className="w-full max-w-xs pt-4 border-t border-gray-200">
+                        <p className="text-sm font-semibold text-gray-500 uppercase tracking-wider text-center mb-4">Food Categories</p>
+                        <ul className="space-y-3 text-center">
+                            {categoryLinks.map((link) => (
+                                <li key={link.to}>
+                                    <Link
+                                        to={link.to}
+                                        onClick={() => setIsOpen(false)}
+                                        className="text-lg font-medium text-gray-700 hover:text-orange-600 transition-colors"
+                                    >
+                                        {link.name}
+                                    </Link>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+
                     <button
                         type="button"
                         onClick={handleGetGuideClick}

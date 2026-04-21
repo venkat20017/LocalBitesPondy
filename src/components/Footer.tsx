@@ -37,10 +37,23 @@ export const Footer = () => {
         { name: 'Contact', href: '#contact' },
     ];
 
+    // Cluster pages — real routes, rendered as <Link> so Googlebot and
+    // AEO crawlers can follow them. These are the pages currently marked
+    // "Discovered – currently not indexed" in Search Console; footer links
+    // from every page push them from "orphan" to "internally linked."
+    const foodCategories = [
+        { name: 'Tamil & Creole Dishes', to: '/tamil-dishes' },
+        { name: 'French Quarter Cafés', to: '/french-quarter' },
+        { name: 'Pondicherry Seafood', to: '/seafood' },
+        { name: 'Street Food', to: '/street-food' },
+        { name: 'Best Restaurants', to: '/restaurants' },
+        { name: 'Foodie Survival Guide', to: '/foodie-guide' },
+    ];
+
     return (
         <footer className="bg-gray-50 pt-16 pb-8 px-4 border-t border-gray-200">
             <div className="mx-auto max-w-7xl">
-                <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 mb-12">
+                <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4 mb-12">
                     {/* Column 1: About */}
                     <div>
                         <h3 className="text-gray-900 font-bold text-lg mb-4">About LocalBitesPondy</h3>
@@ -49,7 +62,24 @@ export const Footer = () => {
                         </p>
                     </div>
 
-                    {/* Column 2: Quick Links */}
+                    {/* Column 2: Food Categories (cluster pages) */}
+                    <div>
+                        <h3 className="text-gray-900 font-bold text-lg mb-4">Food Categories</h3>
+                        <ul className="space-y-3">
+                            {foodCategories.map((link) => (
+                                <li key={link.to}>
+                                    <Link
+                                        to={link.to}
+                                        className="text-gray-600 hover:text-orange-600 transition-colors"
+                                    >
+                                        {link.name}
+                                    </Link>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+
+                    {/* Column 3: Quick Links (in-page anchors) */}
                     <div>
                         <h3 className="text-gray-900 font-bold text-lg mb-4">Quick Links</h3>
                         <ul className="space-y-3">
@@ -67,7 +97,7 @@ export const Footer = () => {
                         </ul>
                     </div>
 
-                    {/* Column 3: Popular Searches */}
+                    {/* Column 4: Popular Searches */}
                     <div>
                         <h3 className="text-gray-900 font-bold text-lg mb-4">Popular Searches</h3>
                         <div className="flex flex-wrap gap-2">
