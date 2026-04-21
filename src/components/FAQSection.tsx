@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import { ChevronDown, ChevronUp, HelpCircle } from 'lucide-react';
+import { useContent } from '../context/ContentContext';
 
 // ✅ AEO: Every answer is 3-5 sentences — the minimum length AI engines need to cite a source as authoritative.
 // ✅ SEO: Questions match exact search queries. Answers use natural keywords without stuffing.
 
-const faqs = [
+const FALLBACK_FAQS = [
     {
         question: "What is the most famous food in Pondicherry?",
         answer: "Pondicherry is most famous for its unique fusion of Tamil and French cuisines, often called 'Creole' food. Must-try dishes include the Ghee Roast at Surguru, freshly baked croissants from boulangeries like Le Petit Four, Zuka's famous Hot Chocolate, and Seeraga Samba Biryani. Unlike other South Indian cities, you can find a 100-year-old French bakery and a traditional Tamil mess on the very same street, offering a culinary variety that is rare in India."
@@ -20,26 +21,12 @@ const faqs = [
     {
         question: "What are the common tourist traps to avoid in Pondicherry?",
         answer: "The biggest 'trap' is the over-reliance on Baker Street; while iconic, it's often overcrowded and locals now prefer Le Petit Four or Bouche Sucrée for better quality. Be wary of restaurants on the main Promenade that have huge, generic menus but no visible fresh catch. Another common pitfall is agreeing to fixed-rate auto rickshaws; always use an app like Ola or Rapido to check the fair price first. Lastly, don't treat White Town as just a photo studio — be respectful of the residents who live in these heritage homes."
-    },
-    {
-        question: "Is Pondicherry good for vegetarian food?",
-        answer: "Absolutely! Pondicherry is a paradise for vegetarians, offering everything from legendary South Indian thalis at Surguru to creative plant-based French crepes in White Town. The city's proximity to Auroville has also brought a wave of healthy, organic, and vegan-friendly cafes serving smoothie bowls and sourdough tartines. Most traditional Tamil messes serve unlimited vegetarian meals on banana leaves for under ₹120, making it one of the most budget-friendly destinations for vegetarians in India."
-    },
-    {
-        question: "What is the best biryani in Pondicherry?",
-        answer: "The best biryani in Pondicherry is made with Seeraga Samba rice, a small-grain, highly fragrant variety unique to Tamil Nadu and Pondy. Unlike Basmati biryani, this style is denser and more flavourful. While Kamatchi Biriyani is the most famous name, many locals now prefer smaller, wood-fired 'Biryani Mess' spots in the Tamil Quarter for a more authentic taste. Look for places that serve it with 'Ennai Kathirikai' (brinjal curry) for the complete local experience."
-    },
-    {
-        question: "What is the best time for street food in Pondicherry?",
-        answer: "Street food in Pondicherry is best explored after 5 PM when the sun goes down and the stalls along Rock Beach and MG Road come alive. You must try the Sundal (spiced chickpeas) on the promenade and the Egg Kothu Parotta from market-side vendors. For a morning street food experience, look for push-cart vendors near the bus stand selling crispy dosas and idlis from 6 AM to 9 AM. Most street snacks cost between ₹20 and ₹60, making it a very affordable way to sample the local culture."
-    },
-    {
-        question: "Do I need to carry cash for food in Pondicherry?",
-        answer: "Yes, we highly recommend carrying cash, especially if you plan to eat at local messes, small cafes, or street stalls. While larger restaurants in White Town accept cards and UPI, many of the city's most legendary local spots are cash-only operations. Even for UPI, network issues can be common in the narrow streets of the Tamil Quarter. Carrying small change will also help you when dealing with auto rickshaws and street vendors near the beach."
     }
 ];
 
 export const FAQSection = () => {
+    const { data } = useContent();
+    const faqs = data?.FAQs || FALLBACK_FAQS;
     const [openIndex, setOpenIndex] = useState<number | null>(0);
 
     const toggleFAQ = (index: number) => {
@@ -47,7 +34,7 @@ export const FAQSection = () => {
     };
 
     return (
-        <section className="py-20 bg-white">
+        <section id="faq" className="py-20 bg-white">
             <div className="mx-auto max-w-4xl px-6">
                 <div className="text-center mb-12">
                     {/* ✅ SEO: H2 with keyword */}
@@ -61,7 +48,7 @@ export const FAQSection = () => {
                 </div>
 
                 <div className="space-y-4">
-                    {faqs.map((faq, index) => (
+                    {faqs.map((faq: any, index: number) => (
                         <div
                             key={index}
                             className="border border-gray-200 rounded-xl overflow-hidden hover:shadow-md transition-shadow"

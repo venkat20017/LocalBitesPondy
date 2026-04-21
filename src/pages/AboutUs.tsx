@@ -1,39 +1,13 @@
-import React, { useState, type FormEvent } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
-import { ArrowLeft, Users, Heart, Shield, MapPin, Instagram, Mail, User, ArrowRight } from 'lucide-react';
-import { saveLeadToSheets } from '../services/googleSheets';
-import { trackConversion } from '../services/analytics';
+import { Link } from 'react-router-dom';
+import { ArrowLeft, Users, Heart, Shield, MapPin, Instagram, Mail, ArrowRight } from 'lucide-react';
 import { MetaTags } from '../components/MetaTags';
+import { useLeadPopup } from '../context/LeadPopupContext';
 
 const AboutUs: React.FC = () => {
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [isSubmitting, setIsSubmitting] = useState(false);
-    const navigate = useNavigate();
+    const { openPopup } = useLeadPopup();
 
-    const handleSubmit = async (e: FormEvent) => {
-        e.preventDefault();
-
-        // Basic Validation
-        if (!email || !email.includes('@')) {
-            alert('Please enter a valid email address.');
-            return;
-        }
-
-        setIsSubmitting(true);
-
-        try {
-            await saveLeadToSheets({ name, email, source: 'about_us' });
-            trackConversion('about_us_signup');
-            // Automatically open PDF in a new tab
-            window.open('/famous-food-in-pondicherry.pdf', '_blank');
-            navigate('/thank-you');
-        } catch (error) {
-            console.error('Submission failed', error);
-            alert('Something went wrong. Please try again.');
-        } finally {
-            setIsSubmitting(false);
-        }
+    const handleDownloadClick = () => {
+        openPopup('about_us');
     };
 
 
@@ -183,7 +157,7 @@ const AboutUs: React.FC = () => {
 
                     <h2 className="text-gray-900 border-b pb-2">Join Our Community</h2>
                     <p>LocalBitesPondy has grown from three friends with a food blog to a community of over 5,000 food lovers who've discovered authentic Pondicherry through our eyes.</p>
-                    <p><strong>Follow us on Instagram <a href="https://instagram.com/LocalBitesPondy" target="_blank" rel="noopener noreferrer" className="text-orange-600 no-underline hover:underline">@LocalBitesPondy</a> for:</strong></p>
+                    <p><strong>Follow us on Instagram <a href="https://www.instagram.com/localbitespondy/" target="_blank" rel="noopener noreferrer" className="text-orange-600 no-underline hover:underline">@LocalBitesPondy</a> for:</strong></p>
                     <ul>
                         <li>Real-time updates on new food spots</li>
                         <li>Behind-the-scenes stories from local vendors</li>
@@ -208,66 +182,19 @@ const AboutUs: React.FC = () => {
                         <h2 className="text-2xl font-bold text-white mb-4">Ready to Eat Like a Local?</h2>
                         <p className="text-orange-100 mb-8 max-w-2xl mx-auto">Download our free guide and discover the 15 authentic spots that make Pondicherry's food scene legendary.</p>
 
-                        <form onSubmit={handleSubmit} className="flex flex-col gap-4 max-w-md mx-auto">
-                            <div>
-                                <label htmlFor="name" className="sr-only">Name (Optional)</label>
-                                <div className="relative">
-                                    <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                                        <User className="h-5 w-5 text-gray-400" />
-                                    </div>
-                                    <input
-                                        type="text"
-                                        id="name"
-                                        className="block w-full rounded-lg border border-gray-300 bg-white p-3 pl-10 text-gray-900 focus:border-orange-500 focus:ring-orange-500"
-                                        placeholder="Your Name (Optional)"
-                                        value={name}
-                                        onChange={(e) => setName(e.target.value)}
-                                    />
-                                </div>
-                            </div>
-
-                            <div>
-                                <label htmlFor="email" className="sr-only">Email Address</label>
-                                <div className="relative">
-                                    <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                                        <Mail className="h-5 w-5 text-gray-400" />
-                                    </div>
-                                    <input
-                                        type="email"
-                                        id="email"
-                                        required
-                                        className="block w-full rounded-lg border border-gray-300 bg-white p-3 pl-10 text-gray-900 focus:border-orange-500 focus:ring-orange-500"
-                                        placeholder="Your Email Address"
-                                        value={email}
-                                        onChange={(e) => setEmail(e.target.value)}
-                                    />
-                                </div>
-                            </div>
-
+                        <div className="flex justify-center">
                             <button
-                                type="submit"
-                                disabled={isSubmitting}
-                                className="mt-2 flex items-center justify-center rounded-lg bg-gray-900 px-6 py-4 text-center font-bold text-lg text-white hover:bg-orange-700 focus:ring-4 focus:ring-gray-300 transition-all transform hover:scale-[1.02] disabled:opacity-70 disabled:cursor-not-allowed shadow-lg hover:shadow-xl"
+                                onClick={handleDownloadClick}
+                                className="mt-2 flex items-center justify-center rounded-2xl bg-gray-900 px-10 py-5 text-center font-bold text-xl text-white hover:bg-black transition-all transform hover:scale-[1.05] shadow-2xl hover:shadow-gray-400"
                             >
-                                {isSubmitting ? (
-                                    <span className="flex items-center">
-                                        <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                                        </svg>
-                                        Sending...
-                                    </span>
-                                ) : (
-                                    <>
-                                        Get Free Guide
-                                        <ArrowRight className="ml-2 h-5 w-5" />
-                                    </>
-                                )}
+                                Get My Free Guide
+                                <ArrowRight className="ml-3 h-6 w-6" />
                             </button>
-                            <p className="text-sm text-orange-100 flex items-center justify-center gap-2">
-                                Instant download. No spam, ever.
-                            </p>
-                        </form>
+                        </div>
+                        <p className="mt-6 text-sm text-orange-100 flex items-center justify-center gap-2">
+                            <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+                            Instant PDF access. No spam, ever.
+                        </p>
                     </div>
 
                     <hr className="my-12 border-gray-200" />

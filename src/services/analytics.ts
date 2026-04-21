@@ -21,9 +21,20 @@ export const trackConversion = (label: string) => {
     }
 };
 
+export const trackEvent = (action: string, category: string, label?: string) => {
+    console.log(`[Analytics] Event tracked: ${action} | ${category} | ${label}`);
+    if (window.gtag) {
+        window.gtag('event', action, {
+            'event_category': category,
+            'event_label': label
+        });
+    }
+};
+
 // Add type for window.gtag
 declare global {
     interface Window {
         gtag?: (command: string, action: string, params?: Record<string, any>) => void;
     }
 }
+

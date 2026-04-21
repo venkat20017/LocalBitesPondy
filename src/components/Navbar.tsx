@@ -1,14 +1,15 @@
 import { useState, useEffect } from 'react';
 import { Menu, X, UtensilsCrossed } from 'lucide-react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useLeadPopup } from '../context/LeadPopupContext';
 
 export const Navbar = () => {
+    const { openPopup } = useLeadPopup();
     const [isOpen, setIsOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
     const location = useLocation();
     const navigate = useNavigate();
 
-    // Handle scroll effect for sticky navbar
     useEffect(() => {
         const handleScroll = () => {
             setScrolled(window.scrollY > 20);
@@ -18,11 +19,11 @@ export const Navbar = () => {
     }, []);
 
     const navLinks = [
-        { name: 'Famous Food', href: '#famous-food' },
-        { name: 'Biriyani', href: '#biriyani' },
-        { name: 'Hotels', href: '#hotels' },
-        { name: 'Why Guide?', href: '#why-guide' },
-        { name: 'Contact', href: '#contact' },
+        { name: 'Traditional', href: '#famous-food' },
+        { name: 'French Cafes', href: '#french-cafes' },
+        { name: 'Seafood', href: '#seafood-street' },
+        { name: 'Best Spots', href: '#restaurants' },
+        { name: 'Tips', href: '#foodie-guide' },
     ];
 
     const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
@@ -48,8 +49,6 @@ export const Navbar = () => {
         }
     };
 
-    // Handle initial scroll if navigating from another page
-    // Handle initial scroll if navigating from another page or using direct link
     useEffect(() => {
         const scrollToTarget = () => {
             const hash = location.hash;
@@ -68,7 +67,6 @@ export const Navbar = () => {
                         behavior: 'smooth'
                     });
 
-                    // Clear state clean up but keep hash for bookmarking
                     if (stateTarget) {
                         window.history.replaceState({}, document.title);
                     }
@@ -76,7 +74,6 @@ export const Navbar = () => {
             }
         };
 
-        // Small delay to ensure DOM is ready
         setTimeout(scrollToTarget, 100);
     }, [location]);
 
@@ -84,7 +81,6 @@ export const Navbar = () => {
         <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-white shadow-md py-4' : 'bg-white/90 backdrop-blur-md shadow-sm py-4'}`}>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between items-center">
-                    {/* Logo */}
                     <a
                         href="/"
                         onClick={(e) => handleLinkClick(e, '#home')}
@@ -94,8 +90,7 @@ export const Navbar = () => {
                         <span>LocalBitesPondy</span>
                     </a>
 
-                    {/* Desktop Navigation */}
-                    <div className="hidden md:flex items-center gap-8">
+                        <div className="hidden md:flex items-center gap-8">
                         {navLinks.map((link) => (
                             <a
                                 key={link.name}
@@ -106,16 +101,14 @@ export const Navbar = () => {
                                 {link.name}
                             </a>
                         ))}
-                        <a
-                            href="#download"
-                            onClick={(e) => handleLinkClick(e, '#download')}
+                        <button
+                            onClick={() => openPopup('navbar')}
                             className="bg-orange-600 text-white px-5 py-2.5 rounded-full font-bold hover:bg-orange-700 transition-colors shadow-lg hover:shadow-xl transform hover:scale-105"
                         >
                             Get Guide
-                        </a>
+                        </button>
                     </div>
 
-                    {/* Mobile Menu Button */}
                     <div className="md:hidden z-50">
                         <button
                             onClick={() => setIsOpen(!isOpen)}
@@ -127,7 +120,6 @@ export const Navbar = () => {
                 </div>
             </div>
 
-            {/* Mobile Menu Overlay */}
             <div className={`fixed inset-0 bg-white z-40 transform transition-transform duration-300 ease-in-out md:hidden ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}>
                 <div className="flex flex-col items-center justify-center h-full space-y-8">
                     {navLinks.map((link) => (
@@ -140,15 +132,15 @@ export const Navbar = () => {
                             {link.name}
                         </a>
                     ))}
-                    <a
-                        href="#download"
-                        onClick={(e) => handleLinkClick(e, '#download')}
+                    <button
+                        onClick={() => openPopup('navbar_mobile')}
                         className="bg-orange-600 text-white px-8 py-4 rounded-full font-bold text-xl hover:bg-orange-700 transition-colors shadow-lg"
                     >
                         Get Guide
-                    </a>
+                    </button>
                 </div>
             </div>
         </nav>
     );
 };
+

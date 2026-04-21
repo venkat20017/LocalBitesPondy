@@ -63,6 +63,7 @@ export const BestHotels = () => {
                                     src={hotel.image}
                                     alt={`${hotel.name} — ${hotel.location} Pondicherry hotel`}
                                     className="w-full h-full object-cover"
+                                    loading="lazy"
                                 />
                                 <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full flex items-center gap-1 text-sm font-bold text-gray-900 shadow-sm">
                                     <Star className="w-4 h-4 text-yellow-500 fill-yellow-500" />

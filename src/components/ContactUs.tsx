@@ -1,11 +1,9 @@
 import { Mail, MapPin, Send } from 'lucide-react';
 import { useState, type FormEvent } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { saveLeadToSheets } from '../services/googleSheets';
 
 export const ContactUs = () => {
-    const [status, setStatus] = useState<'idle' | 'submitting' | 'error'>('idle');
-    const navigate = useNavigate();
+    const [status, setStatus] = useState<'idle' | 'submitting' | 'error' | 'success'>('idle');
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
@@ -24,7 +22,8 @@ export const ContactUs = () => {
                 message: formData.message,
                 source: 'contact_form'
             });
-            navigate('/thank-you');
+            setStatus('success');
+            setFormData({ firstName: '', lastName: '', email: '', message: '' });
         } catch (error) {
             console.error('Submission error:', error);
             setStatus('error');
@@ -81,75 +80,101 @@ export const ContactUs = () => {
                         </div>
                     </div>
 
-                    <div className="bg-gray-800 p-8 rounded-2xl shadow-xl border border-gray-700">
-                        <form onSubmit={handleSubmit} className="space-y-6">
-                            <div className="grid grid-cols-2 gap-6">
+                    <div className="bg-gray-800 p-8 rounded-2xl shadow-xl border border-gray-700 min-h-[400px] flex flex-col justify-center">
+                        {status === 'success' ? (
+                            <div className="text-center animate-fade-in py-8">
+                                <div className="w-20 h-20 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                                    <div className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center">
+                                        <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7" />
+                                        </svg>
+                                    </div>
+                                </div>
+                                <h3 className="text-2xl font-bold text-white mb-4">Message Sent!</h3>
+                                <p className="text-gray-300 text-lg leading-relaxed">
+                                    Thank you for your message!<br />
+                                    We will respond within 24 hours.
+                                </p>
+                                <button 
+                                    onClick={() => setStatus('idle')}
+                                    className="mt-8 text-orange-400 hover:text-orange-300 font-medium transition-colors"
+                                >
+                                    Send another message
+                                </button>
+                            </div>
+                        ) : (
+                            <form onSubmit={handleSubmit} className="space-y-6">
+                                <div className="grid grid-cols-2 gap-6">
+                                    <div>
+                                        <label htmlFor="firstName" className="block text-sm font-medium text-gray-400 mb-2">First Name</label>
+                                        <input
+                                            type="text"
+                                            id="firstName"
+                                            value={formData.firstName}
+                                            onChange={handleChange}
+                                            className="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500 transition-colors"
+                                            placeholder="John"
+                                            required
+                                        />
+                                    </div>
+                                    <div>
+                                        <label htmlFor="lastName" className="block text-sm font-medium text-gray-400 mb-2">Last Name</label>
+                                        <input
+                                            type="text"
+                                            id="lastName"
+                                            value={formData.lastName}
+                                            onChange={handleChange}
+                                            className="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500 transition-colors"
+                                            placeholder="Doe"
+                                            required
+                                        />
+                                    </div>
+                                </div>
+
                                 <div>
-                                    <label htmlFor="firstName" className="block text-sm font-medium text-gray-400 mb-2">First Name</label>
+                                    <label htmlFor="email" className="block text-sm font-medium text-gray-400 mb-2">Email Address</label>
                                     <input
-                                        type="text"
-                                        id="firstName"
-                                        value={formData.firstName}
+                                        type="email"
+                                        id="email"
+                                        value={formData.email}
                                         onChange={handleChange}
                                         className="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500 transition-colors"
-                                        placeholder="John"
+                                        placeholder="john@example.com"
                                         required
                                     />
                                 </div>
+
                                 <div>
-                                    <label htmlFor="lastName" className="block text-sm font-medium text-gray-400 mb-2">Last Name</label>
-                                    <input
-                                        type="text"
-                                        id="lastName"
-                                        value={formData.lastName}
+                                    <label htmlFor="message" className="block text-sm font-medium text-gray-400 mb-2">Message</label>
+                                    <textarea
+                                        id="message"
+                                        rows={4}
+                                        value={formData.message}
                                         onChange={handleChange}
                                         className="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500 transition-colors"
-                                        placeholder="Doe"
+                                        placeholder="How can we help you?"
                                         required
-                                    />
+                                    ></textarea>
                                 </div>
-                            </div>
 
-                            <div>
-                                <label htmlFor="email" className="block text-sm font-medium text-gray-400 mb-2">Email Address</label>
-                                <input
-                                    type="email"
-                                    id="email"
-                                    value={formData.email}
-                                    onChange={handleChange}
-                                    className="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500 transition-colors"
-                                    placeholder="john@example.com"
-                                    required
-                                />
-                            </div>
-
-                            <div>
-                                <label htmlFor="message" className="block text-sm font-medium text-gray-400 mb-2">Message</label>
-                                <textarea
-                                    id="message"
-                                    rows={4}
-                                    value={formData.message}
-                                    onChange={handleChange}
-                                    className="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500 transition-colors"
-                                    placeholder="How can we help you?"
-                                    required
-                                ></textarea>
-                            </div>
-
-                            <button
-                                type="submit"
-                                disabled={status === 'submitting'}
-                                className="w-full py-4 rounded-lg font-bold text-lg flex items-center justify-center gap-2 transition-all transform bg-orange-600 text-white hover:bg-orange-700 hover:scale-[1.02]"
-                            >
-                                {status === 'submitting' ? (
-                                    'Sending...'
-                                ) : (
-                                    <>
-                                        Send Message <Send className="w-5 h-5" />
-                                    </>
+                                <button
+                                    type="submit"
+                                    disabled={status === 'submitting'}
+                                    className="w-full py-4 rounded-lg font-bold text-lg flex items-center justify-center gap-2 transition-all transform bg-orange-600 text-white hover:bg-orange-700 hover:scale-[1.02] disabled:opacity-70"
+                                >
+                                    {status === 'submitting' ? (
+                                        'Sending...'
+                                    ) : (
+                                        <>
+                                            Send Message <Send className="w-5 h-5" />
+                                        </>
+                                    )}
+                                </button>
+                                {status === 'error' && (
+                                    <p className="text-red-400 text-sm text-center">Something went wrong. Please try again.</p>
                                 )}
-                            </button>
-                        </form>
+                            </form>
+                        )}
                     </div>
                 </div>
             </div>

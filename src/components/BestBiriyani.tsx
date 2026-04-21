@@ -61,6 +61,7 @@ export const BestBiriyani = () => {
                                         src={spot.image}
                                         alt={`${spot.name} — ${spot.type} in Pondicherry`}
                                         className="w-24 h-24 rounded-lg object-cover shrink-0"
+                                        loading="lazy"
                                     />
                                     <div>
                                         <h3 className="text-lg font-bold text-gray-900">{spot.name}</h3>
@@ -80,6 +81,7 @@ export const BestBiriyani = () => {
                                 src="https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&q=80&w=1000"
                                 alt="Authentic Seeraga Samba biryani in Pondicherry — wood-fired, fragrant, and sold out by 1 PM"
                                 className="w-full h-full object-cover"
+                                loading="lazy"
                             />
                             <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent flex items-end p-8">
                                 <div className="text-white">
