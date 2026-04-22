@@ -7,10 +7,8 @@
     "dev": "vite",
     "prebuild": "node scripts/update-sitemap.mjs",
     "build": "tsc -b && vite build",
-    "postbuild": "node scripts/prerender.mjs",
     "lint": "eslint .",
     "preview": "vite preview",
-    "prerender": "node scripts/prerender.mjs",
     "update-sitemap": "node scripts/update-sitemap.mjs"
   },
   "dependencies": {
@@ -32,8 +30,6 @@
     "eslint-plugin-react-refresh": "^0.4.24",
     "globals": "^16.5.0",
     "postcss": "^8.5.6",
-    "puppeteer": "^24.42.0",
-    "serve-handler": "^6.1.7",
     "tailwindcss": "^4.1.18",
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.46.4",

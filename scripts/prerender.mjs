@@ -1,6 +1,11 @@
 // Static-site generation via headless Chrome.
 // Dependency-free version (replaces serve-handler with built-in node:http + node:fs)
 
+if (process.env.NETLIFY) {
+  console.log('[prerender] Running on Netlify — skipping prerender.');
+  process.exit(0);
+}
+
 import { createServer } from 'node:http';
 import { writeFile, mkdir, readFile } from 'node:fs/promises';
 import { dirname, join, extname } from 'node:path';
