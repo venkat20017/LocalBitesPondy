@@ -12,6 +12,8 @@
     "update-sitemap": "node scripts/update-sitemap.mjs"
   },
   "dependencies": {
+    "@sanity/client": "^7.13.0",
+    "@sanity/image-url": "^1.2.0",
     "@tailwindcss/postcss": "^4.1.18",
     "lucide-react": "^0.563.0",
     "react": "^19.2.0",
