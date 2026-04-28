@@ -12,6 +12,7 @@
     "update-sitemap": "node scripts/update-sitemap.mjs"
   },
   "dependencies": {
+    "@portabletext/react": "^3.2.0",
     "@sanity/client": "^7.13.0",
     "@sanity/image-url": "^1.2.0",
     "@tailwindcss/postcss": "^4.1.18",
