@@ -8,12 +8,66 @@
   to = "/index.html"
   status = 200
 
+
+# ----------------------------------------------------------------------------
+# Security + CSP — applied to every response.
+#
+# CSP changes from the previous version:
+#   removed: https://eocampaign1.com (EmailOctopus form, removed in Phase 2)
+#   removed: https://www.google.co.in/uk/au/ca (regional Google Ads endpoints
+#            — googleadservices.com is the canonical one)
+#   removed: https://script.google.com / script.googleusercontent.com
+#            (Google Apps Script for old Sheets webhook, now Netlify Forms)
+#   added:   https://cdn.sanity.io (image CDN — every <SanityImage>)
+#   added:   https://*.sanity.io / *.api.sanity.io / *.apicdn.sanity.io
+#            (live JSON queries from useSanityDoc, useSanityCollection)
+#   added:   https://www.googleadservices.com (Ads conversion endpoint)
+#   added:   https://stats.g.doubleclick.net (Ads remarketing pixel)
+#   added:   form-action 'self' (Netlify Forms POSTs to /)
+#   added:   frame-ancestors 'none' (anti-clickjacking; same as X-Frame-Options)
+#   added:   base-uri 'self', object-src 'none', upgrade-insecure-requests
+# ----------------------------------------------------------------------------
 [[headers]]
   for = "/*"
   [headers.values]
-    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.googletagmanager.com https://*.google-analytics.com https://eocampaign1.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https://images.unsplash.com https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://*.g.doubleclick.net https://*.google.com https://www.google.co.in https://www.google.co.uk https://www.google.com.au https://www.google.ca; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://*.g.doubleclick.net https://*.google.com https://www.google.co.in https://www.google.co.uk https://www.google.com.au https://www.google.ca https://script.google.com https://script.googleusercontent.com; font-src 'self' https://fonts.gstatic.com; frame-src 'self' https://*.googletagmanager.com https://td.doubleclick.net;"
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://*.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://www.google.com https://www.gstatic.com https://www.googleadservices.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://cdn.sanity.io https://*.sanity.io https://images.unsplash.com https://www.googletagmanager.com https://*.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://*.g.doubleclick.net https://www.google.com https://www.googleadservices.com; connect-src 'self' https://*.sanity.io https://*.api.sanity.io https://*.apicdn.sanity.io https://www.google-analytics.com https://*.google-analytics.com https://region1.google-analytics.com https://www.googletagmanager.com https://*.googletagmanager.com https://*.g.doubleclick.net https://stats.g.doubleclick.net https://www.google.com https://www.googleadservices.com; font-src 'self' data:; frame-src 'self' https://www.googletagmanager.com https://*.googletagmanager.com https://td.doubleclick.net https://www.google.com; form-action 'self'; frame-ancestors 'none'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests"
 
+    # HSTS: enforce HTTPS for 2 years on this domain + all subdomains.
+    # `preload` qualifies for the browser preload list (https://hstspreload.org)
+    # — only enable if you don't plan to switch back to HTTP for any subdomain.
+    Strict-Transport-Security = "max-age=63072000; includeSubDomains; preload"
+
+    # Anti-clickjacking. CSP frame-ancestors above does the same — defense
+    # in depth for older browsers.
+    X-Frame-Options = "DENY"
+
+    # Don't let browsers MIME-sniff. Forces declared Content-Type.
+    X-Content-Type-Options = "nosniff"
+
+    # Send full URL as referrer same-origin, only origin cross-origin.
+    # Good privacy + Google Search Console still sees referrers.
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+    # Disable browser APIs we don't use. Reduces fingerprinting + supply-chain
+    # risk if a third-party script tries to call them.
+    Permissions-Policy = "camera=(), microphone=(), geolocation=(), payment=(), usb=(), magnetometer=(), accelerometer=(), gyroscope=(), midi=(), interest-cohort=()"
+
+    # Isolate this top-level browsing context from cross-origin popups.
+    Cross-Origin-Opener-Policy = "same-origin"
+
+
+# Lead magnet PDF — already disallowed in robots.txt; this header tells
+# search engines not to index the file even if linked from elsewhere.
 [[headers]]
   for = "/famous-food-in-pondicherry.pdf"
   [headers.values]
     X-Robots-Tag = "noindex"
+
+
+# Static asset caching — Vite content-hashes filenames in /assets/, so
+# they can be cached aggressively. Other paths fall through to Netlify's
+# defaults.
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
