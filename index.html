@@ -46,6 +46,11 @@
   <meta name="theme-color" content="#ea580c" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
+  <!-- Speed up the first Sanity CDN handshake. dns-prefetch covers the
+       API host we hit at runtime once content is published. -->
+  <link rel="preconnect" href="https://cdn.sanity.io" crossorigin />
+  <link rel="dns-prefetch" href="https://4mclrukh.apicdn.sanity.io" />
+
   <!--
     Default tags below are FALLBACKS for non-JS social scrapers.
     React 19's PageSEO renders per-page <title> + <meta> at runtime,

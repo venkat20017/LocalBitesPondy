@@ -18,9 +18,19 @@ function App() {
     <Router>
       <ScrollToTop />
       <RouteEffects />
+
+      {/* Skip-to-content for keyboard / screen reader users — visible
+          only when focused, jumps past the global navbar. */}
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[200] focus:rounded-lg focus:bg-orange-600 focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-white focus:shadow-lg"
+      >
+        Skip to main content
+      </a>
+
       <div className="flex min-h-screen flex-col bg-white font-sans text-gray-900">
         <Navbar />
-        <div className="grow">
+        <div id="main-content" className="grow">
           <Routes>
             <Route path="/" element={<Landing />} />
             <Route path="/restaurants" element={<RestaurantList />} />
