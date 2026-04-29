@@ -1,7 +1,14 @@
+# LocalBitesPondy — robots.txt
+# https://localbitespondy.com/robots.txt
+
 User-agent: *
 Allow: /
 
-# Allow all major AI crawlers
+# Don't index post-conversion or lead-magnet routes
+Disallow: /thank-you
+Disallow: /famous-food-in-pondicherry.pdf
+
+# Explicitly allow major AI crawlers
 User-agent: GPTBot
 Allow: /
 
@@ -23,5 +30,5 @@ Allow: /
 User-agent: Bingbot
 Allow: /
 
-# Sitemap location
-Sitemap: https://localbitespondy.netlify.app/sitemap.xml
+# Sitemap
+Sitemap: https://localbitespondy.com/sitemap.xml

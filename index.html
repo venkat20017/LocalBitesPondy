@@ -42,25 +42,54 @@
   <!-- End Google Tag Manager -->
 
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>LocalBitesPondy</title>
+  <meta name="theme-color" content="#ea580c" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
-  <!-- Site Identity for Search Engines -->
+  <!--
+    Default tags below are FALLBACKS for non-JS social scrapers.
+    React 19's PageSEO renders per-page <title> + <meta> at runtime,
+    which Googlebot reads after JS execution. For full per-page social
+    previews on Facebook/X/Slack, add prerendering in Phase 9.
+  -->
+  <title>Famous Food in Pondicherry — LocalBitesPondy</title>
+  <meta name="description"
+    content="Hand-picked restaurants, French heritage cafés, and street food spots in Pondicherry — locally vetted with Google Maps links. Free PDF food guide." />
+  <link rel="canonical" href="https://localbitespondy.com/" />
+
+  <!-- Site identity for search engines -->
   <meta property="og:site_name" content="LocalBitesPondy" />
   <meta name="application-name" content="LocalBitesPondy" />
   <meta name="apple-mobile-web-app-title" content="LocalBitesPondy" />
-  <meta property="og:url" content="https://localbitespondy.netlify.app/" />
 
-  <!-- Global Website Schema -->
+  <!-- Default Open Graph (PageSEO overrides for inner pages at runtime) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://localbitespondy.com/" />
+  <meta property="og:title" content="Famous Food in Pondicherry — LocalBitesPondy" />
+  <meta property="og:description"
+    content="Hand-picked restaurants, French heritage cafés, and street food spots in Pondicherry — locally vetted with Google Maps links." />
+  <meta property="og:image" content="https://localbitespondy.com/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale" content="en_IN" />
+
+  <!-- Twitter Card defaults -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:url" content="https://localbitespondy.com/" />
+  <meta name="twitter:title" content="Famous Food in Pondicherry — LocalBitesPondy" />
+  <meta name="twitter:description"
+    content="Hand-picked restaurants and food spots in Pondicherry, written by locals." />
+  <meta name="twitter:image" content="https://localbitespondy.com/og-image.jpg" />
+
+  <!-- WebSite Schema (PageSEO emits a richer one at runtime) -->
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "WebSite",
       "name": "LocalBitesPondy",
       "alternateName": "Local Bites Pondicherry",
-      "url": "https://localbitespondy.netlify.app/",
-      "description": "The ultimate local food guide for Pondicherry"
+      "url": "https://localbitespondy.com/",
+      "description": "The local food guide for Pondicherry — hand-picked restaurants, French heritage cafés, and street food spots, with Google Maps links."
     }
   </script>
 

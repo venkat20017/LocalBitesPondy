@@ -24,6 +24,22 @@ const builder = imageUrlBuilder(sanityClient);
 
 export const urlFor = (source: SanityImageSource) => builder.image(source);
 
+/** Resolve a Sanity image to a 1200x630 OG card URL, or undefined. */
+export function imageToOgUrl(source?: SanityImageSource | null): string | undefined {
+  if (!source) return undefined;
+  // Sanity images have asset._ref or asset; image-url accepts both
+  const hasAsset =
+    typeof source === 'object' &&
+    source !== null &&
+    ('asset' in source ? Boolean((source as { asset?: unknown }).asset) : true);
+  if (!hasAsset) return undefined;
+  try {
+    return builder.image(source).width(1200).height(630).fit('crop').auto('format').url();
+  } catch {
+    return undefined;
+  }
+}
+
 export async function getSingleton<T>(type: string): Promise<T | null> {
   const query = `*[_type == $type && _id == $type][0]`;
   return sanityClient.fetch<T>(query, { type });
