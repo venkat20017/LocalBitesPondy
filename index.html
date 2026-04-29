@@ -110,6 +110,21 @@
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PSSSM8R6" height="0" width="0"
       style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
+
+  <!--
+    Netlify Forms — static form for build-time detection.
+    The runtime form is rendered by React in LeadModal.tsx and POSTs
+    application/x-www-form-urlencoded with form-name=lead-capture.
+    Honeypot field "bot-field" is checked by Netlify automatically.
+  -->
+  <form name="lead-capture" data-netlify="true" netlify-honeypot="bot-field" hidden>
+    <input type="text" name="name" />
+    <input type="email" name="email" />
+    <input type="tel" name="phone" />
+    <input type="text" name="source" />
+    <input type="text" name="bot-field" />
+  </form>
+
   <div id="root"></div>
   <script type="module" src="/src/main.tsx"></script>
 </body>
