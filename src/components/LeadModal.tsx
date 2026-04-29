@@ -5,7 +5,12 @@ import { useSanityDoc } from '../hooks/useSanityDoc';
 import type { LeadCaptureDoc, LeadCaptureField } from '../types/sanity';
 import { subscribeLeadModal } from '../lib/leadModal';
 import { submitLead, SESSION_FLAGS } from '../services/leads';
-import { trackEvent, trackLeadConversion } from '../services/analytics';
+import {
+  trackLeadConversion,
+  trackLeadFailed,
+  trackLeadModalOpen,
+  trackLeadSubmit,
+} from '../services/analytics';
 
 const FALLBACK: LeadCaptureDoc = {
   heading: 'Get the Free Pondicherry Food Guide',
@@ -40,10 +45,11 @@ export const LeadModal = () => {
   // Subscribe to open events from any CTA in the app
   useEffect(() => {
     return subscribeLeadModal((src) => {
-      setSource(src || baseSource);
+      const resolved = src || baseSource;
+      setSource(resolved);
       setError(null);
       setIsOpen(true);
-      trackEvent('Lead Modal Opened', 'lead_generation', src);
+      trackLeadModalOpen(resolved);
     });
   }, [baseSource]);
 
@@ -103,6 +109,8 @@ export const LeadModal = () => {
     }
 
     setSubmitting(true);
+    trackLeadSubmit(source);
+
     const payload: Record<string, string> = { source };
     for (const f of fields) {
       const key = f.name ?? '';
@@ -116,7 +124,7 @@ export const LeadModal = () => {
     if (!result.ok) {
       setSubmitting(false);
       setError("We couldn't send your details. Please check your connection and try again.");
-      trackEvent('Lead Submit Failed', 'lead_generation', `${source}_${result.status}`);
+      trackLeadFailed(source, result.status, result.error);
       return;
     }
 

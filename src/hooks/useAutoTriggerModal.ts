@@ -28,13 +28,13 @@ export function useAutoTriggerModal({
     // Respect session-level gates set by the modal itself.
     if (sessionStorage.getItem(SESSION_FLAGS.SUBMITTED)) return;
     if (sessionStorage.getItem(SESSION_FLAGS.DISMISSED)) return;
-    if (sessionStorage.getItem('lbp_auto_triggered')) return;
+    if (sessionStorage.getItem(SESSION_FLAGS.AUTO_TRIGGERED)) return;
 
     let fired = false;
     const fire = (source: string) => {
       if (fired) return;
       fired = true;
-      sessionStorage.setItem('lbp_auto_triggered', '1');
+      sessionStorage.setItem(SESSION_FLAGS.AUTO_TRIGGERED, '1');
       cleanup();
       openLeadModal(source);
     };

@@ -61,4 +61,5 @@ export const SESSION_FLAGS = {
   SUBMITTED: 'lbp_lead_submitted',
   DISMISSED: 'lbp_modal_dismissed',
   PENDING_DOWNLOAD: 'lbp_pending_pdf_download',
+  AUTO_TRIGGERED: 'lbp_auto_triggered',
 } as const;

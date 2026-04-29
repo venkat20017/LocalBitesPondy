@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { CheckCircle2, Download, Home } from 'lucide-react';
-import { trackEvent } from '../services/analytics';
+import { trackPdfDownload } from '../services/analytics';
 import { SESSION_FLAGS } from '../services/leads';
 
 const PDF_URL = '/famous-food-in-pondicherry.pdf';
@@ -35,14 +35,14 @@ export default function ThankYou() {
       // Fresh submission — auto-trigger the PDF download
       triggerDownload();
       setDownloaded(true);
-      trackEvent('PDF Downloaded', 'content_access', 'auto_after_submit');
+      trackPdfDownload('auto_after_submit');
     }
   }, []);
 
   const onManualDownload = () => {
     triggerDownload();
     setDownloaded(true);
-    trackEvent('PDF Downloaded', 'content_access', 'manual_button');
+    trackPdfDownload('manual_button');
   };
 
   return (
