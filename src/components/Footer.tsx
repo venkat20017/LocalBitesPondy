@@ -25,8 +25,10 @@ const FALLBACK: FooterDoc = {
       ],
     },
     {
-      heading: 'Legal',
+      heading: 'Company',
       links: [
+        { label: 'About us', url: '/about-us' },
+        { label: 'Contact', url: '/#contact' },
         { label: 'Privacy Policy', url: '/privacy-policy' },
         { label: 'Terms of Use', url: '/terms-of-use' },
       ],

@@ -133,6 +133,38 @@ export type ThankYouPageDoc = {
   seo?: SeoFields;
 };
 
+export type ContactFormField = {
+  name?: 'name' | 'email' | 'phone' | 'message';
+  label?: string;
+  placeholder?: string;
+  required?: boolean;
+};
+export type ContactFormDoc = {
+  heading?: string;
+  subheading?: string;
+  buttonLabel?: string;
+  successMessage?: string;
+  fields?: ContactFormField[];
+};
+
+export type AboutTeamMember = {
+  name?: string;
+  role?: string;
+  bio?: string;
+  photo?: SanityImage;
+};
+export type AboutUsDoc = {
+  heading?: string;
+  subheading?: string;
+  heroImage?: SanityImage;
+  mission?: string;
+  body?: PortableTextBlock[];
+  team?: AboutTeamMember[];
+  seo?: SeoFields;
+};
+
+export type LeadSource = 'pdf_download' | 'contact_form' | 'about_page' | 'blog_cta';
+
 export type LegalPageDoc = {
   title?: string;
   slug?: { current?: string };

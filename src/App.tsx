@@ -6,6 +6,7 @@ import { LeadModal } from './components/LeadModal';
 import { RouteEffects } from './components/RouteEffects';
 import ScrollToTop from './components/ScrollToTop';
 import Landing from './pages/Landing';
+import AboutUs from './pages/AboutUs';
 import RestaurantList from './pages/RestaurantList';
 import RestaurantDetail from './pages/RestaurantDetail';
 import BlogList from './pages/BlogList';
@@ -33,6 +34,7 @@ function App() {
         <div id="main-content" className="grow">
           <Routes>
             <Route path="/" element={<Landing />} />
+            <Route path="/about-us" element={<AboutUs />} />
             <Route path="/restaurants" element={<RestaurantList />} />
             <Route path="/restaurants/:slug" element={<RestaurantDetail />} />
             <Route path="/blog" element={<BlogList />} />

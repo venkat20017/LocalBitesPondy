@@ -8,9 +8,11 @@ const SINGLETONS = [
   { id: 'whyChooseUs', title: 'Why Choose Us', icon: '🏆' },
   { id: 'featuredContent', title: 'Featured Content', icon: '✨' },
   { id: 'faq', title: 'FAQ', icon: '❓' },
-  { id: 'leadCapture', title: 'Lead Capture Form', icon: '📨' },
+  { id: 'leadCapture', title: 'Lead Capture (PDF popup)', icon: '📨' },
+  { id: 'contactForm', title: 'Contact Form (inline)', icon: '✉️' },
   { id: 'footer', title: 'Footer', icon: '📋' },
   { id: 'thankYouPage', title: 'Thank You Page', icon: '🎉' },
+  { id: 'aboutUs', title: 'About Us Page', icon: 'ℹ️' },
 ] as const;
 
 export const structure: StructureResolver = (S) =>

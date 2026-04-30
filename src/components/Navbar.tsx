@@ -11,7 +11,8 @@ const FALLBACK: NavbarDoc = {
   links: [
     { label: 'Restaurants', url: '/restaurants' },
     { label: 'Blog', url: '/blog' },
-    { label: 'FAQ', url: '/#faq' },
+    { label: 'About', url: '/about-us' },
+    { label: 'Contact', url: '/#contact' },
   ],
   ctaButton: { label: 'Get the Free Guide', url: '#lead' },
 };

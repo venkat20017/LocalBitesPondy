@@ -13,8 +13,10 @@ import whyChooseUs from './singletons/whyChooseUs';
 import featuredContent from './singletons/featuredContent';
 import faq from './singletons/faq';
 import leadCapture from './singletons/leadCapture';
+import contactForm from './singletons/contactForm';
 import footer from './singletons/footer';
 import thankYouPage from './singletons/thankYouPage';
+import aboutUs from './singletons/aboutUs';
 
 // Collections
 import legalPage from './documents/legalPage';
@@ -36,8 +38,10 @@ export const schemaTypes = [
   featuredContent,
   faq,
   leadCapture,
+  contactForm,
   footer,
   thankYouPage,
+  aboutUs,
   // Collections
   legalPage,
   restaurant,

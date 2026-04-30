@@ -4,6 +4,7 @@ import { WhyChooseUs } from '../components/WhyChooseUs';
 import { FeaturedContent } from '../components/FeaturedContent';
 import { FAQ } from '../components/FAQ';
 import { LeadCTA } from '../components/LeadCTA';
+import { ContactForm } from '../components/ContactForm';
 import { PageSEO } from '../components/PageSEO';
 import { useSanityDoc } from '../hooks/useSanityDoc';
 import type { FaqDoc, SiteSettings } from '../types/sanity';
@@ -40,6 +41,7 @@ export default function Landing() {
         <FeaturedContent />
         <FAQ />
         <LeadCTA />
+        <ContactForm />
       </main>
     </>
   );

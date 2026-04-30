@@ -111,20 +111,22 @@ export const LeadModal = () => {
     setSubmitting(true);
     trackLeadSubmit(source);
 
-    const payload: Record<string, string> = { source };
-    for (const f of fields) {
-      const key = f.name ?? '';
-      if (key) payload[key] = (values[key] ?? '').trim();
-    }
-    // Honeypot — should be empty in legit submissions; bots fill it
-    payload['bot-field'] = '';
-
-    const result = await submitLead(payload, formName);
+    const result = await submitLead(
+      {
+        name: values['name']?.trim(),
+        email: values['email']?.trim() ?? '',
+        phone: values['phone']?.trim(),
+        message: values['message']?.trim(),
+        lead_source: 'pdf_download',
+        source,
+      },
+      formName,
+    );
 
     if (!result.ok) {
       setSubmitting(false);
       setError("We couldn't send your details. Please check your connection and try again.");
-      trackLeadFailed(source, result.status, result.error);
+      trackLeadFailed(source, 0, result.error);
       return;
     }
 
