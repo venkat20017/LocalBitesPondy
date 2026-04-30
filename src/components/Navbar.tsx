@@ -1,148 +1,210 @@
-import { useState, useEffect } from 'react';
-import { Menu, X, UtensilsCrossed } from 'lucide-react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { useLeadPopup } from '../context/LeadPopupContext';
+import { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { Menu, X } from 'lucide-react';
+import { useSanityDoc } from '../hooks/useSanityDoc';
+import type { NavbarDoc, CtaButton, LinkItem } from '../types/sanity';
+import { SanityImage } from './SanityImage';
+import { isExternalUrl, isLeadCtaUrl, openLeadModal } from '../lib/leadModal';
+
+const FALLBACK: NavbarDoc = {
+  logoText: 'LocalBitesPondy',
+  links: [
+    { label: 'Restaurants', url: '/restaurants' },
+    { label: 'Blog', url: '/blog' },
+    { label: 'About', url: '/about-us' },
+    { label: 'Contact', url: '/#contact' },
+  ],
+  ctaButton: { label: 'Get the Free Guide', url: '#lead' },
+};
+
+function NavLink({
+  link,
+  className,
+  onClick,
+}: {
+  link: LinkItem;
+  className?: string;
+  onClick?: () => void;
+}) {
+  const url = link.url ?? '#';
+  const label = link.label ?? '';
+  if (isLeadCtaUrl(url)) {
+    return (
+      <button
+        type="button"
+        onClick={() => {
+          openLeadModal('navbar_link');
+          onClick?.();
+        }}
+        className={className}
+      >
+        {label}
+      </button>
+    );
+  }
+  if (isExternalUrl(url) || link.external) {
+    return (
+      <a href={url} target="_blank" rel="noopener noreferrer" onClick={onClick} className={className}>
+        {label}
+      </a>
+    );
+  }
+  if (url.startsWith('/')) {
+    return (
+      <Link to={url} onClick={onClick} className={className}>
+        {label}
+      </Link>
+    );
+  }
+  return (
+    <a href={url} onClick={onClick} className={className}>
+      {label}
+    </a>
+  );
+}
+
+function CtaButtonEl({
+  cta,
+  source,
+  className,
+  onClick,
+}: {
+  cta: CtaButton;
+  source: string;
+  className: string;
+  onClick?: () => void;
+}) {
+  const url = cta.url ?? '#';
+  const label = cta.label ?? 'Get the Guide';
+  const navigate = useNavigate();
+
+  return (
+    <button
+      type="button"
+      onClick={() => {
+        onClick?.();
+        if (isLeadCtaUrl(url)) {
+          openLeadModal(source);
+          return;
+        }
+        if (isExternalUrl(url) || cta.external) {
+          window.open(url, '_blank', 'noopener,noreferrer');
+          return;
+        }
+        if (url.startsWith('/')) {
+          navigate(url);
+          return;
+        }
+        if (url.startsWith('#')) {
+          window.location.hash = url;
+          return;
+        }
+      }}
+      className={className}
+    >
+      {label}
+    </button>
+  );
+}
 
 export const Navbar = () => {
-    const { openPopup } = useLeadPopup();
-    const [isOpen, setIsOpen] = useState(false);
-    const [scrolled, setScrolled] = useState(false);
-    const location = useLocation();
-    const navigate = useNavigate();
+  const { data } = useSanityDoc<NavbarDoc>('navbar', FALLBACK);
+  const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
-    useEffect(() => {
-        const handleScroll = () => {
-            setScrolled(window.scrollY > 20);
-        };
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
-    const navLinks = [
-        { name: 'Traditional', href: '#famous-food' },
-        { name: 'French Cafes', href: '#french-cafes' },
-        { name: 'Seafood', href: '#seafood-street' },
-        { name: 'Best Spots', href: '#restaurants' },
-        { name: 'Tips', href: '#foodie-guide' },
-    ];
-
-    const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-        e.preventDefault();
-        setIsOpen(false);
-
-        if (location.pathname !== '/') {
-            navigate('/', { state: { target: href } });
-            return;
-        }
-
-        const targetId = href.replace('#', '');
-        const element = document.getElementById(targetId);
-        if (element) {
-            const headerOffset = 80;
-            const elementPosition = element.getBoundingClientRect().top;
-            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-            window.scrollTo({
-                top: offsetPosition,
-                behavior: 'smooth'
-            });
-        }
+  useEffect(() => {
+    if (!open) return;
+    const original = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = original;
     };
+  }, [open]);
 
-    useEffect(() => {
-        const scrollToTarget = () => {
-            const hash = location.hash;
-            const stateTarget = (location.state as any)?.target;
+  const links = data.links ?? [];
+  const cta = data.ctaButton;
 
-            if ((hash || stateTarget) && location.pathname === '/') {
-                const targetId = (hash || stateTarget).replace('#', '');
-                const element = document.getElementById(targetId);
-                if (element) {
-                    const headerOffset = 80;
-                    const elementPosition = element.getBoundingClientRect().top;
-                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+  return (
+    <header
+      className={`sticky top-0 z-40 w-full border-b transition-all ${
+        scrolled
+          ? 'border-gray-200 bg-white/95 shadow-sm backdrop-blur'
+          : 'border-transparent bg-white/80 backdrop-blur'
+      }`}
+    >
+      <nav
+        className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8"
+        aria-label="Primary"
+      >
+        <Link to="/" className="flex items-center gap-2 text-lg font-extrabold tracking-tight text-gray-900">
+          {data.logoImage?.asset?._ref ? (
+            <SanityImage image={data.logoImage} width={120} className="h-8 w-auto" alt={data.logoText ?? 'Logo'} />
+          ) : (
+            <span>{data.logoText}</span>
+          )}
+        </Link>
 
-                    window.scrollTo({
-                        top: offsetPosition,
-                        behavior: 'smooth'
-                    });
+        <ul className="hidden items-center gap-8 text-sm font-medium text-gray-700 md:flex">
+          {links.map((l, i) => (
+            <li key={i}>
+              <NavLink link={l} className="transition-colors hover:text-orange-600" />
+            </li>
+          ))}
+        </ul>
 
-                    if (stateTarget) {
-                        window.history.replaceState({}, document.title);
-                    }
-                }
-            }
-        };
+        <div className="hidden items-center md:flex">
+          {cta?.label && (
+            <CtaButtonEl
+              cta={cta}
+              source="navbar"
+              className="rounded-full bg-orange-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-orange-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600"
+            />
+          )}
+        </div>
 
-        setTimeout(scrollToTarget, 100);
-    }, [location]);
+        <button
+          type="button"
+          aria-label={open ? 'Close menu' : 'Open menu'}
+          aria-expanded={open}
+          onClick={() => setOpen((v) => !v)}
+          className="inline-flex h-10 w-10 items-center justify-center rounded-lg text-gray-700 hover:bg-gray-100 md:hidden"
+        >
+          {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+        </button>
+      </nav>
 
-    return (
-        <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-white shadow-md py-4' : 'bg-white/90 backdrop-blur-md shadow-sm py-4'}`}>
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="flex justify-between items-center">
-                    <a
-                        href="/"
-                        onClick={(e) => handleLinkClick(e, '#home')}
-                        className="flex items-center gap-2 font-bold text-xl text-orange-600 z-50"
-                    >
-                        <UtensilsCrossed className="h-6 w-6" />
-                        <span>LocalBitesPondy</span>
-                    </a>
-
-                    <div className="hidden md:flex items-center gap-8">
-                        {navLinks.map((link) => (
-                            <a
-                                key={link.name}
-                                href={link.href}
-                                onClick={(e) => handleLinkClick(e, link.href)}
-                                className={`font-medium transition-colors hover:text-orange-600 ${scrolled ? 'text-gray-700' : 'text-gray-800'}`}
-                            >
-                                {link.name}
-                            </a>
-                        ))}
-                        <button
-                            onClick={() => openPopup('navbar')}
-                            className="bg-orange-600 text-white px-5 py-2.5 rounded-full font-bold hover:bg-orange-700 transition-colors shadow-lg hover:shadow-xl transform hover:scale-105"
-                        >
-                            Get Guide
-                        </button>
-                    </div>
-
-                    <div className="md:hidden z-50">
-                        <button
-                            onClick={() => setIsOpen(!isOpen)}
-                            className="text-gray-800 hover:text-orange-600 transition-colors"
-                        >
-                            {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-                        </button>
-                    </div>
-                </div>
+      {open && (
+        <div className="absolute inset-x-0 top-16 z-40 border-b border-gray-200 bg-white md:hidden">
+          <ul className="flex flex-col px-4 py-3 sm:px-6">
+            {links.map((l, i) => (
+              <li key={i} className="border-b border-gray-100 last:border-0">
+                <NavLink
+                  link={l}
+                  onClick={() => setOpen(false)}
+                  className="block py-3 text-base font-medium text-gray-800 hover:text-orange-600"
+                />
+              </li>
+            ))}
+          </ul>
+          {cta?.label && (
+            <div className="px-4 pb-4 sm:px-6">
+              <CtaButtonEl
+                cta={cta}
+                source="navbar_mobile"
+                onClick={() => setOpen(false)}
+                className="w-full rounded-full bg-orange-600 px-5 py-3 text-sm font-semibold text-white shadow-sm hover:bg-orange-700"
+              />
             </div>
-
-            <div className={`fixed inset-0 bg-white z-40 transform transition-transform duration-300 ease-in-out md:hidden ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}>
-                <div className="flex flex-col items-center justify-center h-full space-y-8">
-                    {navLinks.map((link) => (
-                        <a
-                            key={link.name}
-                            href={link.href}
-                            onClick={(e) => handleLinkClick(e, link.href)}
-                            className="text-2xl font-bold text-gray-800 hover:text-orange-600 transition-colors"
-                        >
-                            {link.name}
-                        </a>
-                    ))}
-                    <button
-                        onClick={() => {
-                            setIsOpen(false);
-                            openPopup('navbar_mobile');
-                        }}
-                        className="bg-orange-600 text-white px-8 py-4 rounded-full font-bold text-xl hover:bg-orange-700 transition-colors shadow-lg"
-                    >
-                        Get Guide
-                    </button>
-                </div>
-            </div>
-        </nav>
-    );
+          )}
+        </div>
+      )}
+    </header>
+  );
 };

@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { trackConsentUpdate } from '../services/analytics';
 
 declare global {
     interface Window {
@@ -23,6 +24,8 @@ export const ConsentBanner = () => {
         localStorage.setItem('cookie_consent', 'granted');
         // Update Google Consent Mode v2 — grant all
         window.consentGrantAll?.();
+        // Push GTM-friendly event so consent-aware tags can fire
+        trackConsentUpdate('granted');
         setIsVisible(false);
     };
 
@@ -30,6 +33,7 @@ export const ConsentBanner = () => {
         localStorage.setItem('cookie_consent', 'denied');
         // Explicit deny — keeps tags in cookieless/anonymous mode
         window.consentDenyAll?.();
+        trackConsentUpdate('denied');
         setIsVisible(false);
     };
 

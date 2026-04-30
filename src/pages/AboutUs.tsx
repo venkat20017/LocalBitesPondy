@@ -1,212 +1,129 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { ArrowLeft, Users, Heart, Shield, MapPin, Instagram, Mail, ArrowRight } from 'lucide-react';
-import { MetaTags } from '../components/MetaTags';
-import { useLeadPopup } from '../context/LeadPopupContext';
+import { useSanityDoc } from '../hooks/useSanityDoc';
+import type { AboutUsDoc } from '../types/sanity';
+import { SanityImage } from '../components/SanityImage';
+import { PortableText } from '../components/PortableText';
+import { PageSEO } from '../components/PageSEO';
+import { breadcrumbJsonLd, organizationJsonLd } from '../lib/jsonLd';
 
-const AboutUs: React.FC = () => {
-    const { openPopup } = useLeadPopup();
-
-    const handleDownloadClick = () => {
-        openPopup('about_us');
-    };
-
-    return (
-        <div className="min-h-screen bg-gray-50 pt-24">
-            <MetaTags
-                title="About Us | LocalBitesPondy - Local's Guide 2026"
-                description="Discover the story behind LocalBitesPondy. Born and raised in Pondicherry, our mission is to connect food-loving travelers with authentic local eats and hidden gems."
-                keywords="about localbitespondy, pondicherry food guide team, authentic pondy eats, local food mission"
-                canonical="https://localbitespondy.netlify.app/about-us"
-            />
-            {/* Header Section */}
-            <div className="bg-white shadow-sm border-b border-gray-200">
-                <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-                    <Link to="/" className="inline-flex items-center text-orange-600 hover:text-orange-700 font-medium transition-colors mb-4">
-                        <ArrowLeft className="w-4 h-4 mr-2" />
-                        Back to Home
-                    </Link>
-                    <h1 className="text-3xl sm:text-4xl font-bold text-gray-900">About LocalBitesPondy</h1>
-                    <p className="mt-2 text-xl text-gray-600">Your Trusted Guide to Famous Food in Pondicherry</p>
-                </div>
-            </div>
-
-            {/* Content Section */}
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-                <div className="bg-white rounded-2xl shadow-sm p-8 sm:p-12 prose prose-orange prose-lg max-w-none hover:prose-a:text-orange-600">
-
-                    {/* Hero Text */}
-                    <div className="text-center mb-12 not-prose">
-                        <h2 className="text-3xl font-bold text-gray-900 mb-4">We're Not Just Another Food Blog—We're Your Local Connection to Authentic Pondicherry</h2>
-                        <p className="text-lg text-gray-600 italic">Born and raised in Pondicherry, we created LocalBitesPondy to share the hidden food gems tourists miss—because the best meals aren't on Instagram, they're in our grandmother's favorite corner café.</p>
-                    </div>
-
-                    <h2 className="text-gray-900 border-b pb-2">Our Story</h2>
-                    <h3>How LocalBitesPondy Began</h3>
-                    <p>It started with a simple frustration.</p>
-                    <p>We'd watch tourists flock to the same overcrowded restaurants, pay premium prices for mediocre food, and leave Pondicherry thinking they'd experienced the "famous food" of our city. Meanwhile, just two streets away, locals were enjoying buttery croissants at century-old bakeries, feasting on ₹50 dosas that would blow your mind, and savoring seafood curries at family-run spots that have perfected their recipes over three generations.</p>
-                    <p>That gap bothered us.</p>
-                    <p>So in 2024, three friends who grew up in Pondicherry—Arun (whose grandmother ran a Tamil mess for 40 years), Priya (a food blogger and French cuisine enthusiast), and Karthik (a photographer obsessed with street food)—decided to do something about it.</p>
-                    <p><strong>LocalBitesPondy was born from a simple mission:</strong> Connect food-loving travelers with the authentic Pondicherry we know and love—the one that exists beyond the tourist guides and TripAdvisor's top 10 lists.</p>
-
-                    <h2 className="text-gray-900 border-b pb-2">What Makes Us Different</h2>
-                    <div className="grid md:grid-cols-2 gap-6 not-prose my-8">
-                        <div className="bg-orange-50 p-6 rounded-xl border border-orange-100">
-                            <h4 className="flex items-center text-lg font-bold text-gray-900 mb-2">
-                                <MapPin className="w-5 h-5 text-orange-600 mr-2" /> We're Actually From Here
-                            </h4>
-                            <p className="text-gray-700 text-sm">Unlike travel bloggers who visit for a weekend, we've lived in Pondicherry our entire lives. We know which café makes the crispiest croissants because we eat there ourselves.</p>
-                        </div>
-                        <div className="bg-orange-50 p-6 rounded-xl border border-orange-100">
-                            <h4 className="flex items-center text-lg font-bold text-gray-900 mb-2">
-                                <Shield className="w-5 h-5 text-orange-600 mr-2" /> No Tourist Traps, Ever
-                            </h4>
-                            <p className="text-gray-700 text-sm">Every spot in our guide is a place we'd take our own family. If locals don't eat there regularly, it doesn't make our list. Simple as that.</p>
-                        </div>
-                        <div className="bg-orange-50 p-6 rounded-xl border border-orange-100">
-                            <h4 className="flex items-center text-lg font-bold text-gray-900 mb-2">
-                                <Users className="w-5 h-5 text-orange-600 mr-2" /> Updated by Real Locals
-                            </h4>
-                            <p className="text-gray-700 text-sm">Restaurants close. Chefs change. We personally verify every recommendation quarterly. If a spot serves amazing food, we've eaten there recently.</p>
-                        </div>
-                        <div className="bg-orange-50 p-6 rounded-xl border border-orange-100">
-                            <h4 className="flex items-center text-lg font-bold text-gray-900 mb-2">
-                                <Heart className="w-5 h-5 text-orange-600 mr-2" /> Honest Recommendations
-                            </h4>
-                            <p className="text-gray-700 text-sm">We're not influenced by commissions. Our recommendations are based purely on taste, authenticity, and value.</p>
-                        </div>
-                    </div>
-
-                    <h2 className="text-gray-900 border-b pb-2">Our Mission</h2>
-                    <p><strong>To preserve and celebrate the unique food culture of Pondicherry</strong> by connecting travelers with the authentic dining experiences that make our city special.</p>
-                    <p>We believe that:</p>
-                    <ul>
-                        <li>Food is the best way to understand a culture</li>
-                        <li>Local knowledge beats generic travel guides every time</li>
-                        <li>Great meals don't require big budgets—just insider information</li>
-                        <li>The French-Tamil fusion that defines Pondicherry deserves to be experienced properly</li>
-                    </ul>
-                    <p>When you download our guide, you're not just getting restaurant names—you're getting access to decades of local knowledge, family traditions, and the kind of insider tips we'd share with our closest friends visiting from out of town.</p>
-
-                    <h2 className="text-gray-900 border-b pb-2">Meet the Team</h2>
-                    <div className="grid md:grid-cols-3 gap-8 not-prose my-8">
-                        <div className="text-center">
-                            <div className="w-24 h-24 bg-gray-200 rounded-full mx-auto mb-4 overflow-hidden">
-                                <div className="w-full h-full flex items-center justify-center bg-orange-100 text-orange-600 font-bold text-2xl">A</div>
-                            </div>
-                            <h4 className="font-bold text-gray-900">Arun Kumar</h4>
-                            <p className="text-xs text-orange-600 uppercase tracking-wide font-semibold mb-2">Co-Founder & Tamil Cuisine Expert</p>
-                            <p className="text-sm text-gray-600">Grew up helping his grandmother run a traditional Tamil mess. His superpower: Finding the best dosa in any neighborhood.</p>
-                        </div>
-                        <div className="text-center">
-                            <div className="w-24 h-24 bg-gray-200 rounded-full mx-auto mb-4 overflow-hidden">
-                                <div className="w-full h-full flex items-center justify-center bg-orange-100 text-orange-600 font-bold text-2xl">P</div>
-                            </div>
-                            <h4 className="font-bold text-gray-900">Priya Shankar</h4>
-                            <p className="text-xs text-orange-600 uppercase tracking-wide font-semibold mb-2">Co-Founder & French Food Specialist</p>
-                            <p className="text-sm text-gray-600">Studied culinary arts in Paris. Her superpower: Identifying which bakeries actually make their croissants fresh daily.</p>
-                        </div>
-                        <div className="text-center">
-                            <div className="w-24 h-24 bg-gray-200 rounded-full mx-auto mb-4 overflow-hidden">
-                                <div className="w-full h-full flex items-center justify-center bg-orange-100 text-orange-600 font-bold text-2xl">K</div>
-                            </div>
-                            <h4 className="font-bold text-gray-900">Karthik Menon</h4>
-                            <p className="text-xs text-orange-600 uppercase tracking-wide font-semibold mb-2">Co-Founder & Photographer</p>
-                            <p className="text-sm text-gray-600">Street food obsessive and visual storyteller. His superpower: Convincing shy vendors to share their secret recipes.</p>
-                        </div>
-                    </div>
-
-                    <h2 className="text-gray-900 border-b pb-2">Our Values</h2>
-                    <ul>
-                        <li><strong>Authenticity First:</strong> We celebrate real Pondicherry cuisine—not sanitized versions.</li>
-                        <li><strong>Supporting Local Businesses:</strong> Every restaurant in our guide is independently owned.</li>
-                        <li><strong>Accessible to Everyone:</strong> Options from ₹50 street snacks to ₹500 fine dining.</li>
-                        <li><strong>Cultural Preservation:</strong> Helping traditional family-run eateries thrive.</li>
-                    </ul>
-
-                    <h2 className="text-gray-900 border-b pb-2">What People Say About Us</h2>
-                    <div className="grid gap-6 not-prose my-8">
-                        <blockquote className="bg-gray-50 border-l-4 border-orange-500 p-4 italic text-gray-700">
-                            "I've been to Pondicherry three times before, always eating at the same tourist restaurants. LocalBitesPondy showed me a completely different city—I can't believe what I'd been missing!"
-                            <footer className="text-gray-900 font-bold mt-2 not-italic">— Sarah M., Singapore</footer>
-                        </blockquote>
-                        <blockquote className="bg-gray-50 border-l-4 border-orange-500 p-4 italic text-gray-700">
-                            "The best ₹100 I ever spent. This guide led me to a tiny bakery where I had the most incredible croissant of my life. Even better than ones I've had in France!"
-                            <footer className="text-gray-900 font-bold mt-2 not-italic">— Rahul P., Mumbai</footer>
-                        </blockquote>
-                        <blockquote className="bg-gray-50 border-l-4 border-orange-500 p-4 italic text-gray-700">
-                            "As someone who travels for food, I'm always skeptical of 'local guides.' But these folks know their stuff. Every single recommendation was spot-on."
-                            <footer className="text-gray-900 font-bold mt-2 not-italic">— Jennifer K., Australia</footer>
-                        </blockquote>
-                    </div>
-
-                    <h2 className="text-gray-900 border-b pb-2">Our Promise to You</h2>
-                    <p>When you use LocalBitesPondy, you're getting:</p>
-                    <ul className="marker:text-green-500">
-                        <li>Verified, up-to-date information from people who actually live here</li>
-                        <li>Honest recommendations with no hidden commissions or partnerships</li>
-                        <li>Exact locations with Google Maps links</li>
-                        <li>Insider tips you won't find in any guidebook</li>
-                        <li>Signature dishes at each spot</li>
-                        <li>Budget transparency</li>
-                        <li>Cultural context</li>
-                    </ul>
-
-                    <h2 className="text-gray-900 border-b pb-2">Join Our Community</h2>
-                    <p>LocalBitesPondy has grown from three friends with a food blog to a community of over 5,000 food lovers who've discovered authentic Pondicherry through our eyes.</p>
-                    <p><strong>Follow us on Instagram <a href="https://www.instagram.com/localbitespondy/" target="_blank" rel="noopener noreferrer" className="text-orange-600 no-underline hover:underline">@LocalBitesPondy</a> for:</strong></p>
-                    <ul>
-                        <li>Real-time updates on new food spots</li>
-                        <li>Behind-the-scenes stories from local vendors</li>
-                        <li>Seasonal specialties you shouldn't miss</li>
-                        <li>Community photos from travelers who've used our guide</li>
-                    </ul>
-                    <p>Share your experience using #LocalBitesPondy—we love seeing where our guide takes you!</p>
-
-                    <h2 className="text-gray-900 border-b pb-2">Let's Connect</h2>
-                    <p>Have questions about Pondicherry food? Want to suggest a spot we might have missed? Just want to chat about where to find the best seafood curry?</p>
-                    <div className="not-prose flex flex-col sm:flex-row gap-4 mt-6">
-                        <a href="mailto:venkateshprasads.bs019@gmail.com" className="flex items-center text-gray-700 hover:text-orange-600 transition-colors">
-                            <Mail className="w-5 h-5 mr-2" /> venkateshprasads.bs019@gmail.com
-                        </a>
-                        <a href="https://instagram.com/LocalBitesPondy" target="_blank" rel="noopener noreferrer" className="flex items-center text-gray-700 hover:text-orange-600 transition-colors">
-                            <Instagram className="w-5 h-5 mr-2" /> @LocalBitesPondy
-                        </a>
-                    </div>
-                    <p className="text-gray-500 text-sm mt-4">Based in: Pondicherry (Puducherry), Tamil Nadu, India</p>
-
-                    <div className="mt-12 p-8 bg-orange-600 rounded-2xl text-center text-white not-prose">
-                        <h2 className="text-2xl font-bold text-white mb-4">Ready to Eat Like a Local?</h2>
-                        <p className="text-orange-100 mb-8 max-w-2xl mx-auto">Download our free guide and discover the 15 authentic spots that make Pondicherry's food scene legendary.</p>
-
-                        <div className="flex justify-center">
-                            <button
-                                onClick={handleDownloadClick}
-                                className="mt-2 flex items-center justify-center rounded-2xl bg-gray-900 px-10 py-5 text-center font-bold text-xl text-white hover:bg-black transition-all transform hover:scale-[1.05] shadow-2xl hover:shadow-gray-400"
-                            >
-                                Get My Free Guide
-                                <ArrowRight className="ml-3 h-6 w-6" />
-                            </button>
-                        </div>
-                        <p className="mt-6 text-sm text-orange-100 flex items-center justify-center gap-2">
-                            <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
-                            Instant PDF access. No spam, ever.
-                        </p>
-                    </div>
-
-                    <hr className="my-12 border-gray-200" />
-
-                    <div className="text-center italic text-gray-600">
-                        <p className="mb-4">Pondicherry isn't just a city—it's a unique culinary crossroads where French colonial history meets Tamil tradition, where butter croissants and coconut chutney exist on the same street, where you can start your day with filter coffee and end it with wine by the beach.</p>
-                        <p className="mb-8">We're here to make sure you experience all of it—the real Pondicherry, not the tourist version.</p>
-                        <p className="font-bold text-gray-900 not-italic">Welcome to our table. Let's eat.</p>
-                        <p className="text-orange-600 font-bold mt-2">— The LocalBitesPondy Team</p>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    );
+const FALLBACK: AboutUsDoc = {
+  heading: 'About LocalBitesPondy',
+  subheading: 'A food guide built by Pondicherry locals, for everyone tired of TripAdvisor.',
+  mission:
+    "We exist to put you in front of food worth driving across town for. No paid placements, no sponsored content, no SEO-spam listicles. Just a small team of locals tasting and writing.",
+  team: [
+    {
+      name: 'Venkatesh Prasad',
+      role: 'Founder',
+      bio: 'Pondicherry resident since 2009. Eats out four nights a week, drives a Royal Enfield, never takes free meals from restaurants.',
+    },
+  ],
 };
 
-export default AboutUs;
+export default function AboutUs() {
+  const { data } = useSanityDoc<AboutUsDoc>('aboutUs', FALLBACK);
+
+  const seoTitle = data.seo?.metaTitle ?? data.heading ?? 'About LocalBitesPondy';
+  const seoDescription =
+    data.seo?.metaDescription ??
+    data.subheading ??
+    "Why LocalBitesPondy exists, who's behind it, and how we pick the food we recommend.";
+
+  return (
+    <>
+      <PageSEO
+        title={seoTitle}
+        description={seoDescription}
+        canonicalPath="/about-us"
+        jsonLd={[
+          organizationJsonLd(),
+          breadcrumbJsonLd([
+            { name: 'Home', path: '/' },
+            { name: 'About', path: '/about-us' },
+          ]),
+        ]}
+      />
+
+      <main>
+        <article>
+          {data.heroImage?.asset?._ref && (
+            <div className="bg-gray-100">
+              <SanityImage
+                image={data.heroImage}
+                alt={data.heading ?? ''}
+                width={2000}
+                loading="eager"
+                className="mx-auto block aspect-[16/9] h-full w-full max-w-7xl object-cover sm:rounded-b-3xl"
+              />
+            </div>
+          )}
+
+          <div className="mx-auto max-w-3xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
+            <header className="text-center">
+              <p className="text-xs font-semibold uppercase tracking-widest text-orange-600">
+                About us
+              </p>
+              <h1 className="mt-3 text-4xl font-extrabold tracking-tight text-gray-900 text-balance sm:text-5xl">
+                {data.heading}
+              </h1>
+              {data.subheading && (
+                <p className="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-gray-600">
+                  {data.subheading}
+                </p>
+              )}
+            </header>
+
+            {data.mission && (
+              <section className="mt-12 rounded-2xl border border-orange-200 bg-orange-50 p-6 sm:p-8">
+                <h2 className="text-sm font-semibold uppercase tracking-wider text-orange-700">
+                  Our mission
+                </h2>
+                <p className="mt-3 text-lg leading-relaxed text-gray-800">{data.mission}</p>
+              </section>
+            )}
+
+            {data.body && data.body.length > 0 && (
+              <section className="mt-12">
+                <PortableText value={data.body} />
+              </section>
+            )}
+
+            {data.team && data.team.length > 0 && (
+              <section className="mt-16">
+                <h2 className="text-2xl font-bold tracking-tight text-gray-900">The team</h2>
+                <ul className="mt-8 grid grid-cols-1 gap-8 sm:grid-cols-2">
+                  {data.team.map((m, i) => (
+                    <li
+                      key={i}
+                      className="flex flex-col items-start gap-4 rounded-2xl border border-gray-200 bg-white p-6"
+                    >
+                      {m.photo?.asset?._ref ? (
+                        <SanityImage
+                          image={m.photo}
+                          alt={m.name ?? ''}
+                          width={160}
+                          height={160}
+                          className="h-20 w-20 rounded-full object-cover"
+                        />
+                      ) : (
+                        <div className="flex h-20 w-20 items-center justify-center rounded-full bg-orange-100 text-2xl font-bold text-orange-700">
+                          {(m.name ?? '?').charAt(0)}
+                        </div>
+                      )}
+                      <div>
+                        <h3 className="text-lg font-bold text-gray-900">{m.name}</h3>
+                        {m.role && <p className="text-sm font-medium text-orange-600">{m.role}</p>}
+                        {m.bio && (
+                          <p className="mt-2 text-sm leading-relaxed text-gray-600">{m.bio}</p>
+                        )}
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            )}
+          </div>
+        </article>
+      </main>
+    </>
+  );
+}

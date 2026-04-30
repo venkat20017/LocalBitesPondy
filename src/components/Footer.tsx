@@ -1,95 +1,150 @@
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import {
+  Facebook,
+  Instagram,
+  Linkedin,
+  MessageCircle,
+  Twitter,
+  Youtube,
+  type LucideIcon,
+} from 'lucide-react';
+import { useSanityDoc } from '../hooks/useSanityDoc';
+import type { FooterDoc, LinkItem, SocialLink } from '../types/sanity';
+import { isExternalUrl, isLeadCtaUrl, openLeadModal } from '../lib/leadModal';
+
+const FALLBACK: FooterDoc = {
+  logoText: 'LocalBitesPondy',
+  tagline: 'The local food guide tourists never find.',
+  columns: [
+    {
+      heading: 'Explore',
+      links: [
+        { label: 'Restaurants', url: '/restaurants' },
+        { label: 'Blog', url: '/blog' },
+        { label: 'FAQ', url: '/#faq' },
+      ],
+    },
+    {
+      heading: 'Company',
+      links: [
+        { label: 'About us', url: '/about-us' },
+        { label: 'Contact', url: '/#contact' },
+        { label: 'Privacy Policy', url: '/privacy-policy' },
+        { label: 'Terms of Use', url: '/terms-of-use' },
+      ],
+    },
+    {
+      heading: 'Get the guide',
+      links: [{ label: 'Free PDF download', url: '#lead' }],
+    },
+  ],
+  socialLinks: [],
+  copyright: '© {year} LocalBitesPondy. All rights reserved.',
+};
+
+const SOCIAL_ICON: Record<NonNullable<SocialLink['platform']>, LucideIcon> = {
+  instagram: Instagram,
+  facebook: Facebook,
+  youtube: Youtube,
+  twitter: Twitter,
+  whatsapp: MessageCircle,
+  linkedin: Linkedin,
+};
+
+function FooterLink({ link }: { link: LinkItem }) {
+  const url = link.url ?? '#';
+  const label = link.label ?? '';
+  const className = 'text-sm text-gray-400 transition hover:text-white';
+
+  if (isLeadCtaUrl(url)) {
+    return (
+      <button type="button" onClick={() => openLeadModal('footer')} className={className}>
+        {label}
+      </button>
+    );
+  }
+  if (isExternalUrl(url) || link.external) {
+    return (
+      <a href={url} target="_blank" rel="noopener noreferrer" className={className}>
+        {label}
+      </a>
+    );
+  }
+  if (url.startsWith('/')) {
+    return (
+      <Link to={url} className={className}>
+        {label}
+      </Link>
+    );
+  }
+  return (
+    <a href={url} className={className}>
+      {label}
+    </a>
+  );
+}
 
 export const Footer = () => {
-    const location = useLocation();
-    const navigate = useNavigate();
+  const { data } = useSanityDoc<FooterDoc>('footer', FALLBACK);
+  const year = new Date().getFullYear();
+  const copyright = (data.copyright ?? FALLBACK.copyright)?.replace('{year}', String(year));
 
-    const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-        e.preventDefault();
+  return (
+    <footer className="bg-gray-950 text-gray-400">
+      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-4">
+          <div className="md:col-span-1">
+            <Link to="/" className="text-lg font-extrabold tracking-tight text-white">
+              {data.logoText}
+            </Link>
+            {data.tagline && (
+              <p className="mt-4 text-sm leading-relaxed text-gray-400">{data.tagline}</p>
+            )}
+          </div>
 
-        if (location.pathname !== '/') {
-            navigate('/', { state: { target: href } });
-            return;
-        }
-
-        const targetId = href.replace('#', '');
-        const element = document.getElementById(targetId);
-        if (element) {
-            const headerOffset = 80;
-            const elementPosition = element.getBoundingClientRect().top;
-            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-            window.scrollTo({
-                top: offsetPosition,
-                behavior: 'smooth'
-            });
-        }
-    };
-
-    const quickLinks = [
-        { name: 'Traditional & Creole', href: '#famous-food' },
-        { name: 'French Quarter', href: '#french-cafes' },
-        { name: 'Seafood & Street', href: '#seafood-street' },
-        { name: 'Best Restaurants', href: '#restaurants' },
-        { name: 'Survival Guide', href: '#foodie-guide' },
-        { name: 'FAQ', href: '#faq' },
-    ];
-
-    return (
-        <footer className="bg-gray-50 pt-20 pb-8 px-4 border-t border-gray-200">
-            <div className="mx-auto max-w-7xl">
-                <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-3 mb-16">
-                    {/* Column 1: About */}
-                    <div>
-                        <h3 className="text-gray-900 font-bold text-xl mb-6">LocalBitesPondy</h3>
-                        <p className="text-gray-600 leading-relaxed text-lg">
-                            The "not-so-secret" guide to famous food in Pondicherry. We skip the tourist traps and show you where locals actually eat—from century-old French boulangeries to family-run Tamil messes.
-                        </p>
-                    </div>
-
-                    {/* Column 2: Quick Links (in-page anchors) */}
-                    <div>
-                        <h3 className="text-gray-900 font-bold text-xl mb-6">Explore the Guide</h3>
-                        <ul className="grid grid-cols-1 gap-4">
-                            {quickLinks.map((link) => (
-                                <li key={link.name}>
-                                    <a
-                                        href={link.href}
-                                        onClick={(e) => handleLinkClick(e, link.href)}
-                                        className="text-gray-600 hover:text-orange-600 transition-colors text-lg"
-                                    >
-                                        {link.name}
-                                    </a>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-
-                    {/* Column 3: Contact & Info */}
-                    <div>
-                        <h3 className="text-gray-900 font-bold text-xl mb-6">Get in Touch</h3>
-                        <p className="text-gray-600 mb-6 text-lg">
-                            Have questions about Pondy's food scene? We'd love to hear from you.
-                        </p>
-                        <Link 
-                            to="/about-us" 
-                            className="inline-block bg-white border-2 border-orange-600 text-orange-600 px-6 py-2 rounded-full font-bold hover:bg-orange-600 hover:text-white transition-all"
-                        >
-                            About the Team
-                        </Link>
-                    </div>
-                </div>
-
-                {/* Bottom Bar */}
-                <div className="pt-8 border-t border-gray-200 flex flex-col md:flex-row justify-between items-center gap-6 text-sm text-gray-500">
-                    <p className="text-base">&copy; {new Date().getFullYear()} LocalBitesPondy. All rights reserved.</p>
-                    <div className="flex gap-8 text-base">
-                        <Link to="/privacy-policy" className="hover:text-orange-600 transition-colors">Privacy</Link>
-                        <Link to="/terms-of-use" className="hover:text-orange-600 transition-colors">Terms</Link>
-                        <Link to="/about-us" className="hover:text-orange-600 transition-colors">About Us</Link>
-                    </div>
-                </div>
+          {(data.columns ?? []).map((col, i) => (
+            <div key={i}>
+              <h3 className="text-xs font-semibold uppercase tracking-wider text-gray-300">
+                {col.heading}
+              </h3>
+              <ul className="mt-4 space-y-3">
+                {(col.links ?? []).map((link, j) => (
+                  <li key={j}>
+                    <FooterLink link={link} />
+                  </li>
+                ))}
+              </ul>
             </div>
-        </footer>
-    );
+          ))}
+        </div>
+
+        <div className="mt-12 flex flex-col items-start justify-between gap-6 border-t border-gray-800 pt-8 md:flex-row md:items-center">
+          <p className="text-xs text-gray-500">{copyright}</p>
+
+          {!!data.socialLinks?.length && (
+            <ul className="flex items-center gap-2">
+              {data.socialLinks.map((social, i) => {
+                if (!social.platform || !social.url) return null;
+                const Icon = SOCIAL_ICON[social.platform];
+                if (!Icon) return null;
+                return (
+                  <li key={i}>
+                    <a
+                      href={social.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={social.platform}
+                      className="flex h-9 w-9 items-center justify-center rounded-full bg-gray-800 text-gray-300 transition hover:bg-orange-600 hover:text-white"
+                    >
+                      <Icon className="h-4 w-4" />
+                    </a>
+                  </li>
+                );
+              })}
+            </ul>
+          )}
+        </div>
+      </div>
+    </footer>
+  );
 };

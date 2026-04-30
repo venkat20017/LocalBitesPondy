@@ -1,58 +1,68 @@
-// ══════════════════════════════════════════════
-// ValueProps.tsx — OPTIMIZED
-// ✅ Fixed grammar issues, richer descriptions, keyword-enriched H2
-// ══════════════════════════════════════════════
+import { useSanityDoc } from '../hooks/useSanityDoc';
+import type { ValuePropsDoc } from '../types/sanity';
+import { LucideIcon } from '../lib/lucideIcon';
 
-import { MapPinned, Utensils, IndianRupee, Lightbulb } from 'lucide-react';
+const FALLBACK: ValuePropsDoc = {
+  heading: 'Why food lovers in Pondicherry trust this guide',
+  subheading: 'Skip the tourist traps. Eat where locals eat — every spot vetted, mapped, and tasted.',
+  items: [
+    {
+      icon: 'MapPin',
+      title: 'Hand-picked by locals',
+      body: 'Every spot is personally visited and vetted by long-time Pondicherry residents — no paid placements, no algorithms.',
+    },
+    {
+      icon: 'Compass',
+      title: 'Real Google Maps links',
+      body: 'No vague "near the beach" directions. Tap, drive, eat. Each restaurant comes with the exact map pin.',
+    },
+    {
+      icon: 'Coffee',
+      title: 'French heritage to street food',
+      body: 'From 100-year-old boulangeries to 5am breakfast carts — the full range of what makes Pondy food unique.',
+    },
+    {
+      icon: 'Clock',
+      title: 'Updated every week',
+      body: 'New openings, closures, and tasting notes added regularly. We delete what no longer deserves the list.',
+    },
+  ],
+};
 
 export const ValueProps = () => {
-    const features = [
-        {
-            icon: <MapPinned className="h-10 w-10 text-orange-500" />,
-            title: "Exact Google Maps Links — No Getting Lost",
-            // ✅ Fixed grammar, natural language, specific details
-            description: "Every restaurant, café, and street food spot in the guide includes the precise Google Maps link so you can navigate directly from your phone. We skip the vague descriptions like 'near the beach road' — you get the exact pin. These are places locals have eaten at for years, not tourist traps that appear on every travel blog."
-        },
-        {
-            icon: <Utensils className="h-10 w-10 text-orange-500" />,
-            title: "Must-Order Dishes at Every Spot — Decoded",
-            // ✅ Rewritten from broken grammar to clean, clear copy
-            description: "At each location, we tell you the 2–3 dishes you must order, using local Tamil and French names with English explanations. Whether it's the Meen Kuzhambu at a Tamil mess or the pain au chocolat at a French boulangerie, you'll know exactly what to order without guessing — and why it's worth ordering."
-        },
-        {
-            icon: <IndianRupee className="h-10 w-10 text-orange-500" />,
-            title: "Every Budget Covered — From ₹50 to ₹500",
-            description: "Pondicherry's food scene is accessible at every price point. The guide covers street food snacks from ₹20, full Tamil thali meals under ₹100, mid-range seafood restaurants around ₹300, and upscale French Quarter dining up to ₹500. Every spot is tagged with a clear price range so you can plan your meals around your budget without surprises."
-        },
-        {
-            icon: <Lightbulb className="h-10 w-10 text-orange-500" />,
-            title: "Local Secrets — Best Times, Hidden Tips & Off-Menu Dishes",
-            description: "The guide includes the insider knowledge that only locals know: when to arrive to avoid queues, which days certain spots are closed, where to park nearby, and — most valuably — the off-menu dishes that regular customers order that never appear on any menu board. This is the difference between eating well in Pondicherry and eating exceptionally."
-        }
-    ];
+  const { data } = useSanityDoc<ValuePropsDoc>('valueProps', FALLBACK);
+  const items = data.items ?? [];
 
-    return (
-        <section className="bg-orange-50 py-20 px-4">
-            <div className="mx-auto max-w-6xl">
-                {/* ✅ SEO: H2 with keyword */}
-                <h2 className="mb-4 text-center text-3xl font-bold text-gray-900 md:text-4xl">
-                    What's Inside the Famous Food in Pondicherry Guide?
-                </h2>
-                <p className="text-center text-gray-600 text-lg mb-12 max-w-2xl mx-auto">
-                    This isn't a generic travel list. It's a locally-researched, personally-verified food guide with the details that actually matter when you're standing hungry on a Pondicherry street.
-                </p>
-                <div className="grid gap-8 md:grid-cols-2">
-                    {features.map((feature, index) => (
-                        <div key={index} className="group rounded-2xl bg-white p-8 shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1 text-left flex flex-col items-start border border-transparent hover:border-orange-100 h-full">
-                            <div className="mb-6 rounded-full bg-orange-100 p-4 transition-transform group-hover:scale-110 duration-300">
-                                {feature.icon}
-                            </div>
-                            <h3 className="mb-3 text-xl font-bold text-gray-900">{feature.title}</h3>
-                            <p className="text-gray-600 leading-relaxed">{feature.description}</p>
-                        </div>
-                    ))}
-                </div>
-            </div>
-        </section>
-    );
+  return (
+    <section className="bg-white py-20 sm:py-24" aria-labelledby="value-props-heading">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-2xl text-center">
+          <h2
+            id="value-props-heading"
+            className="text-3xl font-extrabold tracking-tight text-gray-900 text-balance sm:text-4xl"
+          >
+            {data.heading}
+          </h2>
+          {data.subheading && (
+            <p className="mt-4 text-lg leading-relaxed text-gray-600">{data.subheading}</p>
+          )}
+        </div>
+
+        <ul className="mx-auto mt-14 grid max-w-6xl grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+          {items.map((item, i) => (
+            <li
+              key={i}
+              className="group relative rounded-2xl border border-gray-200 bg-white p-6 transition hover:-translate-y-0.5 hover:border-orange-200 hover:shadow-lg"
+            >
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-orange-50 text-orange-600 ring-1 ring-orange-100 transition group-hover:bg-orange-100">
+                <LucideIcon name={item.icon} className="h-6 w-6" />
+              </div>
+              <h3 className="mt-5 text-lg font-semibold text-gray-900">{item.title}</h3>
+              {item.body && <p className="mt-2 text-sm leading-relaxed text-gray-600">{item.body}</p>}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  );
 };
