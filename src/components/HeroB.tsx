@@ -7,7 +7,7 @@ export const HeroB = () => {
     const { openPopup } = useLeadPopup();
     const { settings } = useContent();
 
-    const title = settings.hero_title || (
+    const title = settings.heroTitle || settings.hero_title || (
         <>
             The "Not-So-Secret" Guide to{' '}
             <span className="text-orange-500">Famous Food</span>
@@ -15,27 +15,16 @@ export const HeroB = () => {
         </>
     );
 
-    const subtitle1 = settings.hero_subtitle1 || "Stop following the TripAdvisor crowds. Pondicherry isn't just about 'French vibes' — it's where 200-year-old Tamil traditions and French Creole secrets meet on the same street. From the buttery croissants of White Town to the legendary messes of the Tamil Quarter, we show you exactly where the locals actually eat.";
+    const subtitle1 = settings.heroSubtitle1 || settings.hero_subtitle1 || "Stop following the TripAdvisor crowds. Pondicherry isn't just about 'French vibes' — it's where 200-year-old Tamil traditions and French Creole secrets meet on the same street. From the buttery croissants of White Town to the legendary messes of the Tamil Quarter, we show you exactly where the locals actually eat.";
     
-    const subtitle2 = settings.hero_subtitle2 || "Our free, locally-verified guide reveals 15 handpicked spots tourists usually miss — including Google Maps links, must-order dishes (like the real Ghee Roast), and tourist traps to avoid.";
+    const subtitle2 = settings.heroSubtitle2 || settings.hero_subtitle2 || "Our free, locally-verified guide reveals 15 handpicked spots tourists usually miss — including Google Maps links, must-order dishes (like the real Ghee Roast), and tourist traps to avoid.";
 
-    const ctaText = settings.hero_cta || "Get My Free Food Guide";
-    const ctaLink = settings.hero_link;
+    const ctaText = settings.heroCta || settings.hero_cta || "Get My Free Food Guide";
+    const ctaLink = settings.heroLink || settings.hero_link;
 
     const handleCTAClick = () => {
-        if (ctaLink) {
-            if (ctaLink.startsWith('http')) {
-                window.open(ctaLink, '_blank');
-            } else {
-                const targetId = ctaLink.replace('#', '');
-                const element = document.getElementById(targetId);
-                if (element) {
-                    const headerOffset = 80;
-                    const elementPosition = element.getBoundingClientRect().top;
-                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-                    window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
-                }
-            }
+        if (ctaLink && ctaLink.startsWith('http')) {
+            window.open(ctaLink, '_blank');
         } else {
             openPopup('hero_b');
         }
@@ -80,8 +69,8 @@ export const HeroB = () => {
                 {/* Right Side: Hero Image */}
                 <div className="w-full md:w-1/2 relative min-h-[400px] md:min-h-screen">
                     <img
-                        src={pyHero}
-                        alt="Famous food in Pondicherry — French croissants, Tamil breakfast, fresh seafood and street food"
+                        src={settings.heroImageUrl || pyHero}
+                        alt={settings.heroImageAlt || "Famous food in Pondicherry — French croissants, Tamil breakfast, fresh seafood and street food"}
                         className="absolute inset-0 w-full h-full object-cover"
                         loading="eager"
                     />

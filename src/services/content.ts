@@ -4,19 +4,19 @@ import { createClient } from '@sanity/client';
 const client = createClient({
     projectId: import.meta.env.VITE_SANITY_PROJECT_ID || 'your-project-id',
     dataset: 'production',
-    useCdn: true, // This enables the lightning-fast edge cache
+    useCdn: true, // Optimized for production: enables edge caching for faster load times
     apiVersion: '2024-01-01',
 });
 
 export const fetchAllWebsiteData = async () => {
     try {
         const query = `{
-            "Settings": *[_type == "siteSettings"][0],
+            "Settings": *[_type == "siteSettings"][0]{ ..., "heroImageUrl": heroImage.asset->url, "heroImageAlt": heroImage.alt },
             "FAQs": *[_type == "faq"],
-            "TraditionalFood": *[_type == "traditionalFood"],
-            "FrenchCafes": *[_type == "frenchCafe"],
-            "Seafood": *[_type == "seafood"],
-            "StreetFood": *[_type == "streetFood"]
+            "TraditionalFood": *[_type == "traditionalFood"]{ ..., "imageUrl": image.asset->url, "imageAlt": image.alt },
+            "FrenchCafes": *[_type == "frenchCafe"]{ ..., "imageUrl": image.asset->url, "imageAlt": image.alt },
+            "Seafood": *[_type == "seafood"]{ ..., "imageUrl": image.asset->url, "imageAlt": image.alt },
+            "StreetFood": *[_type == "streetFood"]{ ..., "imageUrl": image.asset->url, "imageAlt": image.alt }
         }`;
 
         const data = await client.fetch(query);

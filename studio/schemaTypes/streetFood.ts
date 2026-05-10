@@ -6,6 +6,19 @@ export default {
     { name: 'name', title: 'Name', type: 'string' },
     { name: 'description', title: 'Description', type: 'text' },
     { name: 'link', title: 'Link (Optional)', type: 'url' },
-    { name: 'image', title: 'Image', type: 'image', options: { hotspot: true } }
+    { 
+      name: 'image', 
+      title: 'Image', 
+      type: 'image', 
+      options: { hotspot: true },
+      fields: [
+        {
+          name: 'alt',
+          type: 'string',
+          title: 'Alternative Text',
+          description: 'Important for SEO and accessiblity.'
+        }
+      ]
+    }
   ]
 }

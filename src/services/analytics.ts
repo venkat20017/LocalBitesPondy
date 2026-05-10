@@ -22,7 +22,7 @@ export const trackPageView = (path: string, title?: string) => {
         page_title: title ?? document.title,
         send_to: GA4_ID,
     });
-    console.log(`[Analytics] page_view: ${path}`);
+    // console.log(`[Analytics] page_view: ${path}`);
 };
 
 /**
@@ -53,11 +53,11 @@ export const trackLeadConversion = (source: string) => {
         transaction_id: transactionId,
     });
 
-    console.log(`[Analytics] lead conversion (${source}) — txn ${transactionId}`);
+    // console.log(`[Analytics] lead conversion (${source}) — txn ${transactionId}`);
 };
 
 export const trackEvent = (action: string, category: string, label?: string) => {
-    console.log(`[Analytics] Event tracked: ${action} | ${category} | ${label}`);
+    // console.log(`[Analytics] Event tracked: ${action} | ${category} | ${label}`);
     if (window.gtag) {
         window.gtag('event', action, {
             'event_category': category,

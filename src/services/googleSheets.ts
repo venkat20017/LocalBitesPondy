@@ -30,7 +30,7 @@ export const saveLeadToSheets = async (data: LeadData) => {
             body: formData,
         });
 
-        console.log('Request sent to Google Sheets');
+        // console.log('Request sent to Google Sheets');
 
     } catch (error) {
         console.error('Error submitting to Google Sheets', error);

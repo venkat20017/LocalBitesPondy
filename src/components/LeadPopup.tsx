@@ -62,6 +62,9 @@ export const LeadPopup = () => {
             
             setIsSuccess(true);
             
+            // Immediately open/download the PDF
+            window.open('/famous-food-in-pondicherry.pdf', '_blank');
+            
             // Redirect after a short delay to show success state
             setTimeout(() => {
                 closePopup();

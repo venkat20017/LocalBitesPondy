@@ -14,6 +14,7 @@ export default defineConfig({
       output: {
         manualChunks: {
           vendor: ['react', 'react-dom', 'react-router-dom'],
+          sanity: ['@sanity/client'],
           ui: ['lucide-react']
         }
       }

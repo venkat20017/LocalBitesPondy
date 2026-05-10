@@ -79,8 +79,11 @@ export const SEOSections = () => {
                                 {traditionalFood.map((item: any, idx: number) => {
                                      const content = (
                                          <>
+                                             {item.imageUrl && (
+                                                 <img src={item.imageUrl} alt={item.imageAlt || item.name} className="w-full h-48 object-cover rounded-lg mb-3" loading="lazy" />
+                                             )}
                                              <strong className="text-orange-700 block text-lg mb-1">{item.name}</strong>
-                                             <span className="text-gray-600 text-sm leading-relaxed">{item.desc}</span>
+                                             <span className="text-gray-600 text-sm leading-relaxed">{item.description || item.desc}</span>
                                          </>
                                      );
                                      
@@ -124,8 +127,11 @@ export const SEOSections = () => {
                                 {frenchCafes.map((item: any, idx: number) => {
                                      const content = (
                                          <>
+                                             {item.imageUrl && (
+                                                 <img src={item.imageUrl} alt={item.imageAlt || item.name} className="w-full h-48 object-cover rounded-lg mb-3" loading="lazy" />
+                                             )}
                                              <strong className="text-gray-900 block mb-2 text-lg">{item.name}</strong>
-                                             <p className="text-sm text-gray-600 leading-relaxed">{item.desc}</p>
+                                             <p className="text-sm text-gray-600 leading-relaxed">{item.description || item.desc}</p>
                                          </>
                                      );
                                      
@@ -171,8 +177,11 @@ export const SEOSections = () => {
                                 {seafood.map((item: any, idx: number) => {
                                      const content = (
                                          <>
+                                             {item.imageUrl && (
+                                                 <img src={item.imageUrl} alt={item.imageAlt || item.name} className="w-full h-48 object-cover rounded-lg mb-3" loading="lazy" />
+                                             )}
                                              <strong className="text-orange-700 block text-lg">{item.name}</strong>
-                                             <span className="text-gray-600">{item.desc}</span>
+                                             <span className="text-gray-600">{item.description || item.desc}</span>
                                          </>
                                      );
                                      
@@ -202,8 +211,11 @@ export const SEOSections = () => {
                                 {streetFood.map((item: any, idx: number) => {
                                      const content = (
                                          <>
+                                             {item.imageUrl && (
+                                                 <img src={item.imageUrl} alt={item.imageAlt || item.name} className="w-full h-48 object-cover rounded-lg mb-3" loading="lazy" />
+                                             )}
                                              <strong className="text-orange-700 block text-lg">{item.name}</strong>
-                                             <span className="text-gray-600">{item.desc}</span>
+                                             <span className="text-gray-600">{item.description || item.desc}</span>
                                          </>
                                      );
                                      
