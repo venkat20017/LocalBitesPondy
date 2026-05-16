@@ -30,16 +30,7 @@
     } catch (e) { /* localStorage unavailable — stay denied */ }
   </script>
 
-  <!-- Google Tag Manager -->
-  <script>(function (w, d, s, l, i) {
-      w[l] = w[l] || []; w[l].push({
-        'gtm.start':
-          new Date().getTime(), event: 'gtm.js'
-      }); var f = d.getElementsByTagName(s)[0],
-        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
-          'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
-    })(window, document, 'script', 'dataLayer', 'GTM-PSSSM8R6');</script>
-  <!-- End Google Tag Manager -->
+  <!-- GTM and GA4 are now lazy-loaded. See script below. -->
 
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -68,17 +59,47 @@
     }
   </script>
 
-  <!-- Google Analytics (GA4) + Google Ads -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-7K5JPSBRQ2"></script>
+  <!-- Lazy Loaded Google Analytics (GA4) + Google Ads + GTM -->
   <script>
-    // dataLayer + gtag already initialized above for Consent Mode
-    gtag('js', new Date());
+    let trackingLoaded = false;
+    function initTracking() {
+      if (trackingLoaded) return;
+      trackingLoaded = true;
 
-    // send_page_view:false — this is a SPA; React fires page_view on every
-    // route change via usePageTracking. Disabling auto-fire prevents the
-    // initial HTML load from double-counting the first pageview.
-    gtag('config', 'G-7K5JPSBRQ2', { send_page_view: false });
-    gtag('config', 'AW-17775750153');
+      // 1. Initialize dataLayer configurations
+      gtag('js', new Date());
+      gtag('config', 'G-7K5JPSBRQ2', { send_page_view: false });
+      gtag('config', 'AW-17775750153');
+
+      // 2. Load GA4 / Google Ads (gtag.js)
+      const gtagScript = document.createElement('script');
+      gtagScript.async = true;
+      gtagScript.src = "https://www.googletagmanager.com/gtag/js?id=G-7K5JPSBRQ2";
+      document.head.appendChild(gtagScript);
+
+      // 3. Load Google Tag Manager (gtm.js)
+      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-PSSSM8R6');
+    }
+
+    // Load immediately if in GTM Preview mode
+    if (window.location.search.indexOf('gtm_preview') !== -1) {
+      initTracking();
+    } else {
+      // Lazy load on first user interaction
+      const interactEvents = ['scroll', 'mousemove', 'touchstart', 'keydown'];
+      const loadOnInteract = () => {
+        initTracking();
+        interactEvents.forEach(e => window.removeEventListener(e, loadOnInteract));
+      };
+      interactEvents.forEach(e => window.addEventListener(e, loadOnInteract, { passive: true, once: true }));
+      
+      // Fallback: load after 3.5 seconds if no interaction occurs
+      setTimeout(initTracking, 3500);
+    }
   </script>
 
   <!-- Consent update helpers — invoked by the React consent banner -->
@@ -116,8 +137,6 @@
   <!-- End Google Tag Manager (noscript) -->
   <div id="root"></div>
   <script type="module" src="/src/main.tsx"></script>
-  <script async src="https://eocampaign1.com/form/70a9ff64-029b-11f1-b3b9-f759c12aedee.js"
-    data-form="70a9ff64-029b-11f1-b3b9-f759c12aedee"></script>
 </body>
 
 </html>
