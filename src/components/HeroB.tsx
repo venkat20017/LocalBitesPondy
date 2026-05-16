@@ -73,6 +73,7 @@ export const HeroB = () => {
                         alt={settings.heroImageAlt || "Famous food in Pondicherry — French croissants, Tamil breakfast, fresh seafood and street food"}
                         className="absolute inset-0 w-full h-full object-cover"
                         loading="eager"
+                        fetchPriority="high"
                     />
                     <div className="absolute inset-0 bg-linear-to-t from-black/30 to-transparent md:bg-linear-to-l"></div>
                 </div>

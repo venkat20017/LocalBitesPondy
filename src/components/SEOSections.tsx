@@ -1,8 +1,10 @@
+import { useMemo } from 'react';
 import { Utensils, Coffee, Fish, MapPin, ChefHat, Sun, Star, ArrowRight } from 'lucide-react';
 import tamilCreoleImg from '../assets/Authentic-Tamil-and-Creole-Flavours.png';
 import frenchBoulangerieImg from '../assets/French-Boulangeries-and-Heritage-Cafés.png';
 import { useLeadPopup } from '../context/LeadPopupContext';
 import { useContent } from '../context/ContentContext';
+import { SchemaMarkup } from './SchemaMarkup';
 
 export const SEOSections = () => {
     const { openPopup } = useLeadPopup();
@@ -60,8 +62,35 @@ export const SEOSections = () => {
         { name: "Spiced Pineapple & Mango", desc: "Look for vendors on the beach selling sliced fruits dusted with salt and red chilli powder — the perfect coastal palate cleanser." }
     ];
 
+    const restaurantSchema = useMemo(() => {
+        // Extracting known spots from the content arrays to generate LocalBusiness/Restaurant schemas
+        const allSpots = [...traditionalFood, ...frenchCafes, ...seafood, ...streetFood];
+        
+        return {
+            "@context": "https://schema.org",
+            "@type": "ItemList",
+            "itemListElement": allSpots.map((spot, index) => ({
+                "@type": "ListItem",
+                "position": index + 1,
+                "item": {
+                    "@type": "Restaurant",
+                    "name": spot.name,
+                    "description": spot.description || spot.desc,
+                    "image": spot.imageUrl,
+                    "address": {
+                        "@type": "PostalAddress",
+                        "addressLocality": "Pondicherry",
+                        "addressRegion": "PY",
+                        "addressCountry": "IN"
+                    }
+                }
+            }))
+        };
+    }, [traditionalFood, frenchCafes, seafood, streetFood]);
+
     return (
         <div className="font-sans text-gray-800">
+            <SchemaMarkup schema={restaurantSchema} />
 
             {/* ── Section 1: Traditional Tamil Dishes ── */}
             <section id="famous-food" className="py-20 bg-orange-50">

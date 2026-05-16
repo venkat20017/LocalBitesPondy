@@ -3,7 +3,9 @@
 // ✅ Richer hotel descriptions, SEO H2, AEO intro paragraph, better alt text
 // ══════════════════════════════════════════════
 
+import { useMemo } from 'react';
 import { Star, MapPin, ArrowRight } from 'lucide-react';
+import { SchemaMarkup } from './SchemaMarkup';
 
 export const BestHotels = () => {
     const hotels = [
@@ -40,8 +42,36 @@ export const BestHotels = () => {
         }
     ];
 
+    const hotelSchema = useMemo(() => {
+        return {
+            "@context": "https://schema.org",
+            "@type": "ItemList",
+            "itemListElement": hotels.map((hotel, index) => ({
+                "@type": "ListItem",
+                "position": index + 1,
+                "item": {
+                    "@type": "Hotel",
+                    "name": hotel.name,
+                    "image": hotel.image,
+                    "description": hotel.description,
+                    "starRating": {
+                        "@type": "Rating",
+                        "ratingValue": hotel.rating
+                    },
+                    "address": {
+                        "@type": "PostalAddress",
+                        "addressLocality": "Pondicherry",
+                        "addressRegion": "PY",
+                        "addressCountry": "IN"
+                    }
+                }
+            }))
+        };
+    }, []);
+
     return (
         <section id="hotels" className="py-20 bg-orange-50">
+            <SchemaMarkup schema={hotelSchema} />
             <div className="mx-auto max-w-7xl px-4">
                 <div className="text-center mb-16">
                     <span className="text-orange-600 font-bold tracking-wider uppercase text-sm">Where to Stay</span>

@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { ChevronDown, ChevronUp, HelpCircle } from 'lucide-react';
 import { useContent } from '../context/ContentContext';
+import { SchemaMarkup } from './SchemaMarkup';
 
 // ✅ AEO: Every answer is 3-5 sentences — the minimum length AI engines need to cite a source as authoritative.
 // ✅ SEO: Questions match exact search queries. Answers use natural keywords without stuffing.
@@ -29,12 +30,28 @@ export const FAQSection = () => {
     const faqs = data?.FAQs || FALLBACK_FAQS;
     const [openIndex, setOpenIndex] = useState<number | null>(0);
 
+    const faqSchema = useMemo(() => {
+        return {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": faqs.map((faq: any) => ({
+                "@type": "Question",
+                "name": faq.question,
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": faq.answer
+                }
+            }))
+        };
+    }, [faqs]);
+
     const toggleFAQ = (index: number) => {
         setOpenIndex(openIndex === index ? null : index);
     };
 
     return (
         <section id="faq" className="py-20 bg-white">
+            <SchemaMarkup schema={faqSchema} />
             <div className="mx-auto max-w-4xl px-6">
                 <div className="text-center mb-12">
                     {/* ✅ SEO: H2 with keyword */}

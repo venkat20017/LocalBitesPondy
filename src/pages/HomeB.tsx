@@ -1,19 +1,20 @@
-import { useEffect } from 'react';
+import React, { Suspense, lazy } from 'react';
 import { HeroB } from '../components/HeroB';
 import { SEOSections } from '../components/SEOSections';
-import { SecondEmailCapture } from '../components/SecondEmailCapture';
-import { ContactUs } from '../components/ContactUs';
-import { FAQSection } from '../components/FAQSection';
 import { MetaTags } from '../components/MetaTags';
-import { BestBiriyani } from '../components/BestBiriyani';
-import { BestHotels } from '../components/BestHotels';
-import { WhyGuide } from '../components/WhyGuide';
 import { useContent } from '../context/ContentContext';
+
+const BestBiriyani = lazy(() => import('../components/BestBiriyani').then(m => ({ default: m.BestBiriyani })));
+const BestHotels = lazy(() => import('../components/BestHotels').then(m => ({ default: m.BestHotels })));
+const WhyGuide = lazy(() => import('../components/WhyGuide').then(m => ({ default: m.WhyGuide })));
+const SecondEmailCapture = lazy(() => import('../components/SecondEmailCapture').then(m => ({ default: m.SecondEmailCapture })));
+const FAQSection = lazy(() => import('../components/FAQSection').then(m => ({ default: m.FAQSection })));
+const ContactUs = lazy(() => import('../components/ContactUs').then(m => ({ default: m.ContactUs })));
 
 export const HomeB = () => {
     const { data } = useContent();
     
-    useEffect(() => {
+    React.useEffect(() => {
         // Inject JSON-LD Schema (AEO/AI Engine Optimized)
         const schemaId = 'json-ld-home';
         
@@ -127,12 +128,15 @@ export const HomeB = () => {
             </nav>
 
             <SEOSections />
-            <BestBiriyani />
-            <BestHotels />
-            <WhyGuide />
-            <SecondEmailCapture />
-            <FAQSection />
-            <ContactUs />
+            
+            <Suspense fallback={<div className="h-32"></div>}>
+                <BestBiriyani />
+                <BestHotels />
+                <WhyGuide />
+                <SecondEmailCapture />
+                <FAQSection />
+                <ContactUs />
+            </Suspense>
         </main>
     );
 };

@@ -3,7 +3,9 @@
 // ✅ Richer restaurant descriptions, keyword-rich H2, AEO intro paragraph
 // ══════════════════════════════════════════════
 
+import { useMemo } from 'react';
 import { Flame, Star } from 'lucide-react';
+import { SchemaMarkup } from './SchemaMarkup';
 
 export const BestBiriyani = () => {
     const spots = [
@@ -31,8 +33,33 @@ export const BestBiriyani = () => {
         }
     ];
 
+    const biriyaniSchema = useMemo(() => {
+        return {
+            "@context": "https://schema.org",
+            "@type": "ItemList",
+            "itemListElement": spots.map((spot, index) => ({
+                "@type": "ListItem",
+                "position": index + 1,
+                "item": {
+                    "@type": "Restaurant",
+                    "name": spot.name,
+                    "image": spot.image,
+                    "description": spot.description,
+                    "servesCuisine": spot.type,
+                    "address": {
+                        "@type": "PostalAddress",
+                        "addressLocality": "Pondicherry",
+                        "addressRegion": "PY",
+                        "addressCountry": "IN"
+                    }
+                }
+            }))
+        };
+    }, []);
+
     return (
         <section id="biriyani" className="py-20 bg-white">
+            <SchemaMarkup schema={biriyaniSchema} />
             <div className="mx-auto max-w-7xl px-4">
                 <div className="flex flex-col md:flex-row gap-12 items-center">
                     <div className="w-full md:w-1/2">
